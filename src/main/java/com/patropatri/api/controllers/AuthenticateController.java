@@ -17,7 +17,7 @@ public class AuthenticateController {
     @Autowired
     private AuthenticateService mService;
 
-    @RequestMapping(value="/add", method= RequestMethod.GET, produces={"application/json"})
+    @RequestMapping(value="/add", method= RequestMethod.POST, produces={"application/json"})
     public ResponseEntity<Authenticate> addAuthenticate(@RequestBody Authenticate item) {
         return new ResponseEntity<Authenticate>(mService.addObject(item), HttpStatus.CREATED);
     }
