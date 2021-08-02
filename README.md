@@ -1,2 +1,2 @@
 # PatroPatriApi
-PatrPatri API for a matrimonial service site.
+PatroPatri API for a matrimonial service site.
