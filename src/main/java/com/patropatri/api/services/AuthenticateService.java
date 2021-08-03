@@ -3,14 +3,13 @@ package com.patropatri.api.services;
 import com.patropatri.api.models.Authenticate;
 
 import java.util.List;
-import java.util.UUID;
 
 public interface AuthenticateService {
 
     Authenticate addObject(Authenticate item);
-    Authenticate getObjectById(UUID id);
+    Authenticate getObjectById(long id);
     List<Authenticate> getAllObjects();
     Authenticate updateObject(Authenticate item);
-    int deleteObjectById(UUID id);
+    int deleteObjectById(long id);
 
 }

@@ -11,11 +11,15 @@ import java.util.UUID;
 @Table(name = "authenticate")
 public class Authenticate {
 
-    @Id
+    /*@Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     @Column(name = "id", nullable = false)
-    private UUID id;
+    private UUID id;*/
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
     @Column(name = "username")
     private String username;

@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 public class AuthenticateServiceImpl implements AuthenticateService {
@@ -22,7 +21,7 @@ public class AuthenticateServiceImpl implements AuthenticateService {
     }
 
     @Override
-    public Authenticate getObjectById(UUID id) {
+    public Authenticate getObjectById(long id) {
         Optional<Authenticate> item = mRepository.findById(id);
 		if(item.isPresent()) {
 			return item.get();
@@ -53,7 +52,7 @@ public class AuthenticateServiceImpl implements AuthenticateService {
     }
 
     @Override
-    public int deleteObjectById(UUID id) {
+    public int deleteObjectById(long id) {
         boolean isFound = mRepository.existsById(id);
         if(isFound) {
             mRepository.deleteById(id);
