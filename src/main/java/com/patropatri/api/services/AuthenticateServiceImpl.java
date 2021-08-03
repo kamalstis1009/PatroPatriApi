@@ -18,7 +18,11 @@ public class AuthenticateServiceImpl implements AuthenticateService {
     //======================================================| ADD
     @Override
     public Authenticate addObject(Authenticate item) {
-        return mRepository.save(item);
+        Authenticate model = mRepository.getAuthenticateByUsername(item.getUsername());
+        if (model == null)
+            return mRepository.save(item);
+        else
+            return null;
     }
 
     //======================================================| GET
