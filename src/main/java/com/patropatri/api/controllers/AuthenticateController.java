@@ -21,14 +21,14 @@ public class AuthenticateController {
         return new ResponseEntity<>(mService.addObject(item), HttpStatus.CREATED);
     }
 
-    @GetMapping(value="/authenticate/{id}", produces= {"application/json"})
+    @GetMapping(value="/authenticate/{id}", produces = {"application/json"})
     public ResponseEntity<Authenticate> getObjectById(@PathVariable("id") long id) {
         return new ResponseEntity<>(mService.getObjectById(id), HttpStatus.OK);
     }
 
-    @GetMapping(value="/authenticates", produces= {"application/json"})
-    public List<Authenticate> getAllObjects() {
-        return mService.getAllObjects();
+    @GetMapping(value="/authenticates", produces = {"application/json"})
+    public ResponseEntity<List<Authenticate>> getAllObjects() {
+        return new ResponseEntity<>(mService.getAllObjects(), HttpStatus.OK);
     }
 
     @PutMapping("/authenticate")
