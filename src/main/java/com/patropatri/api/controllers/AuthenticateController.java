@@ -43,8 +43,12 @@ public class AuthenticateController {
     //http://localhost:8080/api/authenticate/1
     @RequestMapping(value="/authenticate/{id}", method= RequestMethod.DELETE, produces={"application/json"})
     public ResponseEntity<String> deleteObjectById(@PathVariable("id") UUID id) {
-        mService.deleteObjectById(id);
-        return new ResponseEntity<>("Authenticate deleted successfully!", HttpStatus.OK);
+        int response = mService.deleteObjectById(id);
+        if (response > 0) {
+            return new ResponseEntity<>("Deleted successfully!", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Do not delete the item unsuccessfully!", HttpStatus.OK);
+        }
     }
 
 }

@@ -49,8 +49,11 @@ public class AuthenticateServiceImpl implements AuthenticateService {
 
     @Override
     public int deleteObjectById(UUID id) {
-        mRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Authenticate", "Id", id));
-        mRepository.deleteById(id);
+        Optional<Authenticate> item = mRepository.findById(id);
+        if(item.isPresent()) {
+            mRepository.deleteById(id);
+            return 1;
+        }
         return 0;
     }
 }
