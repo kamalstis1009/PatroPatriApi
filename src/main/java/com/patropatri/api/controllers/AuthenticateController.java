@@ -29,19 +29,30 @@ public class AuthenticateController {
     }
 
     //http://localhost:8080/api/authenticate
-    @RequestMapping(value="/authenticate", method= RequestMethod.GET, produces={"application/json"})
+    @RequestMapping(value="/authenticates", method= RequestMethod.GET, produces={"application/json"})
     public List<Authenticate> getAllObjects() {
         return mService.getAllObjects();
     }
 
     //http://localhost:8080/api/authenticate/1
-    @RequestMapping(value="/authenticate/{id}", method= RequestMethod.PUT, produces={"application/json"})
-    public ResponseEntity<Authenticate> updateObject(@RequestBody Authenticate item, @PathVariable("id") UUID id) {
-        return new ResponseEntity<>(mService.updateObject(item, id), HttpStatus.OK);
+    /*@RequestMapping(value="/authenticate/{id}", method= RequestMethod.PUT, produces={"application/json"})
+    public ResponseEntity<Authenticate> updateObject(@PathVariable("id") UUID id, @RequestBody Authenticate item) {
+        //return new ResponseEntity<>(mService.updateObject(id, item), HttpStatus.OK);
+        Authenticate response = mService.updateObject(id, item);
+        if (response != null) {
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+    }*/
+
+    @PutMapping("/authenticate")
+    public ResponseEntity<Authenticate> updateObject(@RequestBody Authenticate item) {
+        return new ResponseEntity<>(mService.updateObject(item), HttpStatus.OK);
     }
 
     //http://localhost:8080/api/authenticate/1
-    @RequestMapping(value="/authenticate/{id}", method= RequestMethod.DELETE, produces={"application/json"})
+    @DeleteMapping("/authenticate/{id}")
     public ResponseEntity<String> deleteObjectById(@PathVariable("id") UUID id) {
         int response = mService.deleteObjectById(id);
         if (response > 0) {

@@ -38,19 +38,24 @@ public class AuthenticateServiceImpl implements AuthenticateService {
     }
 
     @Override
-    public Authenticate updateObject(Authenticate item, UUID id) {
-        Authenticate model = mRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Authenticate", "Id", id));
-        model.setPassword(item.getPassword());
-        model.setUsername(item.getUsername());
-        model.setRole(item.getRole());
-        mRepository.save(model);
-        return model;
+    public Authenticate updateObject(Authenticate item) {
+        Optional<Authenticate> response = mRepository.findById(item.getId());
+        if (response.isPresent()) {
+            Authenticate model = response.get();
+            model.setPassword(item.getPassword());
+            model.setUsername(item.getUsername());
+            model.setRole(item.getRole());
+            mRepository.save(model);
+            return model;
+        } else {
+            return null;
+        }
     }
 
     @Override
     public int deleteObjectById(UUID id) {
-        Optional<Authenticate> item = mRepository.findById(id);
-        if(item.isPresent()) {
+        boolean isFound = mRepository.existsById(id);
+        if(isFound) {
             mRepository.deleteById(id);
             return 1;
         }

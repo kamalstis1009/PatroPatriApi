@@ -10,7 +10,7 @@ public interface AuthenticateService {
     Authenticate addObject(Authenticate item);
     Authenticate getObjectById(UUID id);
     List<Authenticate> getAllObjects();
-    Authenticate updateObject(Authenticate item, UUID id);
+    Authenticate updateObject(Authenticate item);
     int deleteObjectById(UUID id);
 
 }
