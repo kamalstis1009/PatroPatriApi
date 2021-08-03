@@ -15,11 +15,13 @@ public class AuthenticateServiceImpl implements AuthenticateService {
     @Autowired
     private AuthenticateRepository mRepository;
 
+    //======================================================| ADD
     @Override
     public Authenticate addObject(Authenticate item) {
         return mRepository.save(item);
     }
 
+    //======================================================| GET
     @Override
     public Authenticate getObjectById(long id) {
         Optional<Authenticate> item = mRepository.findById(id);
@@ -36,6 +38,7 @@ public class AuthenticateServiceImpl implements AuthenticateService {
         return mRepository.findAll();
     }
 
+    //======================================================| UPDATE
     @Override
     public Authenticate updateObject(Authenticate item) {
         Optional<Authenticate> response = mRepository.findById(item.getId());
@@ -51,6 +54,7 @@ public class AuthenticateServiceImpl implements AuthenticateService {
         }
     }
 
+    //======================================================| DELETE
     @Override
     public int deleteObjectById(long id) {
         boolean isFound = mRepository.existsById(id);

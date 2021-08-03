@@ -16,11 +16,13 @@ public class AuthenticateController {
     @Autowired
     private AuthenticateServiceImpl mService;
 
+    //======================================================| ADD
     @PostMapping("/authenticate")
     public ResponseEntity<Authenticate> addAuthenticate(@RequestBody Authenticate item) {
         return new ResponseEntity<>(mService.addObject(item), HttpStatus.CREATED);
     }
 
+    //======================================================| GET
     @GetMapping(value="/authenticate/{id}", produces = {"application/json"})
     public ResponseEntity<Authenticate> getObjectById(@PathVariable("id") long id) {
         return new ResponseEntity<>(mService.getObjectById(id), HttpStatus.OK);
@@ -31,11 +33,13 @@ public class AuthenticateController {
         return new ResponseEntity<>(mService.getAllObjects(), HttpStatus.OK);
     }
 
+    //======================================================| UPDATE
     @PutMapping("/authenticate")
     public ResponseEntity<Authenticate> updateObject(@RequestBody Authenticate item) {
         return new ResponseEntity<>(mService.updateObject(item), HttpStatus.OK);
     }
 
+    //======================================================| DELETE
     @DeleteMapping("/authenticate/{id}")
     public ResponseEntity<Integer> deleteObjectById(@PathVariable("id") long id) {
         return new ResponseEntity<>(mService.deleteObjectById(id), HttpStatus.OK);
