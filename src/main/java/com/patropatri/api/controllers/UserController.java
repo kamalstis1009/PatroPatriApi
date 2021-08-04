@@ -1,6 +1,6 @@
 package com.patropatri.api.controllers;
 
-import com.patropatri.api.models.Authentication;
+import com.patropatri.api.models.Education;
 import com.patropatri.api.models.Family;
 import com.patropatri.api.models.User;
 import com.patropatri.api.services.UserServiceImpl;
@@ -47,7 +47,23 @@ public class UserController {
 
     @GetMapping(value="/families/{id}", produces = {"application/json"})
     public ResponseEntity<List<Family>> getAllFamiliesByUserId(@PathVariable("id") long id) {
-        return new ResponseEntity<>(mService.getAllFamilyByUserId(id), HttpStatus.OK);
+        return new ResponseEntity<>(mService.getAllFamiliesByUserId(id), HttpStatus.OK);
+    }
+
+    //======================================================| Education
+    @PostMapping("/education")
+    public ResponseEntity<Education> addEducation(@RequestBody Education item) {
+        return new ResponseEntity<>(mService.addEducation(item), HttpStatus.CREATED);
+    }
+
+    @GetMapping(value="/education/{id}", produces = {"application/json"})
+    public ResponseEntity<Education> getEducationById(@PathVariable("id") long id) {
+        return new ResponseEntity<>(mService.getEducationById(id), HttpStatus.OK);
+    }
+
+    @GetMapping(value="/educations/{id}", produces = {"application/json"})
+    public ResponseEntity<List<Education>> getAllEducationsByUserId(@PathVariable("id") long id) {
+        return new ResponseEntity<>(mService.getAllEducationsByUserId(id), HttpStatus.OK);
     }
 
 

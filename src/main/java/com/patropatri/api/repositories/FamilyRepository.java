@@ -14,6 +14,6 @@ public interface FamilyRepository extends JpaRepository<Family, Long> {
     //@Query(value = "SELECT * FROM Family u WHERE u.created_by = :userId", nativeQuery = true)
 
     @Query("SELECT u FROM Family u WHERE u.userId = :userId")
-    List<Family> getAllFamilyByUserId(@Param("userId") long userId);
+    List<Family> getAllFamiliesByUserId(@Param("userId") long userId);
 
 }
