@@ -27,7 +27,11 @@ public class Family {
     @Column(name = "summary")
     private String summary;
 
+    @Column(name = "user_id")
+    private long userId;
+
     @CreatedDate
     @Column(name = "created_at")
     private Date createdAt;
+
 }

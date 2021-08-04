@@ -1,38 +1,54 @@
 package com.patropatri.api.controllers;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.patropatri.api.models.Authentication;
+import com.patropatri.api.models.Family;
+import com.patropatri.api.models.User;
+import com.patropatri.api.services.UserServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1")
 public class UserController {
 
-    /*@Autowired
-    private UserService mService;
+    @Autowired
+    private UserServiceImpl mService;
 
-    @PostMapping("/user/add")
-    public void addUser(@RequestBody User item) {
-        mService.addUser(item);
+    //======================================================| User
+    @PostMapping("/user")
+    public ResponseEntity<User> addUser(@RequestBody User item) {
+        return new ResponseEntity<>(mService.addUser(item), HttpStatus.CREATED);
     }
 
-    @GetMapping(value="/users" ,produces= {"application/xml"})
-    public List<User> getAllUsers(){
-        return mService.getAllUser();
+    @GetMapping(value="/user/{id}", produces = {"application/json"})
+    public ResponseEntity<User> getUserById(@PathVariable("id") long id) {
+        return new ResponseEntity<>(mService.getUserById(id), HttpStatus.OK);
     }
 
-    @PutMapping(value="/user/update")
-    public void updateUser(@RequestBody User item) {
-        mService.updateUser(item);
+    @PutMapping("/user")
+    public ResponseEntity<User> updateUser(@RequestBody User item) {
+        return new ResponseEntity<>(mService.updateUser(item), HttpStatus.OK);
     }
 
-    @GetMapping("/user/{id}")
-    public User getUser(@PathVariable("id") int id) {
-        return mService.getUser(id);
+    //======================================================| Family
+    @PostMapping("/family")
+    public ResponseEntity<Family> addFamily(@RequestBody Family item) {
+        return new ResponseEntity<>(mService.addFamily(item), HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/user/delete/{id}")
-    public void deleteUser(@PathVariable int id) {
-        mService.deleteUser(id);
-    }*/
+    @GetMapping(value="/family/{id}", produces = {"application/json"})
+    public ResponseEntity<Family> getFamilyById(@PathVariable("id") long id) {
+        return new ResponseEntity<>(mService.getFamilyById(id), HttpStatus.OK);
+    }
+
+    @GetMapping(value="/families/{id}", produces = {"application/json"})
+    public ResponseEntity<List<Family>> getAllFamiliesByUserId(@PathVariable("id") long id) {
+        return new ResponseEntity<>(mService.getAllFamilyByUserId(id), HttpStatus.OK);
+    }
+
 
 }

@@ -19,11 +19,11 @@ public interface UserService {
     //------------------------------------------------------| Family
     Family addFamily(Family item);
     Family getFamilyById(long id);
-    List<Family> getAllFamilies();
+    List<Family> getAllFamilyByUserId(long userId);
 
     //------------------------------------------------------| Education
     Education addEducation(Education item);
     Education getEducationById(long id);
-    List<Education> getAllEducations();
+    List<Education> getAllEducations(long userId);
 
 }

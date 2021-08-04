@@ -108,8 +108,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<Family> getAllFamilies() {
-        return mFamilyRep.findAll();
+    public List<Family> getAllFamilyByUserId(long userId) {
+        return mFamilyRep.getAllFamilyByUserId(userId);
+        //return mFamilyRep.findAll();
     }
 
     //======================================================| Education
@@ -129,7 +130,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<Education> getAllEducations() {
+    public List<Education> getAllEducations(long userId) {
         return mEducationRep.findAll();
     }
 
