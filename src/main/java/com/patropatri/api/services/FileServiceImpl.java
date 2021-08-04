@@ -28,14 +28,17 @@ public class FileServiceImpl implements FileService {
         if (file != null) {
             Path path = Paths.get("uploads").toAbsolutePath().normalize();
             try {
-                Files.createDirectories(path);
-                String newFileName = "IMG_" + new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date()) + ".jpg";
-
-                Path targetPath = path.resolve(newFileName);
+                if (!Files.exists(path)) {
+                    Files.createDirectory(path); //Create uploads directory
+                }
+                //String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+                String fileName = "IMG_" + new SimpleDateFormat("yyyyMMdd_HHmmss_SSS").format(new Date()) + ".jpg";
+                Path targetPath = path.resolve(fileName);
                 Files.copy(file.getInputStream(), targetPath, StandardCopyOption.REPLACE_EXISTING);
 
+                //Store to database
                 Gallery item = new Gallery();
-                item.setImageName(newFileName);
+                item.setImageName(fileName);
                 item.setUserId(userId);
                 return mRepository.save(item);
             } catch (IOException e) {
