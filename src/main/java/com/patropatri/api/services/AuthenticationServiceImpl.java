@@ -1,7 +1,7 @@
 package com.patropatri.api.services;
 
-import com.patropatri.api.models.Authenticate;
-import com.patropatri.api.repositories.AuthenticateRepository;
+import com.patropatri.api.models.Authentication;
+import com.patropatri.api.repositories.AuthenticationRepository;
 import com.patropatri.api.utils.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,15 +10,15 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class AuthenticateServiceImpl implements AuthenticateService {
+public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Autowired
-    private AuthenticateRepository mRepository;
+    private AuthenticationRepository mRepository;
 
     //======================================================| ADD
     @Override
-    public Authenticate addObject(Authenticate item) {
-        Authenticate model = mRepository.getAuthenticateByUsername(item.getUsername());
+    public Authentication addObject(Authentication item) {
+        Authentication model = mRepository.getAuthenticateByUsername(item.getUsername());
         if (model == null)
             return mRepository.save(item);
         else
@@ -27,8 +27,8 @@ public class AuthenticateServiceImpl implements AuthenticateService {
 
     //======================================================| GET
     @Override
-    public Authenticate getObjectById(long id) {
-        Optional<Authenticate> item = mRepository.findById(id);
+    public Authentication getObjectById(long id) {
+        Optional<Authentication> item = mRepository.findById(id);
 		if(item.isPresent()) {
 			return item.get();
 		} else {
@@ -38,16 +38,16 @@ public class AuthenticateServiceImpl implements AuthenticateService {
     }
 
     @Override
-    public List<Authenticate> getAllObjects() {
+    public List<Authentication> getAllObjects() {
         return mRepository.findAll();
     }
 
     //======================================================| UPDATE
     @Override
-    public Authenticate updateObject(Authenticate item) {
-        Optional<Authenticate> response = mRepository.findById(item.getId());
+    public Authentication updateObject(Authentication item) {
+        Optional<Authentication> response = mRepository.findById(item.getId());
         if (response.isPresent()) {
-            Authenticate model = response.get();
+            Authentication model = response.get();
             model.setPassword(item.getPassword());
             model.setUsername(item.getUsername());
             model.setRole(item.getRole());

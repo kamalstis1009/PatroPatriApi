@@ -8,7 +8,7 @@ import java.util.Date;
 
 @Data
 @Entity
-@Table(name = "users")
+@Table(name = "galleries")
 public class Gallery {
 
     @Id
@@ -17,9 +17,6 @@ public class Gallery {
 
     @Column(name = "image_name")
     private String imageName;
-
-    @Column(name = "image_path")
-    private String imagePath;
 
     @CreatedDate
     @Column(name = "created_at")

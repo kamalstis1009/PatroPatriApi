@@ -101,14 +101,14 @@ public class User {
     @Column(name = "image_name")
     private String imageName;
 
-    @Column(name = "image_path")
-    private String imagePath;
+    //@Column(name = "image_path")
+    //private String imagePath;
 
-    @Column(name = "cover_image_name")
-    private String coverImageName;
+    @Column(name = "image_cover_name")
+    private String imageCoverName;
 
-    @Column(name = "cover_image_path")
-    private String coverImagePath;
+    //@Column(name = "cover_image_path")
+    //private String coverImagePath;
 
     @Column(name = "token")
     private String token;
