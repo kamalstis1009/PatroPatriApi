@@ -30,6 +30,9 @@ public class Education {
     @Column(name = "institution")
     private String institution;
 
+    @Column(name = "user_id")
+    private long userId;
+
     @CreatedDate
     @Column(name = "created_at")
     private Date createdAt;

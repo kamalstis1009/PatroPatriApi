@@ -18,10 +18,10 @@ public class Notification {
     @Column(name = "title")
     private String title;
 
+    @Column(name = "user_id")
+    private long userId;
+
     @CreatedDate
     @Column(name = "created_at")
     private Date createdAt;
-
-    @Column(name = "created_by")
-    private long createdBy;
 }

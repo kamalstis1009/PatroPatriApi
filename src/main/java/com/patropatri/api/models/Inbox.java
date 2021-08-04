@@ -18,11 +18,11 @@ public class Inbox {
     @Column(name = "message")
     private String message;
 
+    @Column(name = "user_id")
+    private long userId;
+
     @CreatedDate
     @Column(name = "created_at")
     private Date createdAt;
-
-    @Column(name = "created_by")
-    private long createdBy;
 
 }

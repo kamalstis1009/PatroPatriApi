@@ -18,6 +18,9 @@ public class Gallery {
     @Column(name = "image_name")
     private String imageName;
 
+    @Column(name = "user_id")
+    private long userId;
+
     @CreatedDate
     @Column(name = "created_at")
     private Date createdAt;
