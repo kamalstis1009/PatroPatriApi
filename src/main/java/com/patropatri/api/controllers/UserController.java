@@ -1,6 +1,5 @@
 package com.patropatri.api.controllers;
 
-import com.patropatri.api.models.User;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

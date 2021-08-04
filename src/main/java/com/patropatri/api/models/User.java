@@ -34,7 +34,6 @@ public class User {
     private String birthPlace;
 
     @Transient
-    @Column(name = "age")
     private int age;
 
     @Column(name = "height")
