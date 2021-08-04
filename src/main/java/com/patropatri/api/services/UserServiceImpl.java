@@ -1,5 +1,8 @@
 package com.patropatri.api.services;
 
+import com.patropatri.api.models.Candidate;
+import com.patropatri.api.models.Education;
+import com.patropatri.api.models.Family;
 import com.patropatri.api.models.User;
 import com.patropatri.api.repositories.UserRepository;
 import com.patropatri.api.utils.ResourceNotFoundException;
@@ -15,15 +18,20 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository mRepository;
 
-    //======================================================| ADD
+    //======================================================| Home
     @Override
-    public User addObject(User item) {
+    public List<Candidate> getAllCandidates() {
+        return null;
+    }
+
+    //======================================================| User
+    @Override
+    public User addUser(User item) {
         return mRepository.save(item);
     }
 
-    //======================================================| GET
     @Override
-    public User getObjectById(long id) {
+    public User getUserById(long id) {
         Optional<User> item = mRepository.findById(id);
 		if(item.isPresent()) {
 			return item.get();
@@ -34,13 +42,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> getAllObjects() {
-        return mRepository.findAll();
-    }
-
-    //======================================================| UPDATE
-    @Override
-    public User updateObject(User item) {
+    public User updateUser(User item) {
         Optional<User> response = mRepository.findById(item.getId());
         if (response.isPresent()) {
             User model = response.get();
@@ -54,14 +56,36 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    //======================================================| DELETE
+    //======================================================| Family
     @Override
-    public int deleteObjectById(long id) {
-        boolean isFound = mRepository.existsById(id);
-        if(isFound) {
-            mRepository.deleteById(id);
-            return 1;
-        }
-        return 0;
+    public Family addFamily(Family item) {
+        return null;
     }
+
+    @Override
+    public Family getFamilyById(long id) {
+        return null;
+    }
+
+    @Override
+    public List<Family> getAllFamilies() {
+        return null;
+    }
+
+    //======================================================| Education
+    @Override
+    public Education addEducation(Education item) {
+        return null;
+    }
+
+    @Override
+    public Education getEducationById(long id) {
+        return null;
+    }
+
+    @Override
+    public List<Education> getAllEducations() {
+        return null;
+    }
+
 }
