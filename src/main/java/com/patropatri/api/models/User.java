@@ -1,167 +1,118 @@
 package com.patropatri.api.models;
 
+import lombok.Data;
+
+import javax.persistence.*;
+import java.util.Date;
+
+@Data
+@Entity
+@Table(name = "users")
 public class User {
 
-    private String id;
-    private String firstName;
-    private String lastName;
-    private String phoneNumber;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
+    //---------------------| Personal
+    @Column(name = "full_name")
+    private String fullName;
+
+    @Column(name = "gender")
     private String gender;
-    private String birthDate;
-    private String email;
-    private String division;
+
+    @Column(name = "birth_date")
+    private Date birthDate;
+
+    @Column(name = "birth_place")
+    private String birthPlace;
+
+    @Column(name = "height")
+    private String height;
+
+    @Column(name = "weight")
+    private String weight;
+
+    @Column(name = "marital_status")
+    private String maritalStatus;
+
+    @Column(name = "religion")
+    private String religion;
+
+    @Column(name = "complex")
+    private String complex;
+
+    @Column(name = "district")
     private String district;
-    private String policeStation;
-    private String address;
-    private String location;
+
+    //---------------------| Profession
+    @Column(name = "profession")
+    private String profession;
+
+    @Column(name = "designation")
+    private String designation;
+
+    @Column(name = "company")
+    private String company;
+
+    @Column(name = "company_address")
+    private String companyAddress;
+
+    @Column(name = "company_website")
+    private String companyWebsite;
+
+    //---------------------| Contact
+    @Column(name = "phone_number")
+    private String phoneNumber;
+
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "present_address")
+    private String presentAddress;
+
+    @Column(name = "permanent_address")
+    private String permanentAddress;
+
+    //---------------------| Other
+    @Column(name = "summary")
+    private String summary;
+
+    @Column(name = "interest")
+    private String interest;
+
+    @Column(name = "other_activity")
+    private String otherActivity;
+
+    @Column(name = "expectation")
+    private String expectation;
+
+    //---------------------| Image
+    @Column(name = "image_name")
     private String imageName;
+
+    @Column(name = "image_path")
     private String imagePath;
+
+    @Column(name = "cover_image_name")
+    private String coverImageName;
+
+    @Column(name = "cover_image_path")
+    private String coverImagePath;
+
+    @Column(name = "token")
     private String token;
-    private String refId;
+
+    //---------------------| Audit
+    @Column(name = "created_at")
     private String createdAt;
+
+    @Column(name = "created_by")
+    private String createdBy;
+
+    @Column(name = "updated_at")
     private String updatedAt;
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public String getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(String birthDate) {
-        this.birthDate = birthDate;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getDivision() {
-        return division;
-    }
-
-    public void setDivision(String division) {
-        this.division = division;
-    }
-
-    public String getDistrict() {
-        return district;
-    }
-
-    public void setDistrict(String district) {
-        this.district = district;
-    }
-
-    public String getPoliceStation() {
-        return policeStation;
-    }
-
-    public void setPoliceStation(String policeStation) {
-        this.policeStation = policeStation;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public String getImageName() {
-        return imageName;
-    }
-
-    public void setImageName(String imageName) {
-        this.imageName = imageName;
-    }
-
-    public String getImagePath() {
-        return imagePath;
-    }
-
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
-
-    public String getRefId() {
-        return refId;
-    }
-
-    public void setRefId(String refId) {
-        this.refId = refId;
-    }
-
-    public String getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(String createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public String getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(String updatedAt) {
-        this.updatedAt = updatedAt;
-    }
+    @Column(name = "updated_by")
+    private String updatedBy;
 }

@@ -8,7 +8,7 @@ import java.util.UUID;
 
 @Data
 @Entity
-@Table(name = "authenticate")
+@Table(name = "authenticates")
 public class Authenticate {
 
     /*@Id
