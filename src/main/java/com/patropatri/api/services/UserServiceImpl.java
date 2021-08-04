@@ -4,6 +4,8 @@ import com.patropatri.api.models.Candidate;
 import com.patropatri.api.models.Education;
 import com.patropatri.api.models.Family;
 import com.patropatri.api.models.User;
+import com.patropatri.api.repositories.EducationRepository;
+import com.patropatri.api.repositories.FamilyRepository;
 import com.patropatri.api.repositories.UserRepository;
 import com.patropatri.api.utils.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,12 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository mRepository;
+
+    @Autowired
+    private FamilyRepository mFamilyRep;
+
+    @Autowired
+    private EducationRepository mEducationRep;
 
     //======================================================| Home
     @Override
@@ -46,9 +54,36 @@ public class UserServiceImpl implements UserService {
         Optional<User> response = mRepository.findById(item.getId());
         if (response.isPresent()) {
             User model = response.get();
-            //model.setPassword(item.getPassword());
-            //model.setUsername(item.getUsername());
-            //model.setRole(item.getRole());
+            model.setFullName(item.getFullName());
+            model.setGender(item.getGender());
+            model.setBirthDate(item.getBirthDate());
+            model.setBirthPlace(item.getBirthPlace());
+            model.setHeight(item.getHeight());
+            model.setWeight(item.getWeight());
+            model.setMaritalStatus(item.getMaritalStatus());
+            model.setReligion(item.getReligion());
+            model.setComplex(item.getComplex());
+            model.setDistrict(item.getDistrict());
+            model.setProfession(item.getProfession());
+            model.setDesignation(item.getDesignation());
+            model.setCompany(item.getCompany());
+            model.setCompanyAddress(item.getCompanyAddress());
+            model.setCompanyWebsite(item.getCompanyWebsite());
+            model.setPhoneNumber(item.getPhoneNumber());
+            model.setEmail(item.getEmail());
+            model.setPresentAddress(item.getPresentAddress());
+            model.setPermanentAddress(item.getPermanentAddress());
+            model.setSummary(item.getSummary());
+            model.setInterest(item.getInterest());
+            model.setOtherActivity(item.getOtherActivity());
+            model.setExpectation(item.getExpectation());
+            model.setImageName(item.getImageName());
+            model.setImageCoverName(item.getImageCoverName());
+            model.setToken(item.getToken());
+            //model.setCreatedAt(item.getCreatedAt());
+            //model.setCreatedBy(item.getCreatedBy());
+            //model.setUpdatedAt(item.getUpdatedAt());
+            //model.setUpdatedBy(item.getUpdatedBy());
             mRepository.save(model);
             return model;
         } else {
@@ -59,33 +94,43 @@ public class UserServiceImpl implements UserService {
     //======================================================| Family
     @Override
     public Family addFamily(Family item) {
-        return null;
+        return mFamilyRep.save(item);
     }
 
     @Override
     public Family getFamilyById(long id) {
-        return null;
+        Optional<Family> item = mFamilyRep.findById(id);
+        if(item.isPresent()) {
+            return item.get();
+        } else {
+            throw new ResourceNotFoundException("Family", "Id", id);
+        }
     }
 
     @Override
     public List<Family> getAllFamilies() {
-        return null;
+        return mFamilyRep.findAll();
     }
 
     //======================================================| Education
     @Override
     public Education addEducation(Education item) {
-        return null;
+        return mEducationRep.save(item);
     }
 
     @Override
     public Education getEducationById(long id) {
-        return null;
+        Optional<Education> item = mEducationRep.findById(id);
+        if(item.isPresent()) {
+            return item.get();
+        } else {
+            throw new ResourceNotFoundException("Education", "Id", id);
+        }
     }
 
     @Override
     public List<Education> getAllEducations() {
-        return null;
+        return mEducationRep.findAll();
     }
 
 }
