@@ -1,8 +1,11 @@
 package com.patropatri.api.models;
 
 import lombok.Data;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.Date;
 
 @Data
@@ -14,6 +17,8 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    //@Column(name = "full_name", length=250, nullable=false)
+
     //---------------------| Personal
     @Column(name = "full_name")
     private String fullName;
@@ -21,11 +26,16 @@ public class User {
     @Column(name = "gender")
     private String gender;
 
+    @Temporal(TemporalType.DATE)
     @Column(name = "birth_date")
     private Date birthDate;
 
     @Column(name = "birth_place")
     private String birthPlace;
+
+    @Transient
+    @Column(name = "age")
+    private int age;
 
     @Column(name = "height")
     private String height;
@@ -104,15 +114,17 @@ public class User {
     private String token;
 
     //---------------------| Audit
+    @CreatedDate
     @Column(name = "created_at")
-    private String createdAt;
+    private Date createdAt; // String.valueOf(new Timestamp(System.currentTimeMillis()));
 
     @Column(name = "created_by")
-    private String createdBy;
+    private long createdBy;
 
+    @LastModifiedDate
     @Column(name = "updated_at")
-    private String updatedAt;
+    private Date updatedAt;
 
     @Column(name = "updated_by")
-    private String updatedBy;
+    private long updatedBy;
 }
