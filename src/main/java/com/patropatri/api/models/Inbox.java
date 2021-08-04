@@ -8,15 +8,15 @@ import java.util.Date;
 
 @Data
 @Entity
-@Table(name = "messages")
-public class Message {
+@Table(name = "inboxes")
+public class Inbox {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(name = "text")
-    private String text;
+    @Column(name = "message")
+    private String message;
 
     @CreatedDate
     @Column(name = "created_at")
