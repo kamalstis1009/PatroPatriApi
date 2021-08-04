@@ -112,6 +112,13 @@ public class User {
     @Column(name = "token")
     private String token;
 
+    //---------------------| Count
+    @Column(name = "comment_amount")
+    private int commentAmount;
+
+    @Column(name = "liked_amount")
+    private int likedAmount;
+
     //---------------------| Audit
     @CreatedDate
     @Column(name = "created_at")

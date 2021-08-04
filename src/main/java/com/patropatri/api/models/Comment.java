@@ -25,4 +25,7 @@ public class Comment {
     @Column(name = "created_at")
     private Date createdAt;
 
+    @Column(name = "created_by")
+    private long createdBy;
+
 }

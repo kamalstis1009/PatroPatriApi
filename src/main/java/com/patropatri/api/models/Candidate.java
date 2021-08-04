@@ -13,6 +13,8 @@ public class Candidate {
     private String profession;
     private String district;
     private String summary;
+    private int commentAmount;
+    private int likedAmount;
     private Date createdAt;
 
 }

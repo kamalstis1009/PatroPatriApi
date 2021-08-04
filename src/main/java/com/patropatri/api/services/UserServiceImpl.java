@@ -80,6 +80,9 @@ public class UserServiceImpl implements UserService {
             model.setImageName(item.getImageName());
             model.setImageCoverName(item.getImageCoverName());
             model.setToken(item.getToken());
+            model.setToken(item.getToken());
+            model.setCommentAmount(item.getCommentAmount());
+            model.setLikedAmount(item.getLikedAmount());
             //model.setCreatedAt(item.getCreatedAt());
             //model.setCreatedBy(item.getCreatedBy());
             //model.setUpdatedAt(item.getUpdatedAt());
