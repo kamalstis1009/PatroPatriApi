@@ -18,7 +18,7 @@ public class FileController {
     private FileServiceImpl mService;
 
     @PostMapping("/upload")
-    public ResponseEntity<Gallery> uploadFile(@RequestParam("file") MultipartFile file, @PathVariable("userId") long userId) {
+    public ResponseEntity<Gallery> uploadFile(@RequestParam("file") MultipartFile file, @RequestParam("userId") long userId) {
         return new ResponseEntity<>(mService.uploadFile(file, userId), HttpStatus.CREATED);
     }
 

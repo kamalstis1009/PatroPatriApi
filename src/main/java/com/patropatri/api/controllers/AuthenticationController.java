@@ -28,7 +28,7 @@ public class AuthenticationController {
         return new ResponseEntity<>(mService.getObjectById(id), HttpStatus.OK);
     }
 
-    @GetMapping(value="/authentication", produces = {"application/json"})
+    @GetMapping(value="/authentications", produces = {"application/json"})
     public ResponseEntity<List<Authentication>> getAllObjects() {
         return new ResponseEntity<>(mService.getAllObjects(), HttpStatus.OK);
     }
