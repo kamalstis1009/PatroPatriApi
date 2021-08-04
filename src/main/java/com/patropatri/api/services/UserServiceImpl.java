@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
     //======================================================| Home
     @Override
     public List<Candidate> getAllCandidates() {
-        return null;
+        return mRepository.getAllCandidates();
     }
 
     //======================================================| User

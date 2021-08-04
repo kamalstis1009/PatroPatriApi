@@ -15,6 +15,7 @@ public class Candidate {
     private String summary;
     private int commentAmount;
     private int likedAmount;
+    private String imageName;
     private Date createdAt;
 
 }
