@@ -24,4 +24,9 @@ public class Gallery {
     @CreatedDate
     @Column(name = "created_at")
     private Date createdAt;
+
+    @PrePersist
+    void createdAt() {
+        this.createdAt = new Date();
+    }
 }

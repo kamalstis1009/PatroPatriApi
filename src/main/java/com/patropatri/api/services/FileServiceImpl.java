@@ -41,7 +41,7 @@ public class FileServiceImpl implements FileService {
                 Gallery item = new Gallery();
                 item.setImageName(fileName);
                 item.setUserId(userId);
-                item.setCreatedAt(item.getCreatedAt());
+                //item.setCreatedAt(item.getCreatedAt());
                 return mRepository.save(item);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -77,7 +77,7 @@ public class FileServiceImpl implements FileService {
     }
 
     @Override
-    public long deleteAndUploadFile(MultipartFile file, String fileName) {
+    public String deleteAndUploadFile(MultipartFile file, String fileName) {
         if (file != null) {
             Path path = Paths.get("uploads").toAbsolutePath().normalize();
             try {
@@ -93,12 +93,16 @@ public class FileServiceImpl implements FileService {
                 }
                 String fileName2 = "IMG_" + new SimpleDateFormat("yyyyMMdd_HHmmss_SSS").format(new Date()) + ".jpg";
                 Path targetPath = path.resolve(fileName2);
-                return Files.copy(file.getInputStream(), targetPath, StandardCopyOption.REPLACE_EXISTING);
+                long value = Files.copy(file.getInputStream(), targetPath, StandardCopyOption.REPLACE_EXISTING);
+                if (value > 0)
+                    return fileName2;
+                else
+                    return null;
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        return 0;
+        return null;
     }
 
 }

@@ -28,4 +28,9 @@ public class Comment {
     @Column(name = "created_by")
     private long createdBy;
 
+    @PrePersist
+    void createdAt() {
+        this.createdAt = new Date();
+    }
+
 }

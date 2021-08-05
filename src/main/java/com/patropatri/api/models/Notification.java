@@ -24,4 +24,9 @@ public class Notification {
     @CreatedDate
     @Column(name = "created_at")
     private Date createdAt;
+
+    @PrePersist
+    void createdAt() {
+        this.createdAt = new Date();
+    }
 }
