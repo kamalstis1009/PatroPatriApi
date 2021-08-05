@@ -49,4 +49,9 @@ public class FileController {
         return null;
     }
 
+    @PostMapping("/deleteAndUpload")
+    public ResponseEntity<Long> deleteAndUploadFile(@RequestParam("file") MultipartFile file, @RequestParam("fileName") String fileName) {
+        return new ResponseEntity<>(mService.deleteAndUploadFile(file, fileName), HttpStatus.CREATED);
+    }
+
 }

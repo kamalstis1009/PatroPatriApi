@@ -8,6 +8,7 @@ import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.file.Files;
@@ -40,6 +41,7 @@ public class FileServiceImpl implements FileService {
                 Gallery item = new Gallery();
                 item.setImageName(fileName);
                 item.setUserId(userId);
+                item.setCreatedAt(item.getCreatedAt());
                 return mRepository.save(item);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -72,6 +74,31 @@ public class FileServiceImpl implements FileService {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public long deleteAndUploadFile(MultipartFile file, String fileName) {
+        if (file != null) {
+            Path path = Paths.get("uploads").toAbsolutePath().normalize();
+            try {
+                if (!Files.exists(path)) {
+                    Files.createDirectory(path); //Create uploads directory
+                }
+                File file2 = new File(path +"/"+ fileName);
+                boolean isDeleted = file2.delete();
+                if(isDeleted) {
+                    System.out.println("File deleted successfully");
+                } else {
+                    System.out.println("File doesn't exist");
+                }
+                String fileName2 = "IMG_" + new SimpleDateFormat("yyyyMMdd_HHmmss_SSS").format(new Date()) + ".jpg";
+                Path targetPath = path.resolve(fileName2);
+                return Files.copy(file.getInputStream(), targetPath, StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return 0;
     }
 
 }

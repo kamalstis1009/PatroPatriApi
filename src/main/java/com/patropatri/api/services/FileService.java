@@ -9,4 +9,5 @@ public interface FileService {
     Gallery uploadFile(MultipartFile file, long userId);
     Resource downloadFile(String fileName);
 
+    long deleteAndUploadFile(MultipartFile file, String fileName);
 }
