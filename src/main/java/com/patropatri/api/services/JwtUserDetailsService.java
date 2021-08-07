@@ -30,12 +30,17 @@ public class JwtUserDetailsService implements UserDetailsService {
 		return new org.springframework.security.core.userdetails.User(model.getUsername(), model.getPassword(),new ArrayList<>());
 	}
 
-	public Authentication register(AuthenticationDto item) {
-		Authentication model = new Authentication();
-		model.setUsername(item.getUsername());
-		model.setPassword(mEncoder.encode(item.getPassword()));
-		model.setRole("USER");
-		return mRepository.save(model);
+	public Authentication register(AuthenticationDto item) throws UsernameNotFoundException {
+		Authentication auth = mRepository.getAuthenticateByUsername(item.getUsername());
+		if (auth == null) {
+			Authentication model = new Authentication();
+			model.setUsername(item.getUsername());
+			model.setPassword(mEncoder.encode(item.getPassword()));
+			model.setRole("USER");
+			return mRepository.save(model);
+		} else {
+			throw new UsernameNotFoundException("This user is already registered: " + item.getUsername());
+		}
 	}
 
 }
