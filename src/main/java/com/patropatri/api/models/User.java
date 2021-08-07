@@ -18,6 +18,10 @@ public class User {
     private long id;
 
     //@Column(name = "full_name", length=250, nullable=false)
+    //@Column(name="Price", columnDefinition="Decimal(10,2) default '100.00'")
+    //@Column(columnDefinition = "varchar(255) default 'John Snow'")
+    //@Column(columnDefinition = "integer default 25")
+    //@Column(columnDefinition = "boolean default false")
 
     //---------------------| Personal
     @Column(name = "full_name")
@@ -100,17 +104,14 @@ public class User {
     @Column(name = "image_name")
     private String imageName;
 
-    //@Column(name = "image_path")
-    //private String imagePath;
-
     @Column(name = "image_cover_name")
     private String imageCoverName;
 
-    //@Column(name = "cover_image_path")
-    //private String coverImagePath;
-
     @Column(name = "token")
     private String token;
+
+    @Column(name = "is_active", columnDefinition = "boolean default false")
+    private boolean isActive;
 
     //---------------------| Count
     @Column(name = "comment_amount")

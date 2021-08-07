@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("/api/v1")
 public class AuthenticationController {
 
-    @Autowired
+    /*@Autowired
     private AuthenticationServiceImpl mService;
 
     //======================================================| ADD
@@ -43,6 +43,6 @@ public class AuthenticationController {
     @DeleteMapping("/authentication/{id}")
     public ResponseEntity<Integer> deleteObjectById(@PathVariable("id") long id) {
         return new ResponseEntity<>(mService.deleteObjectById(id), HttpStatus.OK);
-    }
+    }*/
 
 }

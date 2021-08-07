@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    @Query(value = "SELECT id, full_name, gender, profession, district, summary, comment_amount, liked_amount, image_name, created_at FROM users", nativeQuery = true)
+    @Query(value = "SELECT id, full_name, gender, profession, district, summary, comment_amount, liked_amount, image_name, created_at FROM users WHERE is_active = true", nativeQuery = true)
     List<Candidate> getAllCandidates();
 
 }
