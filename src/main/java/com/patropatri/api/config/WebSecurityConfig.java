@@ -1,5 +1,6 @@
 package com.patropatri.api.config;
 
+import com.patropatri.api.utils.ConstantKey;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -32,9 +33,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        // configure AuthenticationManager so that it knows from where to load
-        // user for matching credentials
-        // Use BCryptPasswordEncoder
+        // configure AuthenticationManager so that it knows from where to load user for matching credentials by use BCryptPasswordEncoder
         auth.userDetailsService(mService).passwordEncoder(passwordEncoder());
     }
 
@@ -50,18 +49,29 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected void configure(HttpSecurity httpSecurity) throws Exception {
-        // We don't need CSRF for this example
-        httpSecurity.csrf().disable()
-                // don't authenticate this particular request
-                .authorizeRequests().antMatchers("/authenticate", "/register").permitAll().
-                // all other requests need to be authenticated
-                anyRequest().authenticated().and().
-                // make sure we use stateless session; session won't be used to
-                // store user's state.
-                exceptionHandling().authenticationEntryPoint(mEntryPoint).and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-
-        // Add a filter to validate the tokens with every request
-        httpSecurity.addFilterBefore(mFilter, UsernamePasswordAuthenticationFilter.class);
+    protected void configure(HttpSecurity http) throws Exception {
+        http.cors().and().csrf().disable().authorizeRequests() // disabled CORS and CSRF
+                .antMatchers(ConstantKey.SIGN_UP_URL).permitAll() // don't authenticate this particular request
+                .antMatchers(ConstantKey.SIGN_IN_URL).permitAll() // OR .antMatchers("/authenticate", "/register").permitAll().
+                .anyRequest().authenticated() // all other requests need to be authenticated
+                .and()
+                .exceptionHandling().authenticationEntryPoint(mEntryPoint)
+                .and()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS); // this disables session creation on Spring Security
+        http.addFilterBefore(mFilter, UsernamePasswordAuthenticationFilter.class); // Add a filter to validate the tokens with every request
     }
+
+    /*@Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.cors().and().csrf().disable().authorizeRequests()
+                .antMatchers(ConstantKey.SIGN_UP_URL).permitAll()
+                .antMatchers(ConstantKey.SIGN_IN_URL).permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .addFilter(new AuthNFilter(authenticationManager()))
+                .addFilter(new AuthZFilter(authenticationManager()))
+                // this disables session creation on Spring Security
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and().formLogin().disable();
+    }*/
 }

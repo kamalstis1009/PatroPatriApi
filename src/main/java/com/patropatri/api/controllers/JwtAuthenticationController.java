@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.*;
 
 import com.patropatri.api.models.JwtRequest;
 
-@RestController
+
 @CrossOrigin
+@RestController
+@RequestMapping("/api/v1/jwt")
 public class JwtAuthenticationController {
 
 	@Autowired
@@ -22,14 +24,14 @@ public class JwtAuthenticationController {
 	@Autowired
 	private JwtUserDetailsService mService;
 
-	@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
-	public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest request) throws Exception {
+	@PostMapping("/login")
+	public ResponseEntity<?> login(@RequestBody JwtRequest request) throws Exception {
 		authenticate(request.getUsername(), request.getPassword());
 		return ResponseEntity.ok(mService.getUserDetailsByUserAndPass(request));
 	}
 
-	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public ResponseEntity<?> saveUser(@RequestBody AuthenticationDto item) throws Exception {
+	@PostMapping("/register")
+	public ResponseEntity<?> register(@RequestBody AuthenticationDto item) throws Exception {
 		return ResponseEntity.ok(mService.register(item));
 	}
 
