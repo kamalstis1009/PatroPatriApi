@@ -9,18 +9,15 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.patropatri.api.config.JwtTokenUtil;
 import com.patropatri.api.models.JwtRequest;
 import com.patropatri.api.models.JwtResponse;
 
-@RestController
 @CrossOrigin
+@RestController
+@RequestMapping("/api/v1")
 public class JwtAuthenticationController {
 
 	@Autowired
@@ -32,7 +29,7 @@ public class JwtAuthenticationController {
 	@Autowired
 	private JwtUserDetailsService mService;
 
-	@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
+	@PostMapping("/authenticate")
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
 		authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
 		final UserDetails userDetails = mService.loadUserByUsername(authenticationRequest.getUsername());
@@ -40,7 +37,7 @@ public class JwtAuthenticationController {
 		return ResponseEntity.ok(new JwtResponse(token));
 	}
 
-	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	@PostMapping("/register")
 	public ResponseEntity<?> saveUser(@RequestBody AuthenticationDto item) throws Exception {
 		return ResponseEntity.ok(mService.register(item));
 	}
