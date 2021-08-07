@@ -51,13 +51,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable().authorizeRequests() // disabled CORS and CSRF
+                .antMatchers("/").permitAll()
                 .antMatchers(ConstantKey.SIGN_UP_URL).permitAll() // don't authenticate this particular request
                 .antMatchers(ConstantKey.SIGN_IN_URL).permitAll() // OR .antMatchers("/authenticate", "/register").permitAll().
                 .antMatchers(ConstantKey.RESOURCE_URL).permitAll()
                 .anyRequest().authenticated() // all other requests need to be authenticated
                 .and()
-                .exceptionHandling().authenticationEntryPoint(mEntryPoint)
-                .and()
+                .exceptionHandling().authenticationEntryPoint(mEntryPoint).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS); // this disables session creation on Spring Security
         http.addFilterBefore(mFilter, UsernamePasswordAuthenticationFilter.class); // Add a filter to validate the tokens with every request
     }
