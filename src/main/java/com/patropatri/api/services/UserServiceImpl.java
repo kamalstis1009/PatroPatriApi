@@ -54,39 +54,71 @@ public class UserServiceImpl implements UserService {
         Optional<User> response = mRepository.findById(item.getId());
         if (response.isPresent()) {
             User model = response.get();
-            model.setFullName(item.getFullName());
-            model.setGender(item.getGender());
-            model.setBirthDate(item.getBirthDate());
-            model.setBirthPlace(item.getBirthPlace());
-            model.setHeight(item.getHeight());
-            model.setWeight(item.getWeight());
-            model.setMaritalStatus(item.getMaritalStatus());
-            model.setReligion(item.getReligion());
-            model.setComplex(item.getComplex());
-            model.setDistrict(item.getDistrict());
-            model.setProfession(item.getProfession());
-            model.setDesignation(item.getDesignation());
-            model.setCompany(item.getCompany());
-            model.setCompanyAddress(item.getCompanyAddress());
-            model.setCompanyWebsite(item.getCompanyWebsite());
-            model.setPhoneNumber(item.getPhoneNumber());
-            model.setEmail(item.getEmail());
-            model.setPresentAddress(item.getPresentAddress());
-            model.setPermanentAddress(item.getPermanentAddress());
-            model.setSummary(item.getSummary());
-            model.setInterest(item.getInterest());
-            model.setOtherActivity(item.getOtherActivity());
-            model.setExpectation(item.getExpectation());
-            model.setImageName(item.getImageName());
-            model.setImageCoverName(item.getImageCoverName());
-            model.setToken(item.getToken());
-            model.setToken(item.getToken());
-            model.setCommentAmount(item.getCommentAmount());
-            model.setLikedAmount(item.getLikedAmount());
+            if (item.getFullName() != null)
+                model.setFullName(item.getFullName());
+            if (item.getGender() != null)
+                model.setGender(item.getGender());
+            if (item.getBirthDate() != null)
+                model.setBirthDate(item.getBirthDate());
+            if (item.getBirthPlace() != null)
+                model.setBirthPlace(item.getBirthPlace());
+            if (item.getHeight() != null)
+                model.setHeight(item.getHeight());
+            if (item.getWeight() != null)
+                model.setWeight(item.getWeight());
+            if (item.getMaritalStatus() != null)
+                model.setMaritalStatus(item.getMaritalStatus());
+            if (item.getReligion() != null)
+                model.setReligion(item.getReligion());
+            if (item.getComplex() != null)
+                model.setComplex(item.getComplex());
+            if (item.getDistrict() != null)
+                model.setDistrict(item.getDistrict());
+            if (item.getProfession() != null)
+                model.setProfession(item.getProfession());
+            if (item.getDesignation() != null)
+                model.setDesignation(item.getDesignation());
+            if (item.getCompany() != null)
+                model.setCompany(item.getCompany());
+            if (item.getCompanyAddress() != null)
+                model.setCompanyAddress(item.getCompanyAddress());
+            if (item.getCompanyWebsite() != null)
+                model.setCompanyWebsite(item.getCompanyWebsite());
+            if (item.getPhoneNumber() != null)
+                model.setPhoneNumber(item.getPhoneNumber());
+            if (item.getEmail() != null)
+                model.setEmail(item.getEmail());
+            if (item.getPresentAddress() != null)
+                model.setPresentAddress(item.getPresentAddress());
+            if (item.getPermanentAddress() != null)
+                model.setPermanentAddress(item.getPermanentAddress());
+            if (item.getSummary() != null)
+                model.setSummary(item.getSummary());
+            if (item.getInterest() != null)
+                model.setInterest(item.getInterest());
+            if (item.getOtherActivity() != null)
+                model.setOtherActivity(item.getOtherActivity());
+            if (item.getExpectation() != null)
+                model.setExpectation(item.getExpectation());
+            if (item.getImageName() != null)
+                model.setImageName(item.getImageName());
+            if (item.getImageCoverName() != null)
+                model.setImageCoverName(item.getImageCoverName());
+            if (item.getToken() != null)
+                model.setToken(item.getToken());
+            if (item.getIsActive() != null)
+                model.setIsActive(item.getIsActive());
+            if (item.getCommentAmount() != null)
+                model.setCommentAmount(item.getCommentAmount());
+            if (item.getLikedAmount() != null)
+                model.setLikedAmount(item.getLikedAmount());
+
             //model.setCreatedAt(item.getCreatedAt());
-            //model.setCreatedBy(item.getCreatedBy());
+            if (item.getCreatedBy() != null)
+                model.setCreatedBy(item.getCreatedBy());
             //model.setUpdatedAt(item.getUpdatedAt());
             //model.setUpdatedBy(item.getUpdatedBy());
+
             mRepository.save(model);
             return model;
         } else {
