@@ -14,8 +14,8 @@ import java.util.Date;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    //@GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     //@Column(name = "full_name", length=250, nullable=false)
     //@Column(name="Price", columnDefinition="Decimal(10,2) default '100.00'")
@@ -38,7 +38,7 @@ public class User {
     private String birthPlace;
 
     @Transient
-    private int age;
+    private Integer age;
 
     @Column(name = "height")
     private String height;
@@ -111,29 +111,29 @@ public class User {
     private String token;
 
     @Column(name = "is_active", columnDefinition = "boolean default false")
-    private boolean isActive;
+    private Boolean isActive;
 
     //---------------------| Count
-    @Column(name = "comment_amount")
-    private int commentAmount;
+    @Column(name = "comment_amount", columnDefinition = "integer default 0")
+    private Integer commentAmount;
 
-    @Column(name = "liked_amount")
-    private int likedAmount;
+    @Column(name = "liked_amount", columnDefinition = "integer default 0")
+    private Integer likedAmount;
 
     //---------------------| Audit
     @CreatedDate
     @Column(name = "created_at")
     private Date createdAt; // String.valueOf(new Timestamp(System.currentTimeMillis()));
 
-    @Column(name = "created_by")
-    private long createdBy;
+    @Column(name = "created_by", columnDefinition = "integer default 0")
+    private Long createdBy;
 
     @LastModifiedDate
     @Column(name = "updated_at")
     private Date updatedAt;
 
-    @Column(name = "updated_by")
-    private long updatedBy;
+    @Column(name = "updated_by", columnDefinition = "integer default 0")
+    private Long updatedBy;
 
     @PrePersist
     void createdAt() {

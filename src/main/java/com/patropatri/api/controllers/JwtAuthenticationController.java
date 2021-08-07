@@ -10,6 +10,8 @@ import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 
+import com.patropatri.api.models.JwtRequest;
+
 @RestController
 @CrossOrigin
 public class JwtAuthenticationController {
@@ -20,8 +22,8 @@ public class JwtAuthenticationController {
 	@Autowired
 	private JwtUserDetailsService mService;
 
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationDto request) throws Exception {
+	@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
+	public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest request) throws Exception {
 		authenticate(request.getUsername(), request.getPassword());
 		return ResponseEntity.ok(mService.getUserDetailsByUserAndPass(request));
 	}
