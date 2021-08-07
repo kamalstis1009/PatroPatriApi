@@ -7,6 +7,6 @@ public class AuthenticationDto {
 
     private String username;
     private String password;
-    private String role;
+    //private String role;
 
 }

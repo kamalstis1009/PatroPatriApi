@@ -34,7 +34,7 @@ public class JwtUserDetailsService implements UserDetailsService {
 		Authentication model = new Authentication();
 		model.setUsername(item.getUsername());
 		model.setPassword(mEncoder.encode(item.getPassword()));
-		model.setRole(item.getRole());
+		model.setRole("USER");
 		return mRepository.save(model);
 	}
 
