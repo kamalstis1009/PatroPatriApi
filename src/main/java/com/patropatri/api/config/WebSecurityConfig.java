@@ -52,7 +52,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable().authorizeRequests() // disabled CORS and CSRF
                 .antMatchers("/").permitAll()
-                .antMatchers(ConstantKey.SIGN_LOG_URL).permitAll()
                 .antMatchers(ConstantKey.SIGN_UP_URL).permitAll() // don't authenticate this particular request
                 .antMatchers(ConstantKey.SIGN_IN_URL).permitAll() // OR .antMatchers("/authenticate", "/register").permitAll().
                 .antMatchers(ConstantKey.RESOURCE_URL).permitAll()

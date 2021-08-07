@@ -4,6 +4,8 @@ import com.patropatri.api.config.JwtTokenUtil;
 import com.patropatri.api.models.AuthenticationDto;
 import com.patropatri.api.models.JwtResponse;
 import com.patropatri.api.services.JwtUserDetailsService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -21,8 +23,7 @@ import com.patropatri.api.models.JwtRequest;
 @RequestMapping("/api/v1/jwt")
 public class JwtAuthenticationController {
 
-	@Autowired
-	private JwtTokenUtil mJwtUtil;
+	Logger logger = LoggerFactory.getLogger(JwtAuthenticationController.class);
 
 	@Autowired
 	private AuthenticationManager mManager;
@@ -34,13 +35,6 @@ public class JwtAuthenticationController {
 	public ResponseEntity<?> login(@RequestBody JwtRequest request) throws Exception {
 		authenticate(request.getUsername(), request.getPassword());
 		return ResponseEntity.ok(mService.getUserDetailsByUserAndPass(request));
-	}
-
-	@PostMapping("/authenticate")
-	public ResponseEntity<String> authentication(@RequestBody AuthenticationDto request) throws Exception {
-		//authenticate(request.getUsername(), request.getPassword());
-		//final String token = mJwtUtil.generateToken(mService.loadUserByUsername(request.getUsername()));
-		return ResponseEntity.ok("hello " + request.getUsername());
 	}
 
 	@PostMapping("/register")
