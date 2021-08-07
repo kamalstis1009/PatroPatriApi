@@ -53,77 +53,81 @@ public class UserServiceImpl implements UserService {
     public User updateUser(User item) {
         Optional<User> response = mRepository.findById(item.getId());
         if (response.isPresent()) {
-            User model = response.get();
-            if (item.getFullName() != null)
-                model.setFullName(item.getFullName());
-            if (item.getGender() != null)
-                model.setGender(item.getGender());
-            if (item.getBirthDate() != null)
-                model.setBirthDate(item.getBirthDate());
-            if (item.getBirthPlace() != null)
-                model.setBirthPlace(item.getBirthPlace());
-            if (item.getHeight() != null)
-                model.setHeight(item.getHeight());
-            if (item.getWeight() != null)
-                model.setWeight(item.getWeight());
-            if (item.getMaritalStatus() != null)
-                model.setMaritalStatus(item.getMaritalStatus());
-            if (item.getReligion() != null)
-                model.setReligion(item.getReligion());
-            if (item.getComplex() != null)
-                model.setComplex(item.getComplex());
-            if (item.getDistrict() != null)
-                model.setDistrict(item.getDistrict());
-            if (item.getProfession() != null)
-                model.setProfession(item.getProfession());
-            if (item.getDesignation() != null)
-                model.setDesignation(item.getDesignation());
-            if (item.getCompany() != null)
-                model.setCompany(item.getCompany());
-            if (item.getCompanyAddress() != null)
-                model.setCompanyAddress(item.getCompanyAddress());
-            if (item.getCompanyWebsite() != null)
-                model.setCompanyWebsite(item.getCompanyWebsite());
-            if (item.getPhoneNumber() != null)
-                model.setPhoneNumber(item.getPhoneNumber());
-            if (item.getEmail() != null)
-                model.setEmail(item.getEmail());
-            if (item.getPresentAddress() != null)
-                model.setPresentAddress(item.getPresentAddress());
-            if (item.getPermanentAddress() != null)
-                model.setPermanentAddress(item.getPermanentAddress());
-            if (item.getSummary() != null)
-                model.setSummary(item.getSummary());
-            if (item.getInterest() != null)
-                model.setInterest(item.getInterest());
-            if (item.getOtherActivity() != null)
-                model.setOtherActivity(item.getOtherActivity());
-            if (item.getExpectation() != null)
-                model.setExpectation(item.getExpectation());
-            if (item.getImageName() != null)
-                model.setImageName(item.getImageName());
-            if (item.getImageCoverName() != null)
-                model.setImageCoverName(item.getImageCoverName());
-            if (item.getToken() != null)
-                model.setToken(item.getToken());
-            if (item.getIsActive() != null)
-                model.setIsActive(item.getIsActive());
-            if (item.getCommentAmount() != null)
-                model.setCommentAmount(item.getCommentAmount());
-            if (item.getLikedAmount() != null)
-                model.setLikedAmount(item.getLikedAmount());
-
-            //model.setCreatedAt(item.getCreatedAt());
-            if (item.getCreatedBy() != null)
-                model.setCreatedBy(item.getCreatedBy());
-            //model.setUpdatedAt(item.getUpdatedAt());
-            //model.setUpdatedBy(item.getUpdatedBy());
-
+            User model = extracted(item, response.get());
             mRepository.save(model);
             return model;
         } else {
-            return null;
+            User model = extracted(item, new User());
+            return addUser(model);
         }
+    }
+
+    private User extracted(User item, User model) {
+        if (item.getFullName() != null)
+            model.setFullName(item.getFullName());
+        if (item.getGender() != null)
+            model.setGender(item.getGender());
+        if (item.getBirthDate() != null)
+            model.setBirthDate(item.getBirthDate());
+        if (item.getBirthPlace() != null)
+            model.setBirthPlace(item.getBirthPlace());
+        if (item.getHeight() != null)
+            model.setHeight(item.getHeight());
+        if (item.getWeight() != null)
+            model.setWeight(item.getWeight());
+        if (item.getMaritalStatus() != null)
+            model.setMaritalStatus(item.getMaritalStatus());
+        if (item.getReligion() != null)
+            model.setReligion(item.getReligion());
+        if (item.getComplex() != null)
+            model.setComplex(item.getComplex());
+        if (item.getDistrict() != null)
+            model.setDistrict(item.getDistrict());
+        if (item.getProfession() != null)
+            model.setProfession(item.getProfession());
+        if (item.getDesignation() != null)
+            model.setDesignation(item.getDesignation());
+        if (item.getCompany() != null)
+            model.setCompany(item.getCompany());
+        if (item.getCompanyAddress() != null)
+            model.setCompanyAddress(item.getCompanyAddress());
+        if (item.getCompanyWebsite() != null)
+            model.setCompanyWebsite(item.getCompanyWebsite());
+        if (item.getPhoneNumber() != null)
+            model.setPhoneNumber(item.getPhoneNumber());
+        if (item.getEmail() != null)
+            model.setEmail(item.getEmail());
+        if (item.getPresentAddress() != null)
+            model.setPresentAddress(item.getPresentAddress());
+        if (item.getPermanentAddress() != null)
+            model.setPermanentAddress(item.getPermanentAddress());
+        if (item.getSummary() != null)
+            model.setSummary(item.getSummary());
+        if (item.getInterest() != null)
+            model.setInterest(item.getInterest());
+        if (item.getOtherActivity() != null)
+            model.setOtherActivity(item.getOtherActivity());
+        if (item.getExpectation() != null)
+            model.setExpectation(item.getExpectation());
+        if (item.getImageName() != null)
+            model.setImageName(item.getImageName());
+        if (item.getImageCoverName() != null)
+            model.setImageCoverName(item.getImageCoverName());
+        if (item.getToken() != null)
+            model.setToken(item.getToken());
+        if (item.getIsActive() != null)
+            model.setIsActive(item.getIsActive());
+        if (item.getCommentAmount() != null)
+            model.setCommentAmount(item.getCommentAmount());
+        if (item.getLikedAmount() != null)
+            model.setLikedAmount(item.getLikedAmount());
+        if (item.getCreatedBy() != null)
+            model.setCreatedBy(item.getCreatedBy());
+
+        //model.setCreatedAt(item.getCreatedAt());
+        //model.setUpdatedAt(item.getUpdatedAt());
+        //model.setUpdatedBy(item.getUpdatedBy());
+        return model;
     }
 
     //======================================================| Family
