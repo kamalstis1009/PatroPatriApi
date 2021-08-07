@@ -39,19 +39,19 @@ public class JwtUserDetailsService implements UserDetailsService {
 		return new org.springframework.security.core.userdetails.User(model.getUsername(), model.getPassword(),new ArrayList<>());
 	}
 
-	public UserWithToken getUserDetailsByUserAndPass(String username, String password) {
-		String token = mJwtUtil.generateToken(loadUserByUsername(username));
+	public UserWithToken getUserDetailsByUserAndPass(AuthenticationDto request) {
+		String token = mJwtUtil.generateToken(loadUserByUsername(request.getUsername()));
 		if (token != null) {
-			Authentication auth = mRepository.getAuthenticateByUsername(username);
-			if (auth != null && mEncoder.matches(password, auth.getPassword())) {
-				Optional<User> user = mUserRepository.findById(auth.getId());
+			Authentication response = mRepository.getAuthenticateByUsername(request.getUsername());
+			if (response != null && mEncoder.matches(request.getPassword(), response.getPassword())) {
+				Optional<User> item = mUserRepository.findById(response.getId());
 				UserWithToken model = new UserWithToken();
-				if (user.isPresent()) {
+				if (item.isPresent()) {
 					model.setToken(token);
-					model.setAuth(auth);
-					model.setUser(user.get());
+					model.setAuth(response);
+					model.setUser(item.get());
 				} else {
-					model.setAuth(auth);
+					model.setAuth(response);
 					model.setToken(token);
 				}
 				return model;

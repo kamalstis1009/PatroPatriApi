@@ -20,11 +20,15 @@ public class JwtAuthenticationController {
 	@Autowired
 	private JwtUserDetailsService mService;
 
-	//======================================================| SignIn
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public ResponseEntity<?> createAuthenticationToken(@RequestParam("username") String username, @RequestParam("password") String password) throws Exception {
-		authenticate(username, password);
-		return ResponseEntity.ok(mService.getUserDetailsByUserAndPass(username, password));
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationDto request) throws Exception {
+		authenticate(request.getUsername(), request.getPassword());
+		return ResponseEntity.ok(mService.getUserDetailsByUserAndPass(request));
+	}
+
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	public ResponseEntity<?> saveUser(@RequestBody AuthenticationDto item) throws Exception {
+		return ResponseEntity.ok(mService.register(item));
 	}
 
 	private void authenticate(String username, String password) throws Exception {
@@ -36,12 +40,4 @@ public class JwtAuthenticationController {
 			throw new Exception("INVALID_CREDENTIALS", e);
 		}
 	}
-
-	//======================================================| SignUp
-	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public ResponseEntity<?> saveUser(@RequestBody AuthenticationDto item) throws Exception {
-		return ResponseEntity.ok(mService.register(item));
-	}
-
-
 }
