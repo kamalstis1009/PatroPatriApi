@@ -63,6 +63,8 @@ public class UserServiceImpl implements UserService {
     }
 
     private User extracted(User item, User model) {
+        if (item.getId() != null)
+            model.setId(item.getId());
         if (item.getFullName() != null)
             model.setFullName(item.getFullName());
         if (item.getGender() != null)
@@ -121,8 +123,8 @@ public class UserServiceImpl implements UserService {
             model.setCommentAmount(item.getCommentAmount());
         if (item.getLikedAmount() != null)
             model.setLikedAmount(item.getLikedAmount());
-        if (item.getCreatedBy() != null)
-            model.setCreatedBy(item.getCreatedBy());
+        if (item.getId() != null)
+            model.setCreatedBy(item.getId());
 
         //model.setCreatedAt(item.getCreatedAt());
         //model.setUpdatedAt(item.getUpdatedAt());

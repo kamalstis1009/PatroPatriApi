@@ -88,16 +88,16 @@ public class User {
     private String permanentAddress;
 
     //---------------------| Other
-    @Column(name = "summary")
+    @Column(name = "summary", length = 1550)
     private String summary;
 
-    @Column(name = "interest")
+    @Column(name = "interest", length = 1550)
     private String interest;
 
-    @Column(name = "other_activity")
+    @Column(name = "other_activity", length = 1550)
     private String otherActivity;
 
-    @Column(name = "expectation")
+    @Column(name = "expectation", length = 1550)
     private String expectation;
 
     //---------------------| Image
