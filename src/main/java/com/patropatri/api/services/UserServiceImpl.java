@@ -51,20 +51,22 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User updateUser(User item) {
-        Optional<User> response = mRepository.findById(item.getId());
-        if (response.isPresent()) {
-            User model = extracted(item, response.get());
-            mRepository.save(model);
-            return model;
+        if (item.getId() != null) {
+            Optional<User> response = mRepository.findById(item.getId());
+            if (response.isPresent()) {
+                User model = extracted(item, response.get());
+                mRepository.save(model);
+                return model;
+            } else {
+                User model = extracted(item, new User());
+                return addUser(model);
+            }
         } else {
-            User model = extracted(item, new User());
-            return addUser(model);
+            return null;
         }
     }
 
     private User extracted(User item, User model) {
-        if (item.getId() != null)
-            model.setId(item.getId());
         if (item.getFullName() != null)
             model.setFullName(item.getFullName());
         if (item.getGender() != null)
@@ -117,15 +119,12 @@ public class UserServiceImpl implements UserService {
             model.setImageCoverName(item.getImageCoverName());
         if (item.getToken() != null)
             model.setToken(item.getToken());
-        if (item.getIsActive() != null)
-            model.setIsActive(item.getIsActive());
-        if (item.getCommentAmount() != null)
-            model.setCommentAmount(item.getCommentAmount());
-        if (item.getLikedAmount() != null)
-            model.setLikedAmount(item.getLikedAmount());
-        if (item.getId() != null)
-            model.setCreatedBy(item.getId());
 
+        model.setIsActive(item.getIsActive() != null);
+        model.setCommentAmount(item.getCommentAmount() != null ? item.getCommentAmount() : 0);
+        model.setLikedAmount(item.getLikedAmount() != null ? item.getLikedAmount() : 0);
+        model.setId(item.getId());
+        model.setCreatedBy(item.getId());
         //model.setCreatedAt(item.getCreatedAt());
         //model.setUpdatedAt(item.getUpdatedAt());
         //model.setUpdatedBy(item.getUpdatedBy());

@@ -1,5 +1,6 @@
 package com.patropatri.api.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -30,6 +31,7 @@ public class User {
     @Column(name = "gender")
     private String gender;
 
+    @JsonFormat(pattern="dd-MM-yyyy") //yyyy-MM-dd'T'HH:mm:ss
     @Temporal(TemporalType.DATE)
     @Column(name = "birth_date")
     private Date birthDate;
