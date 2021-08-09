@@ -54,4 +54,9 @@ public class FileController {
         return new ResponseEntity<>(mService.deleteAndUploadFile(file, fileName), HttpStatus.CREATED);
     }
 
+    @PostMapping("/uploadImage")
+    public ResponseEntity<String> uploadImage(@RequestParam("file") MultipartFile file, @RequestParam("fileName") String fileName, @RequestParam("isProfile") boolean isProfile, @RequestParam("id") long id) {
+        return new ResponseEntity<>(mService.uploadImage(file, fileName, isProfile, id), HttpStatus.CREATED);
+    }
+
 }

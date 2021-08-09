@@ -10,4 +10,5 @@ public interface FileService {
     Resource downloadFile(String fileName);
 
     String deleteAndUploadFile(MultipartFile file, String fileName);
+    String uploadImage(MultipartFile file, String fileName, boolean isProfile, long id);
 }

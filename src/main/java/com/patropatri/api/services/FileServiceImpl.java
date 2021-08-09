@@ -1,7 +1,9 @@
 package com.patropatri.api.services;
 
 import com.patropatri.api.models.Gallery;
+import com.patropatri.api.models.User;
 import com.patropatri.api.repositories.GalleryRepository;
+import com.patropatri.api.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -17,12 +19,16 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Optional;
 
 @Service
 public class FileServiceImpl implements FileService {
 
     @Autowired
     private GalleryRepository mRepository;
+
+    @Autowired
+    private UserRepository mUserRepository;
 
     @Override
     public Gallery uploadFile(MultipartFile file, long userId) {
@@ -103,6 +109,34 @@ public class FileServiceImpl implements FileService {
             }
         }
         return null;
+    }
+
+    @Override
+    public String uploadImage(MultipartFile file, String fileName, boolean isProfile, long id) {
+        String imageName = deleteAndUploadFile(file, fileName);
+        if (imageName != null) {
+            extracted(id, isProfile, imageName);
+            return imageName;
+        }
+        return null;
+    }
+
+    private void extracted(long id, boolean isProfile, String imageName) {
+        Optional<User> response = mUserRepository.findById(id);
+        User model;
+        if (response.isPresent()) {
+            model = response.get();
+        } else {
+            model = new User();
+        }
+        if (isProfile) {
+            model.setImageName(imageName);
+        } else {
+            model.setImageCoverName(imageName);
+        }
+        model.setId(id);
+        model.setCreatedBy(id);
+        mUserRepository.save(model);
     }
 
 }
