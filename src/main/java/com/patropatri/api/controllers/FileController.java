@@ -2,6 +2,8 @@ package com.patropatri.api.controllers;
 
 import com.patropatri.api.models.Gallery;
 import com.patropatri.api.services.FileServiceImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -18,10 +20,12 @@ import java.io.IOException;
 @RequestMapping("/api/v1/file")
 public class FileController {
 
+    Logger logger = LoggerFactory.getLogger(JwtAuthenticationController.class);
+
     @Autowired
     private FileServiceImpl mService;
 
-    @PostMapping("/upload")
+    @PostMapping("/upload/gallery-image")
     public ResponseEntity<Gallery> uploadFile(@RequestParam("file") MultipartFile file, @RequestParam("userId") long userId) {
         return new ResponseEntity<>(mService.uploadFile(file, userId), HttpStatus.CREATED);
     }
@@ -49,13 +53,14 @@ public class FileController {
         return null;
     }
 
-    @PostMapping("/deleteAndUpload")
+    @PostMapping("/upload/update-image")
     public ResponseEntity<String> deleteAndUploadFile(@RequestParam("file") MultipartFile file, @RequestParam("fileName") String fileName) {
         return new ResponseEntity<>(mService.deleteAndUploadFile(file, fileName), HttpStatus.CREATED);
     }
 
-    @PostMapping("/uploadImage")
+    @PostMapping("/upload/update-profile-cover")
     public ResponseEntity<String> uploadImage(@RequestParam("file") MultipartFile file, @RequestParam("fileName") String fileName, @RequestParam("isProfile") boolean isProfile, @RequestParam("id") long id) {
+        //logger.info(fileName);
         return new ResponseEntity<>(mService.uploadImage(file, fileName, isProfile, id), HttpStatus.CREATED);
     }
 
