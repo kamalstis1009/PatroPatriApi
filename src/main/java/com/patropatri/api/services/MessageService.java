@@ -9,7 +9,12 @@ import java.util.List;
 public interface MessageService {
 
     List<Notification> getAllNotificationsByUserId(int pageNo, int rowSize, long userId);
+    Notification addNotification(Notification item);
+    int deleteNotificationById(long id);
+
     List<Inbox> getAllInboxesByUserId(int pageNo, int rowSize, long userId);
+    Inbox addInbox(Inbox item);
+    int deleteInboxById(long id);
 
 
     Page<Notification> findByUserId(int pageNo, int pageSize, String sortField, String sortDirection);

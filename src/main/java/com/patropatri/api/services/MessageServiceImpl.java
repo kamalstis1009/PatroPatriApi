@@ -29,6 +29,21 @@ public class MessageServiceImpl implements MessageService {
         return this.mNotificationRepository.getAllNotificationsByUserId(userId, pageable);
     }
 
+    @Override
+    public Notification addNotification(Notification item) {
+        return mNotificationRepository.save(item);
+    }
+
+    @Override
+    public int deleteNotificationById(long id) {
+        boolean isFound = mNotificationRepository.existsById(id);
+        if(isFound) {
+            mNotificationRepository.deleteById(id);
+            return 1;
+        }
+        return 0;
+    }
+
     //======================================================| Inbox
     @Override
     public List<Inbox> getAllInboxesByUserId(int pageNo, int rowSize, long userId) {
@@ -36,7 +51,20 @@ public class MessageServiceImpl implements MessageService {
         return mInboxRepository.getAllInboxesByUserId(userId, pageable);
     }
 
+    @Override
+    public Inbox addInbox(Inbox item) {
+        return mInboxRepository.save(item);
+    }
 
+    @Override
+    public int deleteInboxById(long id) {
+        boolean isFound = mInboxRepository.existsById(id);
+        if(isFound) {
+            mInboxRepository.deleteById(id);
+            return 1;
+        }
+        return 0;
+    }
 
 
 

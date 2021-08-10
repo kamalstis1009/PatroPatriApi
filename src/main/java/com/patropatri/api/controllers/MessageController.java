@@ -24,12 +24,31 @@ public class MessageController {
         return new ResponseEntity<>(mService.getAllNotificationsByUserId(pageNo, rowSize, userId), HttpStatus.OK);
     }
 
+    @PostMapping("/notification")
+    public ResponseEntity<Notification> addNotification(@RequestBody Notification item) {
+        return new ResponseEntity<>(mService.addNotification(item), HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/notification/{id}")
+    public ResponseEntity<Integer> deleteGalleryById(@PathVariable("id") long id) {
+        return new ResponseEntity<>(mService.deleteNotificationById(id), HttpStatus.OK);
+    }
+
     //======================================================| Inbox
     @GetMapping("/inboxes/{no}")
     public ResponseEntity<List<Inbox>> getAllInboxesByUserId(@PathVariable("no") int pageNo, @RequestParam("row") int rowSize, @RequestParam("userId") long userId) {
         return new ResponseEntity<>(mService.getAllInboxesByUserId(pageNo, rowSize, userId), HttpStatus.OK);
     }
 
+    @PostMapping("/inbox")
+    public ResponseEntity<Inbox> addInbox(@RequestBody Inbox item) {
+        return new ResponseEntity<>(mService.addInbox(item), HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/inbox/{id}")
+    public ResponseEntity<Integer> deleteInboxById(@PathVariable("id") long id) {
+        return new ResponseEntity<>(mService.deleteInboxById(id), HttpStatus.OK);
+    }
 
     //======================================================| DEMO
     @GetMapping("/paginate/{pageNo}")
