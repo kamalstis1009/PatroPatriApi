@@ -27,15 +27,6 @@ public class MessageServiceImpl implements MessageService {
         return mNotificationRepository.getAllNotificationsByUserId(userId);
     }
 
-    //Pagination and Sorting using Spring Data JPA
-    public Page<Notification> getAllPaginatedNotificationsByUserId(int pageNo, int pageSize, String sortField, String sortDirection) {
-        Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() : Sort.by(sortField).descending();
-        Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
-        //return this.mNotificationRepository.findAll(where(customerHasBirthday()).and(isLongTermCustomer()));
-        //return this.mNotificationRepository.findAll(pageable);
-        return this.mNotificationRepository.findAll(pageable);
-    }
-
     public List<Notification> findByUserId(int pageNo, int rowSize, long userId) {
         Pageable pageable = PageRequest.of(pageNo - 1, rowSize);
         return this.mNotificationRepository.findByUserId(userId, pageable);
@@ -46,6 +37,14 @@ public class MessageServiceImpl implements MessageService {
         return mInboxRepository.getAllInboxesByUserId(userId);
     }
 
+    //======================================================| Pagination and Sorting using Spring Data JPA
+    public Page<Notification> getAllPaginatedNotificationsByUserId(int pageNo, int pageSize, String sortField, String sortDirection) {
+        Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() : Sort.by(sortField).descending();
+        Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
+        //return this.mNotificationRepository.findAll(where(customerHasBirthday()).and(isLongTermCustomer()));
+        //return this.mNotificationRepository.findAll(pageable);
+        return this.mNotificationRepository.findAll(pageable);
+    }
 
 
 }
