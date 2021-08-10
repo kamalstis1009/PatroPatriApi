@@ -138,13 +138,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Family getFamilyById(long id) {
-        Optional<Family> item = mFamilyRep.findById(id);
-        if(item.isPresent()) {
-            return item.get();
-        } else {
-            throw new ResourceNotFoundException("Family", "Id", id);
+    public int deleteFamilyById(long id) {
+        boolean isFound = mFamilyRep.existsById(id);
+        if(isFound) {
+            mFamilyRep.deleteById(id);
+            return 1;
         }
+        return 0;
     }
 
     @Override
@@ -160,13 +160,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Education getEducationById(long id) {
-        Optional<Education> item = mEducationRep.findById(id);
-        if(item.isPresent()) {
-            return item.get();
-        } else {
-            throw new ResourceNotFoundException("Education", "Id", id);
+    public int deleteEducationById(long id) {
+        boolean isFound = mEducationRep.existsById(id);
+        if(isFound) {
+            mEducationRep.deleteById(id);
+            return 1;
         }
+        return 0;
     }
 
     @Override
