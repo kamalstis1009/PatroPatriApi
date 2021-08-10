@@ -1,6 +1,7 @@
 package com.patropatri.api.repositories;
 
 import com.patropatri.api.models.Notification;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -13,5 +14,8 @@ public interface NotificationRepository extends JpaRepository<Notification, Long
 
     @Query("SELECT u FROM Notification u WHERE u.userId = :userId")
     List<Notification> getAllNotificationsByUserId(@Param("userId") long userId);
+
+    @Query("SELECT u FROM Notification u WHERE u.userId = :userId")
+    public List<Notification> findByUserId(@Param("userId") long userId, Pageable pageable);
 
 }

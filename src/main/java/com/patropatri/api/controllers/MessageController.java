@@ -37,4 +37,9 @@ public class MessageController {
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
+    @GetMapping("/notifications/{pageNo}")
+    public ResponseEntity<List<Notification>> findByUserId(@PathVariable("no") int pageNo, @RequestParam("row") int rowSize, @RequestParam("userId") long userId) {
+        return new ResponseEntity<>(mService.findByUserId(pageNo, rowSize, userId), HttpStatus.OK);
+    }
+
 }
