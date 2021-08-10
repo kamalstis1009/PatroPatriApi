@@ -6,6 +6,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 public interface FileService {
 
+    boolean deleteFile(String fileName);
+
     Gallery uploadFile(MultipartFile file, long userId);
     Resource downloadFile(String fileName);
 

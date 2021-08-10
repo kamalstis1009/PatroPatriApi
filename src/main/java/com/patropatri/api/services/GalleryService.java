@@ -10,6 +10,6 @@ public interface GalleryService {
     //Gallery getGalleryById(long id);
     List<Gallery> getAllGalleriesByUserId(long userId);
     //Gallery updateGallery(Gallery item);
-    int deleteGalleryById(long id);
+    int deleteGalleryById(long id, String fileName);
 
 }

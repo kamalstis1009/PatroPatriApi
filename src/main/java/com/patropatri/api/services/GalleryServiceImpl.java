@@ -11,16 +11,20 @@ public class GalleryServiceImpl implements GalleryService {
     @Autowired
     private GalleryRepository mRepository;
 
+    @Autowired
+    private FileServiceImpl mService;
+
     @Override
     public List<Gallery> getAllGalleriesByUserId(long userId) {
         return mRepository.getAllGalleriesByUserId(userId);
     }
 
     @Override
-    public int deleteGalleryById(long id) {
+    public int deleteGalleryById(long id, String fileName) {
         boolean isFound = mRepository.existsById(id);
         if(isFound) {
             mRepository.deleteById(id);
+            mService.deleteFile(fileName);
             return 1;
         }
         return 0;

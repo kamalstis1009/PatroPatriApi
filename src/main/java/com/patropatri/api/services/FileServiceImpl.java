@@ -31,6 +31,21 @@ public class FileServiceImpl implements FileService {
     private UserRepository mUserRepository;
 
     @Override
+    public boolean deleteFile(String fileName) {
+        Path path = Paths.get("uploads").toAbsolutePath().normalize();
+        try {
+            if (!Files.exists(path)) {
+                Files.createDirectory(path); //Create uploads directory
+            }
+            File file2 = new File(path +"/"+ fileName);
+            return file2.delete();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
     public Gallery uploadFile(MultipartFile file, long userId) {
         if (file != null) {
             Path path = Paths.get("uploads").toAbsolutePath().normalize();
