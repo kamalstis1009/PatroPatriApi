@@ -12,10 +12,10 @@ import java.util.List;
 @Repository
 public interface NotificationRepository extends JpaRepository<Notification, Long> {
 
-    @Query("SELECT u FROM Notification u WHERE u.userId = :userId")
-    List<Notification> getAllNotificationsByUserId(@Param("userId") long userId);
+    /*@Query("SELECT u FROM Notification u WHERE u.userId = :userId")
+    List<Notification> getAllNotificationsByUserId(@Param("userId") long userId);*/
 
     @Query("SELECT u FROM Notification u WHERE u.userId = :userId")
-    public List<Notification> findByUserId(@Param("userId") long userId, Pageable pageable);
+    public List<Notification> getAllNotificationsByUserId(@Param("userId") long userId, Pageable pageable);
 
 }

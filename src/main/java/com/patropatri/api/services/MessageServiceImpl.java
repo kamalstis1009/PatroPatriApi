@@ -23,22 +23,26 @@ public class MessageServiceImpl implements MessageService {
     private NotificationRepository mNotificationRepository;
 
     //======================================================| Notification
-    public List<Notification> getAllNotificationsByUserId(long userId) {
-        return mNotificationRepository.getAllNotificationsByUserId(userId);
-    }
-
-    public List<Notification> findByUserId(int pageNo, int rowSize, long userId) {
+    @Override
+    public List<Notification> getAllNotificationsByUserId(int pageNo, int rowSize, long userId) {
         Pageable pageable = PageRequest.of(pageNo - 1, rowSize);
-        return this.mNotificationRepository.findByUserId(userId, pageable);
+        return this.mNotificationRepository.getAllNotificationsByUserId(userId, pageable);
     }
 
     //======================================================| Inbox
-    public List<Inbox> getAllInboxesByUserId(long userId) {
-        return mInboxRepository.getAllInboxesByUserId(userId);
+    @Override
+    public List<Inbox> getAllInboxesByUserId(int pageNo, int rowSize, long userId) {
+        Pageable pageable = PageRequest.of(pageNo - 1, rowSize);
+        return mInboxRepository.getAllInboxesByUserId(userId, pageable);
     }
 
+
+
+
+
     //======================================================| Pagination and Sorting using Spring Data JPA
-    public Page<Notification> getAllPaginatedNotificationsByUserId(int pageNo, int pageSize, String sortField, String sortDirection) {
+    @Override
+    public Page<Notification> findByUserId(int pageNo, int pageSize, String sortField, String sortDirection) {
         Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() : Sort.by(sortField).descending();
         Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
         //return this.mNotificationRepository.findAll(where(customerHasBirthday()).and(isLongTermCustomer()));
