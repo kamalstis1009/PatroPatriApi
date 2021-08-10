@@ -21,6 +21,9 @@ public class Inbox {
     @Column(name = "user_id")
     private Long userId;
 
+    @Column(name = "is_enabled")
+    private Boolean isEnabled;
+
     @CreatedDate
     @Column(name = "created_at")
     private Date createdAt;
