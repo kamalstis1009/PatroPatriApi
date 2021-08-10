@@ -18,8 +18,8 @@ public class GalleryController {
 
     //======================================================| GET
     @GetMapping(value="/galleries/{id}", produces = {"application/json"})
-    public ResponseEntity<List<Gallery>> getAllGalleriesByUserId(@PathVariable("id") long id) {
-        return new ResponseEntity<>(mService.getAllGalleriesByUserId(id), HttpStatus.OK);
+    public ResponseEntity<List<Gallery>> getAllGalleriesByUserId(@PathVariable("userId") long userId) {
+        return new ResponseEntity<>(mService.getAllGalleriesByUserId(userId), HttpStatus.OK);
     }
 
     //======================================================| DELETE
