@@ -1,7 +1,9 @@
 package com.patropatri.api.controllers;
 
+import com.patropatri.api.models.Notification;
 import com.patropatri.api.services.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/message")
 public class MessageController {
 
     @Autowired
@@ -26,5 +28,13 @@ public class MessageController {
     public ResponseEntity<Integer> deleteGalleryById(@PathVariable("id") long id, @RequestParam("fileName") String fileName) {
         return new ResponseEntity<>(mService.deleteGalleryById(id, fileName), HttpStatus.OK);
     }*/
+
+    @GetMapping("/page/{pageNo}")
+    public ResponseEntity<List<Notification>> findPaginated(@PathVariable("pageNo") int pageNo, @RequestParam("sortField") String sortField, @RequestParam("sortDir") String sortDir) {
+        int pageSize = 5;
+        Page<Notification> page = mService.findPaginated(pageNo, pageSize, sortField, sortDir);
+        List<Notification> list = page.getContent();
+        return new ResponseEntity<>(list, HttpStatus.OK);
+    }
 
 }

@@ -18,8 +18,14 @@ public class Notification {
     @Column(name = "title")
     private String title;
 
+    @Column(name = "type")
+    private String type;
+
     @Column(name = "user_id")
     private Long userId;
+
+    @Column(name = "is_enabled")
+    private Boolean isEnabled;
 
     @CreatedDate
     @Column(name = "created_at")
