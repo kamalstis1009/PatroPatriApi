@@ -3,9 +3,11 @@ package com.patropatri.api.services;
 import com.patropatri.api.models.Gallery;
 import com.patropatri.api.repositories.GalleryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class GalleryServiceImpl implements GalleryService {
 
     @Autowired
