@@ -24,7 +24,7 @@ public class GalleryController {
 
     //======================================================| DELETE
     @DeleteMapping("/gallery/{id}")
-    public ResponseEntity<Integer> deleteGalleryById(@PathVariable("id") long id, @RequestParam String fileName) {
+    public ResponseEntity<Integer> deleteGalleryById(@PathVariable("id") long id, @RequestParam("fileName") String fileName) {
         return new ResponseEntity<>(mService.deleteGalleryById(id, fileName), HttpStatus.OK);
     }
 
