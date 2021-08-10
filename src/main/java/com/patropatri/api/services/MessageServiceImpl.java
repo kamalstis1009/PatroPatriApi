@@ -27,7 +27,8 @@ public class MessageServiceImpl implements MessageService {
         return mNotificationRepository.getAllNotificationsByUserId(userId);
     }
 
-    public Page<Notification> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection) {
+    //Pagination and Sorting using Spring Data JPA
+    public Page<Notification> getAllPaginatedNotificationsByUserId(int pageNo, int pageSize, String sortField, String sortDirection) {
         Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() : Sort.by(sortField).descending();
         Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
         return this.mNotificationRepository.findAll(pageable);

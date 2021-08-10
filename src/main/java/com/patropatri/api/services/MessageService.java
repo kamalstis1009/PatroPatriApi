@@ -5,6 +5,6 @@ import org.springframework.data.domain.Page;
 
 public interface MessageService {
 
-    Page<Notification> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection);
+    Page<Notification> getAllPaginatedNotificationsByUserId(int pageNo, int pageSize, String sortField, String sortDirection);
 
 }

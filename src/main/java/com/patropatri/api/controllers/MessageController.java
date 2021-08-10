@@ -29,10 +29,10 @@ public class MessageController {
         return new ResponseEntity<>(mService.deleteGalleryById(id, fileName), HttpStatus.OK);
     }*/
 
-    @GetMapping("/page/{pageNo}")
-    public ResponseEntity<List<Notification>> findPaginated(@PathVariable("pageNo") int pageNo, @RequestParam("sortField") String sortField, @RequestParam("sortDir") String sortDir) {
-        int pageSize = 5;
-        Page<Notification> page = mService.findPaginated(pageNo, pageSize, sortField, sortDir);
+    @GetMapping("/paginate/{pageNo}")
+    public ResponseEntity<List<Notification>> getAllPaginatedNotificationsByUserId(@PathVariable("pageNo") int pageNo, @RequestParam("sortField") String sortField, @RequestParam("sortDir") String sortDir) {
+        int pageSize = 15;
+        Page<Notification> page = mService.getAllPaginatedNotificationsByUserId(pageNo, pageSize, sortField, sortDir);
         List<Notification> list = page.getContent();
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
