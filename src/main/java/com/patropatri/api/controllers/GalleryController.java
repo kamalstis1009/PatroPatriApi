@@ -17,7 +17,7 @@ public class GalleryController {
     private GalleryService mService;
 
     //======================================================| GET
-    @GetMapping(value="/galleries/{id}", produces = {"application/json"})
+    @GetMapping(value="/galleries/{userId}", produces = {"application/json"})
     public ResponseEntity<List<Gallery>> getAllGalleriesByUserId(@PathVariable("userId") long userId) {
         return new ResponseEntity<>(mService.getAllGalleriesByUserId(userId), HttpStatus.OK);
     }

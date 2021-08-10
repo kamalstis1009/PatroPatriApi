@@ -59,9 +59,9 @@ public class FileController {
     }
 
     @PostMapping("/upload/update-profile-cover")
-    public ResponseEntity<String> uploadImage(@RequestParam("file") MultipartFile file, @RequestParam("fileName") String fileName, @RequestParam("isProfile") boolean isProfile, @RequestParam("id") long id) {
+    public ResponseEntity<String> uploadImage(@RequestParam("file") MultipartFile file, @RequestParam("fileName") String fileName, @RequestParam("isProfile") boolean isProfile, @RequestParam("userId") long userId) {
         //logger.info(fileName);
-        return new ResponseEntity<>(mService.uploadImage(file, fileName, isProfile, id), HttpStatus.CREATED);
+        return new ResponseEntity<>(mService.uploadImage(file, fileName, isProfile, userId), HttpStatus.CREATED);
     }
 
 }

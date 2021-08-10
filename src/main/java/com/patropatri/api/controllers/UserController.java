@@ -41,13 +41,13 @@ public class UserController {
     }
 
     @DeleteMapping(value="/family/{id}", produces = {"application/json"})
-    public ResponseEntity<Integer> getFamilyById(@PathVariable("id") long id) {
+    public ResponseEntity<Integer> deleteFamilyById(@PathVariable("id") long id) {
         return new ResponseEntity<>(mService.deleteFamilyById(id), HttpStatus.OK);
     }
 
-    @GetMapping(value="/families/{id}", produces = {"application/json"})
-    public ResponseEntity<List<Family>> getAllFamiliesByUserId(@PathVariable("id") long id) {
-        return new ResponseEntity<>(mService.getAllFamiliesByUserId(id), HttpStatus.OK);
+    @GetMapping(value="/families/{userId}", produces = {"application/json"})
+    public ResponseEntity<List<Family>> getAllFamiliesByUserId(@PathVariable("userId") long userId) {
+        return new ResponseEntity<>(mService.getAllFamiliesByUserId(userId), HttpStatus.OK);
     }
 
     //======================================================| Education
@@ -61,9 +61,9 @@ public class UserController {
         return new ResponseEntity<>(mService.deleteEducationById(id), HttpStatus.OK);
     }
 
-    @GetMapping(value="/educations/{id}", produces = {"application/json"})
-    public ResponseEntity<List<Education>> getAllEducationsByUserId(@PathVariable("id") long id) {
-        return new ResponseEntity<>(mService.getAllEducationsByUserId(id), HttpStatus.OK);
+    @GetMapping(value="/educations/{userId}", produces = {"application/json"})
+    public ResponseEntity<List<Education>> getAllEducationsByUserId(@PathVariable("userId") long userId) {
+        return new ResponseEntity<>(mService.getAllEducationsByUserId(userId), HttpStatus.OK);
     }
 
 
