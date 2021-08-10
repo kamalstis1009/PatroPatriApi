@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface MessageService {
 
-    List<Notification> getAllNotificationsByUserId(int pageNo, int pageSize, long userId);
+    List<Notification> getAllNotificationsByUserId(int pageNo, int rowSize, long userId);
     List<Inbox> getAllInboxesByUserId(int pageNo, int rowSize, long userId);
 
 

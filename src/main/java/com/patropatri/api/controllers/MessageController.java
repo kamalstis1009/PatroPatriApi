@@ -24,8 +24,8 @@ public class MessageController {
         return new ResponseEntity<>(mService.getAllNotificationsByUserId(pageNo, rowSize, userId), HttpStatus.OK);
     }
 
-    //======================================================| Notification
-    @GetMapping("/notifications/{no}")
+    //======================================================| Inbox
+    @GetMapping("/inboxes/{no}")
     public ResponseEntity<List<Inbox>> getAllInboxesByUserId(@PathVariable("no") int pageNo, @RequestParam("row") int rowSize, @RequestParam("userId") long userId) {
         return new ResponseEntity<>(mService.getAllInboxesByUserId(pageNo, rowSize, userId), HttpStatus.OK);
     }
