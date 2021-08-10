@@ -19,7 +19,7 @@ public class Authentication {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 
     @Column(name = "username")
     private String username;

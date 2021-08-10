@@ -13,20 +13,20 @@ public class Liked {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 
     //@Column(name = "amount")
     //private int amount;
 
     @Column(name = "user_id")
-    private long userId;
+    private Long userId;
 
     @CreatedDate
     @Column(name = "created_at")
     private Date createdAt;
 
     @Column(name = "created_by")
-    private long createdBy;
+    private Long createdBy;
 
     @PrePersist
     void createdAt() {

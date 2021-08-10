@@ -13,13 +13,13 @@ public class Gallery {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 
     @Column(name = "image_name")
     private String imageName;
 
     @Column(name = "user_id")
-    private long userId;
+    private Long userId;
 
     @CreatedDate
     @Column(name = "created_at")

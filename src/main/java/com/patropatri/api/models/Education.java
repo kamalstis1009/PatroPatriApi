@@ -13,7 +13,7 @@ public class Education {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 
     @Column(name = "degree")
     private String degree;
@@ -22,7 +22,7 @@ public class Education {
     private String subject;
 
     @Column(name = "passing_year")
-    private int passingYear;
+    private Integer passingYear;
 
     @Column(name = "result")
     private String result;
@@ -31,7 +31,7 @@ public class Education {
     private String institution;
 
     @Column(name = "user_id")
-    private long userId;
+    private Long userId;
 
     @CreatedDate
     @Column(name = "created_at")

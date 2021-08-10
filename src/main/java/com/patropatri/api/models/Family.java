@@ -13,7 +13,7 @@ public class Family {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 
     @Column(name = "full_name")
     private String fullName;
@@ -28,7 +28,7 @@ public class Family {
     private String summary;
 
     @Column(name = "user_id")
-    private long userId;
+    private Long userId;
 
     @CreatedDate
     @Column(name = "created_at")

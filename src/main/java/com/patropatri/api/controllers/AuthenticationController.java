@@ -14,7 +14,7 @@ import java.util.List;
 public class AuthenticationController {
 
     /*@Autowired
-    private AuthenticationServiceImpl mService;
+    private AuthenticationService mService;
 
     //======================================================| ADD
     @PostMapping("/authentication")

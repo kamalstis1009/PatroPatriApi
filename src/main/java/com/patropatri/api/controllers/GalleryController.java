@@ -1,7 +1,7 @@
 package com.patropatri.api.controllers;
 
 import com.patropatri.api.models.Gallery;
-import com.patropatri.api.services.GalleryServiceImpl;
+import com.patropatri.api.services.GalleryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +14,7 @@ import java.util.List;
 public class GalleryController {
 
     @Autowired
-    private GalleryServiceImpl mService;
+    private GalleryService mService;
 
     //======================================================| GET
     @GetMapping(value="/galleries/{id}", produces = {"application/json"})
@@ -27,22 +27,5 @@ public class GalleryController {
     public ResponseEntity<Integer> deleteGalleryById(@PathVariable("id") long id, @RequestParam String fileName) {
         return new ResponseEntity<>(mService.deleteGalleryById(id, fileName), HttpStatus.OK);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

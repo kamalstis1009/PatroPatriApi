@@ -3,7 +3,7 @@ package com.patropatri.api.controllers;
 import com.patropatri.api.models.Education;
 import com.patropatri.api.models.Family;
 import com.patropatri.api.models.User;
-import com.patropatri.api.services.UserServiceImpl;
+import com.patropatri.api.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +16,7 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    private UserServiceImpl mService;
+    private UserService mService;
 
     //======================================================| User
     @PostMapping("/user")

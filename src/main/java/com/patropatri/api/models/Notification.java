@@ -13,13 +13,13 @@ public class Notification {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 
     @Column(name = "title")
     private String title;
 
     @Column(name = "user_id")
-    private long userId;
+    private Long userId;
 
     @CreatedDate
     @Column(name = "created_at")

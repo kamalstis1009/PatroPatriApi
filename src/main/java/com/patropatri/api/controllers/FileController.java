@@ -1,7 +1,7 @@
 package com.patropatri.api.controllers;
 
 import com.patropatri.api.models.Gallery;
-import com.patropatri.api.services.FileServiceImpl;
+import com.patropatri.api.services.FileService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class FileController {
     Logger logger = LoggerFactory.getLogger(JwtAuthenticationController.class);
 
     @Autowired
-    private FileServiceImpl mService;
+    private FileService mService;
 
     @PostMapping("/upload/gallery-image")
     public ResponseEntity<Gallery> uploadFile(@RequestParam("file") MultipartFile file, @RequestParam("userId") long userId) {
