@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public interface InboxRepository extends JpaRepository<Inbox, Long> {
 
-    @Query("SELECT u FROM Inbox u WHERE u.userId = :userId")
+    @Query("SELECT u FROM Inbox u WHERE u.receiverId = :userId")
     public List<Inbox> getAllInboxesByUserId(@Param("userId") long userId, Pageable pageable);
 
 }

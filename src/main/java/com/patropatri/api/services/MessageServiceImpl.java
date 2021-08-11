@@ -12,6 +12,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MessageServiceImpl implements MessageService {
@@ -53,6 +54,20 @@ public class MessageServiceImpl implements MessageService {
 
     @Override
     public Inbox addInbox(Inbox item) {
+        Optional<Inbox> response = mInboxRepository.findById(item.getSenderId());
+        if(response.isPresent()) {
+            Inbox model = response.get();
+            if (item.getMessage() != null)
+                model.setMessage(item.getMessage());
+            if (item.getReceiverId() != null)
+                model.setReceiverId(item.getReceiverId());
+            if (item.getSenderId() != null)
+                model.setSenderId(item.getSenderId());
+            if (item.getIsEnabled() != null)
+                model.setIsEnabled(item.getIsEnabled());
+
+            return mInboxRepository.save(item);
+        }
         return mInboxRepository.save(item);
     }
 
