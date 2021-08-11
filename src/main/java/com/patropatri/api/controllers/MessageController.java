@@ -1,6 +1,7 @@
 package com.patropatri.api.controllers;
 
 import com.patropatri.api.models.Inbox;
+import com.patropatri.api.models.InboxDto;
 import com.patropatri.api.models.Notification;
 import com.patropatri.api.services.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +42,7 @@ public class MessageController {
     }
 
     @PostMapping("/inbox")
-    public ResponseEntity<Inbox> addInbox(@RequestBody Inbox item) {
+    public ResponseEntity<Inbox> addInbox(@RequestBody InboxDto item) {
         return new ResponseEntity<>(mService.addInbox(item), HttpStatus.CREATED);
     }
 

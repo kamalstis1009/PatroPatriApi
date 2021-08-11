@@ -1,6 +1,7 @@
 package com.patropatri.api.services;
 
 import com.patropatri.api.models.Inbox;
+import com.patropatri.api.models.InboxDto;
 import com.patropatri.api.models.Notification;
 import org.springframework.data.domain.Page;
 
@@ -13,7 +14,7 @@ public interface MessageService {
     int deleteNotificationById(long id);
 
     List<Inbox> getAllInboxesByUserId(int pageNo, int rowSize, long userId);
-    Inbox addInbox(Inbox item);
+    Inbox addInbox(InboxDto item);
     int deleteInboxById(long id);
 
 
