@@ -1,9 +1,6 @@
 package com.patropatri.api.controllers;
 
-import com.patropatri.api.models.Candidate;
-import com.patropatri.api.models.Education;
-import com.patropatri.api.models.Family;
-import com.patropatri.api.models.User;
+import com.patropatri.api.models.*;
 import com.patropatri.api.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,6 +20,11 @@ public class UserController {
     @GetMapping(value="/users", produces = {"application/json"})
     public ResponseEntity<List<Candidate>> getAllCandidates() {
         return new ResponseEntity<>(mService.getAllCandidates(), HttpStatus.OK);
+    }
+
+    @GetMapping(value="/users/{no}", produces = {"application/json"})
+    public ResponseEntity<List<Candidate>> getAllCandidatesByPaginated(@PathVariable("no") int pageNo, @RequestParam("row") int rowSize) {
+        return new ResponseEntity<>(mService.getAllCandidatesByPaginated(pageNo, rowSize), HttpStatus.OK);
     }
 
     //======================================================| User

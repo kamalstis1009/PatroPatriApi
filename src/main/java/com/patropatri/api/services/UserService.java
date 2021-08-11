@@ -10,6 +10,7 @@ import java.util.List;
 public interface UserService {
 
     List<Candidate> getAllCandidates();
+    List<Candidate> getAllCandidatesByPaginated(int pageNo, int rowSize);
 
     //------------------------------------------------------| User
     User addUser(User item);

@@ -1,14 +1,13 @@
 package com.patropatri.api.services;
 
-import com.patropatri.api.models.Candidate;
-import com.patropatri.api.models.Education;
-import com.patropatri.api.models.Family;
-import com.patropatri.api.models.User;
+import com.patropatri.api.models.*;
 import com.patropatri.api.repositories.EducationRepository;
 import com.patropatri.api.repositories.FamilyRepository;
 import com.patropatri.api.repositories.UserRepository;
 import com.patropatri.api.utils.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,6 +29,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<Candidate> getAllCandidates() {
         return mRepository.getAllCandidates();
+    }
+
+    @Override
+    public List<Candidate> getAllCandidatesByPaginated(int pageNo, int rowSize) {
+        Pageable pageable = PageRequest.of(pageNo - 1, rowSize);
+        return mRepository.getAllCandidatesByPaginated(pageable);
     }
 
     //======================================================| User
