@@ -12,10 +12,10 @@ import java.util.List;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    @Query(value = "SELECT id, full_name, gender, profession, district, summary, comment_amount, liked_amount, image_name, created_at FROM users WHERE is_active = true", nativeQuery = true)
+    @Query(value = "SELECT id, full_name as fullName, gender, profession, district, summary, comment_amount as commentAmount, liked_amount as likedAmount, image_name as imageName, created_at as createdAt FROM users WHERE is_active = true", nativeQuery = true)
     List<Candidate> getAllCandidates();
 
-    @Query(value = "SELECT id, full_name, gender, profession, district, summary, comment_amount, liked_amount, image_name, created_at FROM users WHERE is_active = true", nativeQuery = true)
+    @Query(value = "SELECT id, full_name as fullName, gender, profession, district, summary, comment_amount as commentAmount, liked_amount as likedAmount, image_name as imageName, created_at as createdAt FROM users WHERE is_active = true", nativeQuery = true)
     List<Candidate> getAllCandidatesByPaginated(Pageable pageable);
 
 }

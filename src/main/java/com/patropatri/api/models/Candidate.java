@@ -1,21 +1,18 @@
 package com.patropatri.api.models;
 
-import lombok.Data;
-
 import java.util.Date;
 
-@Data
-public class Candidate {
+public interface Candidate {
 
-    private Long id;
-    private String fullName;
-    private String gender;
-    private String profession;
-    private String district;
-    private String summary;
-    private Integer commentAmount;
-    private Integer likedAmount;
-    private String imageName;
-    private Date createdAt;
+    Long getId();
+    String getFullName();
+    String getGender();
+    String getProfession();
+    String getDistrict();
+    String getSummary();
+    Integer getCommentAmount();
+    Integer getLikedAmount();
+    String getImageName();
+    Date getCreatedAt();
 
 }
