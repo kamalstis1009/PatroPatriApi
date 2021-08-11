@@ -1,9 +1,6 @@
 package com.patropatri.api.services;
 
-import com.patropatri.api.models.Inbox;
-import com.patropatri.api.models.InboxDto;
-import com.patropatri.api.models.Message;
-import com.patropatri.api.models.Notification;
+import com.patropatri.api.models.*;
 import com.patropatri.api.repositories.InboxRepository;
 import com.patropatri.api.repositories.MessageRepository;
 import com.patropatri.api.repositories.NotificationRepository;
@@ -31,7 +28,7 @@ public class MessageServiceImpl implements MessageService {
 
     //======================================================| Notification
     @Override
-    public List<Notification> getAllNotificationsByUserId(int pageNo, int rowSize, long userId) {
+    public List<NotificationDto> getAllNotificationsByUserId(int pageNo, int rowSize, long userId) {
         Pageable pageable = PageRequest.of(pageNo - 1, rowSize);
         return this.mNotificationRepository.getAllNotificationsByUserId(userId, pageable);
     }

@@ -3,6 +3,7 @@ package com.patropatri.api.controllers;
 import com.patropatri.api.models.Inbox;
 import com.patropatri.api.models.InboxDto;
 import com.patropatri.api.models.Notification;
+import com.patropatri.api.models.NotificationDto;
 import com.patropatri.api.services.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -21,7 +22,7 @@ public class MessageController {
 
     //======================================================| Notification
     @GetMapping("/notifications/{no}")
-    public ResponseEntity<List<Notification>> getAllNotificationsByUserId(@PathVariable("no") int pageNo, @RequestParam("row") int rowSize, @RequestParam("userId") long userId) {
+    public ResponseEntity<List<NotificationDto>> getAllNotificationsByUserId(@PathVariable("no") int pageNo, @RequestParam("row") int rowSize, @RequestParam("userId") long userId) {
         return new ResponseEntity<>(mService.getAllNotificationsByUserId(pageNo, rowSize, userId), HttpStatus.OK);
     }
 
