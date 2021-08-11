@@ -1,7 +1,7 @@
 package com.patropatri.api.repositories;
 
 import com.patropatri.api.models.Notification;
-import com.patropatri.api.models.NotificationDto;
+import com.patropatri.api.models.NotificationImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -31,6 +31,6 @@ public interface NotificationRepository extends JpaRepository<Notification, Long
             "ON A.receiver_id = B.id "+
             "WHERE A.receiver_id = :userId "+
             "ORDER BY A.created_at", nativeQuery = true)
-    List<NotificationDto> getAllNotificationsByUserId(@Param("userId") long userId, Pageable pageable);
+    List<NotificationImpl> getAllNotificationsByUserId(@Param("userId") long userId, Pageable pageable);
 
 }

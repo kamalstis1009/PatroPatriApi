@@ -12,7 +12,15 @@ import java.util.List;
 @Repository
 public interface InboxRepository extends JpaRepository<Inbox, Long> {
 
-    @Query("SELECT u FROM Inbox u WHERE u.receiverId = :userId")
+    //@Query("SELECT u FROM Inbox u WHERE u.receiverId = :userId")
+    //public List<Inbox> getAllInboxesByUserId(@Param("userId") long userId, Pageable pageable);
+
+    @Query(value = "SELECT A.id, A.title, A.type, A.sender_id as senderId, B.full_name as senderName, B.image_name as senderImage, A.is_enabled as isEnabled, A.created_at as createdAt "+
+            "FROM notifications A "+
+            "LEFT JOIN users B "+
+            "ON A.receiver_id = B.id "+
+            "WHERE A.receiver_id = :userId "+
+            "ORDER BY A.created_at", nativeQuery = true)
     public List<Inbox> getAllInboxesByUserId(@Param("userId") long userId, Pageable pageable);
 
 }

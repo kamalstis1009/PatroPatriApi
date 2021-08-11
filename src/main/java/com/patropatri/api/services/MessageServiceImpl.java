@@ -28,7 +28,7 @@ public class MessageServiceImpl implements MessageService {
 
     //======================================================| Notification
     @Override
-    public List<NotificationDto> getAllNotificationsByUserId(int pageNo, int rowSize, long userId) {
+    public List<NotificationImpl> getAllNotificationsByUserId(int pageNo, int rowSize, long userId) {
         Pageable pageable = PageRequest.of(pageNo - 1, rowSize);
         return this.mNotificationRepository.getAllNotificationsByUserId(userId, pageable);
     }

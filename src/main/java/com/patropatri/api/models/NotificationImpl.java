@@ -2,7 +2,7 @@ package com.patropatri.api.models;
 
 import java.util.Date;
 
-public interface NotificationDto {
+public interface NotificationImpl {
 
     Long getId();
     String getTitle();
