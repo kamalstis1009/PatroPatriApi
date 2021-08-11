@@ -1,5 +1,6 @@
 package com.patropatri.api.controllers;
 
+import com.patropatri.api.models.Candidate;
 import com.patropatri.api.models.Education;
 import com.patropatri.api.models.Family;
 import com.patropatri.api.models.User;
@@ -17,6 +18,12 @@ public class UserController {
 
     @Autowired
     private UserService mService;
+
+    //======================================================| Home
+    @GetMapping(value="/users", produces = {"application/json"})
+    public ResponseEntity<List<Candidate>> getAllCandidates() {
+        return new ResponseEntity<>(mService.getAllCandidates(), HttpStatus.OK);
+    }
 
     //======================================================| User
     @PostMapping("/user")
