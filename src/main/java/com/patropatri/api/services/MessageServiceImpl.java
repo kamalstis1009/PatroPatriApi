@@ -28,7 +28,7 @@ public class MessageServiceImpl implements MessageService {
 
     //======================================================| Notification
     @Override
-    public List<NotificationImpl> getAllNotificationsByUserId(int pageNo, int rowSize, long userId) {
+    public List<INotification> getAllNotificationsByUserId(int pageNo, int rowSize, long userId) {
         Pageable pageable = PageRequest.of(pageNo - 1, rowSize);
         return this.mNotificationRepository.getAllNotificationsByUserId(userId, pageable);
     }
@@ -50,7 +50,7 @@ public class MessageServiceImpl implements MessageService {
 
     //======================================================| Inbox
     @Override
-    public List<Inbox> getAllInboxesByUserId(int pageNo, int rowSize, long userId) {
+    public List<IInbox> getAllInboxesByUserId(int pageNo, int rowSize, long userId) {
         Pageable pageable = PageRequest.of(pageNo - 1, rowSize);
         return mInboxRepository.getAllInboxesByUserId(userId, pageable);
     }

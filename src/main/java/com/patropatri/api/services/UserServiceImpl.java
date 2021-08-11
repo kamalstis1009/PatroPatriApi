@@ -27,12 +27,12 @@ public class UserServiceImpl implements UserService {
 
     //======================================================| Home
     @Override
-    public List<Candidate> getAllCandidates() {
+    public List<ICandidate> getAllCandidates() {
         return mRepository.getAllCandidates();
     }
 
     @Override
-    public List<Candidate> getAllCandidatesByPaginated(int pageNo, int rowSize) {
+    public List<ICandidate> getAllCandidatesByPaginated(int pageNo, int rowSize) {
         Pageable pageable = PageRequest.of(pageNo - 1, rowSize);
         return mRepository.getAllCandidatesByPaginated(pageable);
     }

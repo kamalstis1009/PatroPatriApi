@@ -1,5 +1,6 @@
 package com.patropatri.api.repositories;
 
+import com.patropatri.api.models.IInbox;
 import com.patropatri.api.models.Inbox;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,12 +16,12 @@ public interface InboxRepository extends JpaRepository<Inbox, Long> {
     //@Query("SELECT u FROM Inbox u WHERE u.receiverId = :userId")
     //public List<Inbox> getAllInboxesByUserId(@Param("userId") long userId, Pageable pageable);
 
-    @Query(value = "SELECT A.id, A.title, A.type, A.sender_id as senderId, B.full_name as senderName, B.image_name as senderImage, A.is_enabled as isEnabled, A.created_at as createdAt "+
-            "FROM notifications A "+
+    @Query(value = "SELECT A.id, A.message, A.sender_id as senderId, B.full_name as senderName, B.image_name as senderImage, A.is_enabled as isEnabled, A.created_at as createdAt "+
+            "FROM inboxes A "+
             "LEFT JOIN users B "+
             "ON A.receiver_id = B.id "+
             "WHERE A.receiver_id = :userId "+
             "ORDER BY A.created_at", nativeQuery = true)
-    public List<Inbox> getAllInboxesByUserId(@Param("userId") long userId, Pageable pageable);
+    public List<IInbox> getAllInboxesByUserId(@Param("userId") long userId, Pageable pageable);
 
 }

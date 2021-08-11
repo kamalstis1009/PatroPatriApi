@@ -18,12 +18,12 @@ public class UserController {
 
     //======================================================| Home
     @GetMapping(value="/users", produces = {"application/json"})
-    public ResponseEntity<List<Candidate>> getAllCandidates() {
+    public ResponseEntity<List<ICandidate>> getAllCandidates() {
         return new ResponseEntity<>(mService.getAllCandidates(), HttpStatus.OK);
     }
 
     @GetMapping(value="/users/{no}", produces = {"application/json"})
-    public ResponseEntity<List<Candidate>> getAllCandidatesByPaginated(@PathVariable("no") int pageNo, @RequestParam("row") int rowSize) {
+    public ResponseEntity<List<ICandidate>> getAllCandidatesByPaginated(@PathVariable("no") int pageNo, @RequestParam("row") int rowSize) {
         return new ResponseEntity<>(mService.getAllCandidatesByPaginated(pageNo, rowSize), HttpStatus.OK);
     }
 

@@ -2,11 +2,10 @@ package com.patropatri.api.models;
 
 import java.util.Date;
 
-public interface NotificationImpl {
+public interface IInbox {
 
     Long getId();
-    String getTitle();
-    String getType();
+    String getMessage();
     Long getSenderId();
     String getSenderName();
     String getSenderImage();

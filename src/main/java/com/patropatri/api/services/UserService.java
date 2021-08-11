@@ -1,6 +1,6 @@
 package com.patropatri.api.services;
 
-import com.patropatri.api.models.Candidate;
+import com.patropatri.api.models.ICandidate;
 import com.patropatri.api.models.Education;
 import com.patropatri.api.models.Family;
 import com.patropatri.api.models.User;
@@ -9,8 +9,8 @@ import java.util.List;
 
 public interface UserService {
 
-    List<Candidate> getAllCandidates();
-    List<Candidate> getAllCandidatesByPaginated(int pageNo, int rowSize);
+    List<ICandidate> getAllCandidates();
+    List<ICandidate> getAllCandidatesByPaginated(int pageNo, int rowSize);
 
     //------------------------------------------------------| User
     User addUser(User item);

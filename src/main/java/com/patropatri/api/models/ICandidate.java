@@ -2,7 +2,7 @@ package com.patropatri.api.models;
 
 import java.util.Date;
 
-public interface Candidate {
+public interface ICandidate {
 
     Long getId();
     String getFullName();

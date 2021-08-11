@@ -1,9 +1,6 @@
 package com.patropatri.api.controllers;
 
-import com.patropatri.api.models.Inbox;
-import com.patropatri.api.models.InboxDto;
-import com.patropatri.api.models.Notification;
-import com.patropatri.api.models.NotificationImpl;
+import com.patropatri.api.models.*;
 import com.patropatri.api.services.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,7 +19,7 @@ public class MessageController {
 
     //======================================================| Notification
     @GetMapping("/notifications/{no}")
-    public ResponseEntity<List<NotificationImpl>> getAllNotificationsByUserId(@PathVariable("no") int pageNo, @RequestParam("row") int rowSize, @RequestParam("userId") long userId) {
+    public ResponseEntity<List<INotification>> getAllNotificationsByUserId(@PathVariable("no") int pageNo, @RequestParam("row") int rowSize, @RequestParam("userId") long userId) {
         return new ResponseEntity<>(mService.getAllNotificationsByUserId(pageNo, rowSize, userId), HttpStatus.OK);
     }
 
@@ -38,7 +35,7 @@ public class MessageController {
 
     //======================================================| Inbox
     @GetMapping("/inboxes/{no}")
-    public ResponseEntity<List<Inbox>> getAllInboxesByUserId(@PathVariable("no") int pageNo, @RequestParam("row") int rowSize, @RequestParam("userId") long userId) {
+    public ResponseEntity<List<IInbox>> getAllInboxesByUserId(@PathVariable("no") int pageNo, @RequestParam("row") int rowSize, @RequestParam("userId") long userId) {
         return new ResponseEntity<>(mService.getAllInboxesByUserId(pageNo, rowSize, userId), HttpStatus.OK);
     }
 
