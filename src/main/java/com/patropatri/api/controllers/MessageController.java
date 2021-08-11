@@ -30,7 +30,7 @@ public class MessageController {
     }
 
     @DeleteMapping("/notification/{id}")
-    public ResponseEntity<Integer> deleteGalleryById(@PathVariable("id") long id) {
+    public ResponseEntity<Integer> deleteNotificationById(@PathVariable("id") long id) {
         return new ResponseEntity<>(mService.deleteNotificationById(id), HttpStatus.OK);
     }
 
