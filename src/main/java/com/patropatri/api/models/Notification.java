@@ -21,8 +21,11 @@ public class Notification {
     @Column(name = "type")
     private String type;
 
-    @Column(name = "user_id")
-    private Long userId;
+    @Column(name = "sender_id")
+    private Long senderId;
+
+    @Column(name = "receiver_id")
+    private Long receiverId;
 
     @Column(name = "is_enabled")
     private Boolean isEnabled;
