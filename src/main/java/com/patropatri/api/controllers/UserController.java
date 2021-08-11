@@ -34,6 +34,11 @@ public class UserController {
         return new ResponseEntity<>(mService.updateUser(item), HttpStatus.OK);
     }
 
+    @PatchMapping("/user/{id}")
+    public ResponseEntity<Boolean> updateUserPost(@PathVariable("id") long id, @RequestParam("isActive") boolean isActive) {
+        return new ResponseEntity<>(mService.updateUserPost(id, isActive), HttpStatus.OK);
+    }
+
     //======================================================| Family
     @PostMapping("/family")
     public ResponseEntity<Family> addFamily(@RequestBody Family item) {

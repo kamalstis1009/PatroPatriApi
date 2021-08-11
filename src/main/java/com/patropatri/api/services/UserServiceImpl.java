@@ -66,6 +66,18 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    @Override
+    public boolean updateUserPost(long id, boolean isActive) {
+        Optional<User> response = mRepository.findById(id);
+        if (response.isPresent()) {
+            User item = response.get();
+            item.setIsActive(isActive);
+            mRepository.save(item);
+            return true;
+        }
+        return false;
+    }
+
     private User extracted(User item, User model) {
         if (item.getFullName() != null)
             model.setFullName(item.getFullName());

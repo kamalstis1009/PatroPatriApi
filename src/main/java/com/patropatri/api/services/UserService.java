@@ -15,6 +15,7 @@ public interface UserService {
     User addUser(User item);
     User getUserById(long id);
     User updateUser(User item);
+    boolean updateUserPost(long id, boolean isActive);
 
     //------------------------------------------------------| Family
     Family addFamily(Family item);
