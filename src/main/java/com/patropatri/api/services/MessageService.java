@@ -12,7 +12,7 @@ public interface MessageService {
     int deleteNotificationById(long id);
 
     List<IInbox> getAllInboxesByUserId(int pageNo, int rowSize, long userId);
-    Inbox addInbox(InboxDto item);
+    Message addInbox(MessageDto item);
     int deleteInboxById(long id);
 
 

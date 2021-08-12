@@ -40,7 +40,7 @@ public class MessageController {
     }
 
     @PostMapping("/inbox")
-    public ResponseEntity<Inbox> addInbox(@RequestBody InboxDto item) {
+    public ResponseEntity<Message> addInbox(@RequestBody MessageDto item) {
         return new ResponseEntity<>(mService.addInbox(item), HttpStatus.CREATED);
     }
 

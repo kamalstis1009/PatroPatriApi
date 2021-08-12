@@ -56,7 +56,7 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
-    public Inbox addInbox(InboxDto item) {
+    public Message addInbox(MessageDto item) {
         Optional<Inbox> response = mInboxRepository.findById(item.getSenderId());
         if(response.isPresent()) {
             Inbox model = mInboxRepository.save(extracted(item, response.get()));
@@ -66,7 +66,7 @@ public class MessageServiceImpl implements MessageService {
         return addMessage(item, model);
     }
 
-    private Inbox extracted(InboxDto item, Inbox model) {
+    private Inbox extracted(MessageDto item, Inbox model) {
         model.setIsEnabled(false);
         if (item.getMessage() != null) {
             model.setMessage(item.getMessage());
@@ -80,13 +80,12 @@ public class MessageServiceImpl implements MessageService {
         return model;
     }
 
-    public Inbox addMessage(InboxDto item, Inbox inbox) {
+    public Message addMessage(MessageDto item, Inbox inbox) {
         Message model = new Message();
         model.setMessage(item.getMessage());
         model.setImageFiles(item.getImageFiles());
         model.setInboxId(inbox.getId());
-        mMessageRepository.save(model);
-        return inbox;
+        return mMessageRepository.save(model);
     }
 
     @Override

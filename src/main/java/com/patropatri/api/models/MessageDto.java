@@ -3,7 +3,7 @@ package com.patropatri.api.models;
 import lombok.Data;
 
 @Data
-public class InboxDto {
+public class MessageDto {
 
     private String message;
     private String [] imageFiles;
