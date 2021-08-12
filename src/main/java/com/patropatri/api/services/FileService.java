@@ -4,6 +4,8 @@ import com.patropatri.api.models.Gallery;
 import org.springframework.core.io.Resource;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
+
 public interface FileService {
 
     boolean deleteFile(String fileName);
@@ -13,4 +15,6 @@ public interface FileService {
 
     String deleteAndUploadFile(MultipartFile file, String fileName);
     String uploadImage(MultipartFile file, String fileName, boolean isProfile, long id);
+
+    ArrayList<String> uploadMultiFiles(MultipartFile[] files);
 }

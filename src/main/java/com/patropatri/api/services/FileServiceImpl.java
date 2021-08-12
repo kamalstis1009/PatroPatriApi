@@ -18,6 +18,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Optional;
 
@@ -152,6 +153,28 @@ public class FileServiceImpl implements FileService {
         model.setId(id);
         model.setCreatedBy(id);
         mUserRepository.save(model);
+    }
+
+    @Override
+    public ArrayList<String> uploadMultiFiles(MultipartFile[] files) {
+        Path path = Paths.get("uploads").toAbsolutePath().normalize();
+        try {
+            if (!Files.exists(path)) {
+                Files.createDirectory(path); //Create uploads directory
+            }
+            ArrayList<String> fileNames = new ArrayList<>();
+            for (MultipartFile file : files) {
+                //String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+                String fileName = "IMG_" + new SimpleDateFormat("yyyyMMdd_HHmmss_SSS").format(new Date()) + ".jpg";
+                Path targetPath = path.resolve(fileName);
+                Files.copy(file.getInputStream(), targetPath, StandardCopyOption.REPLACE_EXISTING);
+                fileNames.add(fileName);
+            }
+            return fileNames;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }

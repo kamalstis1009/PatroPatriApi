@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/api/v1/file")
@@ -62,6 +63,11 @@ public class FileController {
     public ResponseEntity<String> uploadImage(@RequestParam("file") MultipartFile file, @RequestParam("fileName") String fileName, @RequestParam("isProfile") boolean isProfile, @RequestParam("userId") long userId) {
         //logger.info(fileName);
         return new ResponseEntity<>(mService.uploadImage(file, fileName, isProfile, userId), HttpStatus.CREATED);
+    }
+
+    @PostMapping("/upload/update-files")
+    public ResponseEntity<ArrayList<String>> uploadMultiFiles(@RequestParam("files") MultipartFile[] files) {
+        return new ResponseEntity<>(mService.uploadMultiFiles(files), HttpStatus.CREATED);
     }
 
 }
