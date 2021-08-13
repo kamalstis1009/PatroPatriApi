@@ -134,22 +134,19 @@ public class MessageServiceImpl implements MessageService {
     }
 
     //======================================================| Liked
-    public Liked getLikedById(long id) {
-        Optional<Liked> response = mLikedRepository.findById(id);
-        if (response.isPresent()) {
-            Liked item = response.get();
-            return mLikedRepository.save(item);
-        }
-        return null;
+    public Liked getLikedById(long userId) {
+        return mLikedRepository.getLikedByUserId(userId);
+    }
+
+    public List<LikedDto> getAllLikesByUserId(long userId) {
+        //return mCommentRepository.findAll();
+        return mLikedRepository.getAllLikesByUserId(userId);
     }
 
     public Liked addLiked(Liked item) {
-        if (item.getId() != null) {
-            Optional<Liked> response = mLikedRepository.findById(item.getId());
-            if (response.isPresent()) {
-                Liked model = response.get();
-                return mLikedRepository.save(model);
-            }
+        Liked model = getLikedById(item.getCreatedBy());
+        if (model != null) {
+            return mLikedRepository.save(model);
         }
         return mLikedRepository.save(item);
     }
