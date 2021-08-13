@@ -138,7 +138,11 @@ public class MessageServiceImpl implements MessageService {
         Optional<User> response = mUserRepository.findById(userId);
         if (response.isPresent()) {
             User model = response.get();
-            model.setCommentAmount(model.getCommentAmount()+1);
+            if (isComment) {
+                model.setCommentAmount(model.getCommentAmount() + 1);
+            } else {
+                model.setLikedAmount(model.getLikedAmount() + 1);
+            }
             mUserRepository.save(model);
             Notification m = new Notification();
             if (isComment) {
@@ -181,14 +185,14 @@ public class MessageServiceImpl implements MessageService {
     @Override
     public Liked addLiked(Liked item) {
         Liked model = getLikedByUserId(item.getCreatedBy());
-        if (model != null) {
+        if (model == null) {
             Notification mNot = updateUserLikeComment(item.getUserId(), item.getCreatedBy(), false);
             if (mNot != null) {
-                return mLikedRepository.save(model);
+                return mLikedRepository.save(item);
             }
             return null;
         }
-        return mLikedRepository.save(item);
+        return null;
     }
 
 
