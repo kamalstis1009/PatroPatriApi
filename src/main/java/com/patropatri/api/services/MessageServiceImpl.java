@@ -115,7 +115,7 @@ public class MessageServiceImpl implements MessageService {
     }
 
     //======================================================| Comment
-    public List<Comment> getAllCommentsByUserId(long userId) {
+    public List<CommentDto> getAllCommentsByUserId(long userId) {
         //return mCommentRepository.findAll();
         return mCommentRepository.getAllCommentsByUserId(userId);
     }

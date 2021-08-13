@@ -1,15 +1,13 @@
 package com.patropatri.api.models;
 
-import lombok.Data;
 import java.util.Date;
 
-@Data
-public class LikedDto {
+public interface LikedDto {
 
-    private Long id;
-    private String fullName;
-    private String imageName;
-    private Long userId;
-    private Date createdAt;
+    Long geId();
+    String getFullName();
+    String getImageName();
+    Long getUserId();
+    Date getCreatedAt();
 
 }
