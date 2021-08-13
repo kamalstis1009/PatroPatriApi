@@ -49,6 +49,38 @@ public class MessageController {
         return new ResponseEntity<>(mService.deleteInboxById(id), HttpStatus.OK);
     }
 
+    //======================================================| Comment
+    @GetMapping("/comments/{userId}")
+    public ResponseEntity<List<CommentDto>> getAllCommentsByUserId(@PathVariable("userId") int userId) {
+        return new ResponseEntity<>(mService.getAllCommentsByUserId(userId), HttpStatus.OK);
+    }
+
+    @PostMapping("/comment")
+    public ResponseEntity<Comment> addComment(@RequestBody Comment item) {
+        return new ResponseEntity<>(mService.addComment(item), HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/comment/{id}")
+    public ResponseEntity<Integer> deleteCommentById(@PathVariable("id") long id) {
+        return new ResponseEntity<>(mService.deleteCommentById(id), HttpStatus.OK);
+    }
+
+    //======================================================| Liked
+    @GetMapping("/like/{userId}")
+    public ResponseEntity<Liked> getLikedByUserId(@PathVariable("userId") int userId) {
+        return new ResponseEntity<>(mService.getLikedByUserId(userId), HttpStatus.OK);
+    }
+
+    @GetMapping("/likes/{userId}")
+    public ResponseEntity<List<LikedDto>> getAllLikesByUserId(@PathVariable("userId") int userId) {
+        return new ResponseEntity<>(mService.getAllLikesByUserId(userId), HttpStatus.OK);
+    }
+
+    @PostMapping("/like")
+    public ResponseEntity<Liked> addLiked(@RequestBody Liked item) {
+        return new ResponseEntity<>(mService.addLiked(item), HttpStatus.CREATED);
+    }
+
     //======================================================| DEMO
     @GetMapping("/paginate/{pageNo}")
     public ResponseEntity<List<Notification>> findByUserId(@PathVariable("pageNo") int pageNo, @RequestParam("sortField") String sortField, @RequestParam("sortDir") String sortDir) {

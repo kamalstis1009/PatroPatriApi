@@ -115,15 +115,18 @@ public class MessageServiceImpl implements MessageService {
     }
 
     //======================================================| Comment
+    @Override
     public List<CommentDto> getAllCommentsByUserId(long userId) {
         //return mCommentRepository.findAll();
         return mCommentRepository.getAllCommentsByUserId(userId);
     }
 
+    @Override
     public Comment addComment(Comment item) {
         return mCommentRepository.save(item);
     }
 
+    @Override
     public int deleteCommentById(long id) {
         boolean isFound = mCommentRepository.existsById(id);
         if(isFound) {
@@ -134,17 +137,20 @@ public class MessageServiceImpl implements MessageService {
     }
 
     //======================================================| Liked
-    public Liked getLikedById(long userId) {
+    @Override
+    public Liked getLikedByUserId(long userId) {
         return mLikedRepository.getLikedByUserId(userId);
     }
 
+    @Override
     public List<LikedDto> getAllLikesByUserId(long userId) {
         //return mCommentRepository.findAll();
         return mLikedRepository.getAllLikesByUserId(userId);
     }
 
+    @Override
     public Liked addLiked(Liked item) {
-        Liked model = getLikedById(item.getCreatedBy());
+        Liked model = getLikedByUserId(item.getCreatedBy());
         if (model != null) {
             return mLikedRepository.save(model);
         }
