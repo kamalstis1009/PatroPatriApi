@@ -127,7 +127,15 @@ public class MessageServiceImpl implements MessageService {
 
     @Override
     public Comment addComment(Comment item) {
-        Optional<User> response = mUserRepository.findById(item.getUserId());
+        Notification model = updateUserLikeComment(item.getUserId(), item.getCreatedBy());
+        if (model != null) {
+            return mCommentRepository.save(item);
+        }
+        return null;
+    }
+
+    private Notification updateUserLikeComment(long userId, long createdBy) {
+        Optional<User> response = mUserRepository.findById(userId);
         if (response.isPresent()) {
             User model = response.get();
             model.setCommentAmount(model.getCommentAmount()+1);
@@ -136,10 +144,9 @@ public class MessageServiceImpl implements MessageService {
             m.setTitle(model.getFullName() + ConstantKey.COMMENT_TITLE);
             m.setType(ConstantKey.COMMENT);
             m.setIsEnabled(false);
-            m.setSenderId(item.getCreatedBy());
-            m.setReceiverId(item.getUserId());
-            addNotification(m);
-            return mCommentRepository.save(item);
+            m.setSenderId(createdBy);
+            m.setReceiverId(userId);
+            return addNotification(m);
         }
         return null;
     }
@@ -170,7 +177,11 @@ public class MessageServiceImpl implements MessageService {
     public Liked addLiked(Liked item) {
         Liked model = getLikedByUserId(item.getCreatedBy());
         if (model != null) {
-            return mLikedRepository.save(model);
+            Notification mNot = updateUserLikeComment(item.getUserId(), item.getCreatedBy());
+            if (mNot != null) {
+                return mLikedRepository.save(model);
+            }
+            return null;
         }
         return mLikedRepository.save(item);
     }
