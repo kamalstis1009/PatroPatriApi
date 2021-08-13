@@ -127,22 +127,27 @@ public class MessageServiceImpl implements MessageService {
 
     @Override
     public Comment addComment(Comment item) {
-        Notification model = updateUserLikeComment(item.getUserId(), item.getCreatedBy());
+        Notification model = updateUserLikeComment(item.getUserId(), item.getCreatedBy(), true);
         if (model != null) {
             return mCommentRepository.save(item);
         }
         return null;
     }
 
-    private Notification updateUserLikeComment(long userId, long createdBy) {
+    private Notification updateUserLikeComment(long userId, long createdBy, boolean isComment) {
         Optional<User> response = mUserRepository.findById(userId);
         if (response.isPresent()) {
             User model = response.get();
             model.setCommentAmount(model.getCommentAmount()+1);
             mUserRepository.save(model);
             Notification m = new Notification();
-            m.setTitle(model.getFullName() + ConstantKey.COMMENT_TITLE);
-            m.setType(ConstantKey.COMMENT);
+            if (isComment) {
+                m.setTitle(model.getFullName() + ConstantKey.COMMENT_TITLE);
+                m.setType(ConstantKey.COMMENT);
+            } else {
+                m.setTitle(model.getFullName() + ConstantKey.LIKED_TITLE);
+                m.setType(ConstantKey.LIKED);
+            }
             m.setIsEnabled(false);
             m.setSenderId(createdBy);
             m.setReceiverId(userId);
@@ -177,7 +182,7 @@ public class MessageServiceImpl implements MessageService {
     public Liked addLiked(Liked item) {
         Liked model = getLikedByUserId(item.getCreatedBy());
         if (model != null) {
-            Notification mNot = updateUserLikeComment(item.getUserId(), item.getCreatedBy());
+            Notification mNot = updateUserLikeComment(item.getUserId(), item.getCreatedBy(), false);
             if (mNot != null) {
                 return mLikedRepository.save(model);
             }

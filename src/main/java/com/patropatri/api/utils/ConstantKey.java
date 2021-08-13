@@ -9,4 +9,7 @@ public class ConstantKey {
     public static final String COMMENT_TITLE = " posted a comment on your profile.";
     public static final String COMMENT = " COMMENT";
 
+    public static final String LIKED_TITLE = " liked your profile.";
+    public static final String LIKED = " LIKED";
+
 }
