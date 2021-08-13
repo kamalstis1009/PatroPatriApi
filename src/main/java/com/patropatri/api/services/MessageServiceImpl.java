@@ -2,6 +2,7 @@ package com.patropatri.api.services;
 
 import com.patropatri.api.models.*;
 import com.patropatri.api.repositories.*;
+import com.patropatri.api.utils.ConstantKey;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -131,6 +132,13 @@ public class MessageServiceImpl implements MessageService {
             User model = response.get();
             model.setCommentAmount(model.getCommentAmount()+1);
             mUserRepository.save(model);
+            Notification m = new Notification();
+            m.setTitle(model.getFullName() + ConstantKey.COMMENT_TITLE);
+            m.setType(ConstantKey.COMMENT);
+            m.setIsEnabled(false);
+            m.setSenderId(item.getCreatedBy());
+            m.setReceiverId(item.getUserId());
+            addNotification(m);
             return mCommentRepository.save(item);
         }
         return null;
