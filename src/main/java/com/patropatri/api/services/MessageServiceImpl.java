@@ -12,7 +12,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class MessageServiceImpl implements MessageService {
@@ -56,15 +55,15 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
-    public Message addInbox(MessageDto item) {
+    public MessageDto addInbox(MessageDto item) {
         Inbox response = mInboxRepository.getInboxBySenderId(item.getSenderId());
         if(response != null) {
             Inbox inbox = extracted(item, response);
             Inbox model = mInboxRepository.save(inbox);
-            return addMessage(item, model);
+            return extracted2(item, addMessage(item, model));
         }
         Inbox model = mInboxRepository.save(extracted(item, new Inbox()));
-        return addMessage(item, model);
+        return extracted2(item, addMessage(item, model));
     }
 
     private Inbox extracted(MessageDto item, Inbox model) {
@@ -77,6 +76,17 @@ public class MessageServiceImpl implements MessageService {
         }
         if (item.getSenderId() != null) {
             model.setSenderId(item.getSenderId());
+        }
+        return model;
+    }
+
+    private MessageDto extracted2(MessageDto item, Message item2) {
+        MessageDto model = new MessageDto();
+        model.setMessage(item2.getMessage());
+        model.setSenderId(item.getSenderId());
+        model.setReceiverId(item.getReceiverId());
+        if (item2.getImageFiles() != null) {
+            model.setImageFiles(item2.getImageFiles());
         }
         return model;
     }
