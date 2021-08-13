@@ -13,7 +13,7 @@ import java.util.List;
 public interface LikedRepository extends JpaRepository<Liked, Long> {
 
     @Query("SELECT u FROM Liked u WHERE u.createdBy = :userId")
-    Liked getLikedByUserId(@Param("createdBy") long userId);
+    Liked getLikedByUserId(@Param("userId") long userId);
 
     @Query(value = "SELECT A.id, B.full_name as fullName, B.image_name as imageName, B.id as userId, A.created_at as createdAt "+
             "FROM likes A "+
