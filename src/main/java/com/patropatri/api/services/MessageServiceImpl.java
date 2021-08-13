@@ -57,9 +57,10 @@ public class MessageServiceImpl implements MessageService {
 
     @Override
     public Message addInbox(MessageDto item) {
-        Optional<Inbox> response = mInboxRepository.findById(item.getSenderId());
-        if(response.isPresent()) {
-            Inbox model = mInboxRepository.save(extracted(item, response.get()));
+        Inbox response = mInboxRepository.getInboxBySenderId(item.getSenderId());
+        if(response != null) {
+            Inbox inbox = extracted(item, response);
+            Inbox model = mInboxRepository.save(inbox);
             return addMessage(item, model);
         }
         Inbox model = mInboxRepository.save(extracted(item, new Inbox()));
