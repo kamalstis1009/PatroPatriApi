@@ -1,9 +1,7 @@
 package com.patropatri.api.services;
 
 import com.patropatri.api.models.*;
-import com.patropatri.api.repositories.InboxRepository;
-import com.patropatri.api.repositories.MessageRepository;
-import com.patropatri.api.repositories.NotificationRepository;
+import com.patropatri.api.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -12,6 +10,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MessageServiceImpl implements MessageService {
@@ -24,6 +23,12 @@ public class MessageServiceImpl implements MessageService {
 
     @Autowired
     private MessageRepository mMessageRepository;
+
+    @Autowired
+    private CommentRepository mCommentRepository;
+
+    @Autowired
+    private LikedRepository mLikedRepository;
 
     //======================================================| Notification
     @Override
@@ -108,6 +113,50 @@ public class MessageServiceImpl implements MessageService {
         }
         return 0;
     }
+
+    //======================================================| Comment
+    public List<Comment> getAllCommentsByUserId(long userId) {
+        //return mCommentRepository.findAll();
+        return mCommentRepository.getAllCommentsByUserId(userId);
+    }
+
+    public Comment addComment(Comment item) {
+        return mCommentRepository.save(item);
+    }
+
+    public int deleteCommentById(long id) {
+        boolean isFound = mCommentRepository.existsById(id);
+        if(isFound) {
+            mCommentRepository.deleteById(id);
+            return 1;
+        }
+        return 0;
+    }
+
+    //======================================================| Liked
+    public Liked getLikedById(long id) {
+        Optional<Liked> response = mLikedRepository.findById(id);
+        if (response.isPresent()) {
+            Liked item = response.get();
+            return mLikedRepository.save(item);
+        }
+        return null;
+    }
+
+    public Liked addLiked(Liked item) {
+        if (item.getId() != null) {
+            Optional<Liked> response = mLikedRepository.findById(item.getId());
+            if (response.isPresent()) {
+                Liked model = response.get();
+                return mLikedRepository.save(model);
+            }
+        }
+        return mLikedRepository.save(item);
+    }
+
+
+
+
 
 
 
