@@ -24,7 +24,7 @@ public interface InboxRepository extends JpaRepository<Inbox, Long> {
             "ORDER BY A.created_at", nativeQuery = true)
     List<IInbox> getAllInboxesByUserId(@Param("userId") long userId, Pageable pageable);
 
-    @Query("SELECT u FROM Inbox u WHERE u.senderId = :senderId")
+    @Query(value = "SELECT * FROM inboxes A WHERE A.sender_id = :senderId", nativeQuery = true)
     Inbox getInboxBySenderId(@Param("senderId") long senderId);
 
 }
