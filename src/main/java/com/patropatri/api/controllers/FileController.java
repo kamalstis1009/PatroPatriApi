@@ -42,8 +42,7 @@ public class FileController {
     public ResponseEntity<Resource> downloadFile(@PathVariable String fileName, HttpServletRequest request) {
         Resource resource = mService.downloadFile(fileName);
         try {
-            // Try to determine file's content type
-            String contentType = request.getServletContext().getMimeType(resource.getFile().getAbsolutePath());
+            String contentType = request.getServletContext().getMimeType(resource.getFile().getAbsolutePath()); // Try to determine file's content type
             if(contentType == null) {
                 contentType = "application/octet-stream";
             }
@@ -66,7 +65,7 @@ public class FileController {
     }
 
     @PostMapping("/upload/update-files")
-    public ResponseEntity<ArrayList<String>> uploadMultiFiles(@RequestParam("files") MultipartFile[] files) {
+    public ResponseEntity<ArrayList<String>> uploadMultiFiles(@RequestParam("file") MultipartFile[] files) {
         return new ResponseEntity<>(mService.uploadMultiFiles(files), HttpStatus.CREATED);
     }
 
