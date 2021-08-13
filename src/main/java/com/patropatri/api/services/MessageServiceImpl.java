@@ -30,6 +30,9 @@ public class MessageServiceImpl implements MessageService {
     @Autowired
     private LikedRepository mLikedRepository;
 
+    @Autowired
+    private UserRepository mUserRepository;
+
     //======================================================| Notification
     @Override
     public List<INotification> getAllNotificationsByUserId(int pageNo, int rowSize, long userId) {
@@ -123,7 +126,14 @@ public class MessageServiceImpl implements MessageService {
 
     @Override
     public Comment addComment(Comment item) {
-        return mCommentRepository.save(item);
+        Optional<User> response = mUserRepository.findById(item.getUserId());
+        if (response.isPresent()) {
+            User model = response.get();
+            model.setCommentAmount(model.getCommentAmount()+1);
+            mUserRepository.save(model);
+            return mCommentRepository.save(item);
+        }
+        return null;
     }
 
     @Override
