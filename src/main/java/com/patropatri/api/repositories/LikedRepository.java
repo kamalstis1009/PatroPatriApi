@@ -18,8 +18,8 @@ public interface LikedRepository extends JpaRepository<Liked, Long> {
     @Query(value = "SELECT A.id, B.full_name as fullName, B.image_name as imageName, B.id as userId, A.created_at as createdAt "+
             "FROM likes A "+
             "LEFT JOIN users B "+
-            "ON A.userId = B.id "+
-            "WHERE A.userId = :userId "+
+            "ON A.created_by = B.id "+
+            "WHERE A.user_id = :userId "+
             "ORDER BY A.created_at", nativeQuery = true)
     List<LikedDto> getAllLikesByUserId(@Param("userId") long userId);
 
