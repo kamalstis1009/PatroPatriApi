@@ -21,28 +21,28 @@ public class UserSpecification {
         return new Specification<User>() {
             @Override
             public Predicate toPredicate(Root<User> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
-                List<Predicate> arrayList = new ArrayList<>();
+                List<Predicate> list = new ArrayList<>();
                 if (request.getDistrict() != null && !request.getDistrict().isEmpty()) {
-                    arrayList.add(builder.equal(root.get("district"), request.getDistrict()));
+                    list.add(builder.equal(root.get("district"), request.getDistrict()));
                 }
                 if (request.getGender() != null && !request.getGender().isEmpty()) {
-                    arrayList.add(builder.equal(root.get("gender"), request.getGender()));
+                    list.add(builder.equal(root.get("gender"), request.getGender()));
                 }
                 if (request.getMaritalStatus() != null && !request.getMaritalStatus().isEmpty()) {
-                    arrayList.add(builder.equal(root.get("maritalStatus"), request.getMaritalStatus()));
+                    list.add(builder.equal(root.get("maritalStatus"), request.getMaritalStatus()));
                 }
                 if (request.getProfession() != null && !request.getProfession().isEmpty()) {
-                    arrayList.add(builder.equal(root.get("profession"), request.getProfession()));
+                    list.add(builder.equal(root.get("profession"), request.getProfession()));
                 }
                 if (request.getReligion() != null && !request.getReligion().isEmpty()) {
-                    arrayList.add(builder.equal(root.get("religion"), request.getReligion()));
+                    list.add(builder.equal(root.get("religion"), request.getReligion()));
                 }
                 if (request.getFromYear() != null && request.getFromYear() > 0 && request.getToYear() != null && request.getToYear() > 0) {
-                    arrayList.add(builder.between(builder.function("YEAR", Integer.class, root.get("birthDate")), request.getFromYear(), request.getToYear()));
+                    list.add(builder.between(builder.function("YEAR", Integer.class, root.get("birthDate")), request.getFromYear(), request.getToYear()));
                 }
-                //predicates.add(builder.like(builder.lower(root.get("maritalStatus")), "%" + request.getMaritalStatus().toLowerCase() + "%"));
+                //list.add(builder.like(builder.lower(root.get("maritalStatus")), "%" + request.getMaritalStatus().toLowerCase() + "%"));
                 //query.orderBy(builder.desc(root.get("district")));
-                return builder.and(arrayList.toArray(new Predicate[0]));
+                return builder.and(list.toArray(new Predicate[0]));
             }
         };
     }
