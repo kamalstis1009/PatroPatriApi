@@ -55,13 +55,6 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    @Override
-    public List<ICandidate> getUsersByFilterPaginated(UserFilter request, int pageNo, int pageSize) {
-        Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
-        return mRepository.findAllByInputString(request.getDistrict(), pageable);
-    }
-
-
     //======================================================| User
     @Override
     public User addUser(User item) {
