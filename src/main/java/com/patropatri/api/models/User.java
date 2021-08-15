@@ -115,6 +115,9 @@ public class User {
     @Column(name = "is_active", columnDefinition = "boolean default false")
     private Boolean isActive;
 
+    @Column(name = "is_approved", columnDefinition = "boolean default false")
+    private Boolean isApproved;
+
     //---------------------| Count
     @Column(name = "comment_amount", columnDefinition = "integer default 0")
     private Integer commentAmount;
