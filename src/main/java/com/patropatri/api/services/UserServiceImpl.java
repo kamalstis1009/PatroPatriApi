@@ -1,11 +1,14 @@
 package com.patropatri.api.services;
 
+import com.patropatri.api.filter.UserSpecification;
 import com.patropatri.api.models.*;
 import com.patropatri.api.repositories.EducationRepository;
 import com.patropatri.api.repositories.FamilyRepository;
 import com.patropatri.api.repositories.UserRepository;
 import com.patropatri.api.utils.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -25,6 +28,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private EducationRepository mEducationRep;
 
+    @Autowired
+    private UserSpecification mSpecification;
+
     //======================================================| Home
     @Override
     public List<ICandidate> getAllCandidates() {
@@ -36,6 +42,19 @@ public class UserServiceImpl implements UserService {
         Pageable pageable = PageRequest.of(pageNo - 1, rowSize);
         return mRepository.getAllCandidatesByPaginated(pageable);
     }
+
+    @Override
+    public List<User> getUsersByFilter(UserFilter request, int pageNo, int pageSize) {
+        if (pageNo == 0) {
+            Page<User> pages = new PageImpl<>(mRepository.findAll(mSpecification.getUsers(request)));
+            return pages.getContent();
+        } else {
+            Pageable paging = PageRequest.of(pageNo - 1, pageSize);
+            Page<User> pages = mRepository.findAll(mSpecification.getUsers(request), paging);
+            return pages.getContent();
+        }
+    }
+
 
     //======================================================| User
     @Override

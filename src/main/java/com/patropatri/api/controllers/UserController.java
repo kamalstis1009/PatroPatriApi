@@ -27,6 +27,11 @@ public class UserController {
         return new ResponseEntity<>(mService.getAllCandidatesByPaginated(pageNo, rowSize), HttpStatus.OK);
     }
 
+    @GetMapping(value="/users-filter", produces = {"application/json"})
+    public ResponseEntity<List<User>> getUsersByFilter(@RequestBody UserFilter item, @RequestParam("no") int pageNo, @RequestParam("row") int rowSize) {
+        return new ResponseEntity<>(mService.getUsersByFilter(item, pageNo, rowSize), HttpStatus.OK);
+    }
+
     //======================================================| User
     @PostMapping("/user")
     public ResponseEntity<User> addUser(@RequestBody User item) {
