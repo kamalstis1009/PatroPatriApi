@@ -46,13 +46,19 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> getUsersByFilter(UserFilter request, int pageNo, int pageSize) {
         if (pageNo == 0) {
-            Page<User> pages = new PageImpl<>(mRepository.findAll(mSpecification.getUsers(request)));
+            Page<User> pages = new PageImpl<>(mRepository.findAll(mSpecification.getUsersByFilter(request)));
             return pages.getContent();
         } else {
             Pageable paging = PageRequest.of(pageNo - 1, pageSize);
-            Page<User> pages = mRepository.findAll(mSpecification.getUsers(request), paging);
+            Page<User> pages = mRepository.findAll(mSpecification.getUsersByFilter(request), paging);
             return pages.getContent();
         }
+    }
+
+    @Override
+    public List<ICandidate> getUsersByFilterPaginated(UserFilter request, int pageNo, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
+        return mRepository.findAllByInputString(request.getDistrict(), pageable);
     }
 
 

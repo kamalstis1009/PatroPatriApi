@@ -9,6 +9,7 @@ public interface UserService {
     List<ICandidate> getAllCandidates();
     List<ICandidate> getAllCandidatesByPaginated(int pageNo, int rowSize);
     List<User> getUsersByFilter(UserFilter request, int pageNo, int pageSize);
+    List<ICandidate> getUsersByFilterPaginated(UserFilter request, int pageNo, int pageSize);
 
     //------------------------------------------------------| User
     User addUser(User item);
