@@ -14,13 +14,13 @@ import java.util.List;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long>, JpaSpecificationExecutor<User> {
 
-    @Query(value = "SELECT id, full_name as fullName, gender, profession, district, summary, comment_amount as commentAmount, liked_amount as likedAmount, image_name as imageName, created_at as createdAt FROM users WHERE is_active = true", nativeQuery = true)
+    @Query(value = "SELECT id, full_name as fullName, gender, profession, district, summary, comment_amount as commentAmount, liked_amount as likedAmount, image_name as imageName, image_cover_name as imageCoverName, created_at as createdAt FROM users WHERE is_active = true", nativeQuery = true)
     List<ICandidate> getAllCandidates();
 
-    @Query(value = "SELECT id, full_name as fullName, gender, profession, district, summary, comment_amount as commentAmount, liked_amount as likedAmount, image_name as imageName, created_at as createdAt FROM users WHERE is_active = true", nativeQuery = true)
+    @Query(value = "SELECT id, full_name as fullName, gender, profession, district, summary, comment_amount as commentAmount, liked_amount as likedAmount, image_name as imageName, image_cover_name as imageCoverName, created_at as createdAt FROM users WHERE is_active = true", nativeQuery = true)
     List<ICandidate> getAllCandidatesByPaginated(Pageable pageable);
 
-    @Query(value = "SELECT u.id, u.full_name as fullName, u.gender, u.profession, u.district, u.summary, u.comment_amount as commentAmount, u.liked_amount as likedAmount, u.image_name as imageName, u.created_at as createdAt FROM users as u WHERE "
+    @Query(value = "SELECT u.id, u.full_name as fullName, u.gender, u.profession, u.district, u.summary, u.comment_amount as commentAmount, u.liked_amount as likedAmount, u.image_name as imageName, u.image_cover_name as imageCoverName, u.created_at as createdAt FROM users as u WHERE "
             + "u.is_active = true and "
             + "(:gender is null or u.gender =:gender) and " //like %:inputString%)
             + "(:maritalStatus is null or u.marital_status =:maritalStatus) and "
