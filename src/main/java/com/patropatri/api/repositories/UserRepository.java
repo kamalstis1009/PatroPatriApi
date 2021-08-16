@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -19,14 +20,14 @@ public interface UserRepository extends JpaRepository<User, Long>, JpaSpecificat
     @Query(value = "SELECT id, full_name as fullName, gender, profession, district, summary, comment_amount as commentAmount, liked_amount as likedAmount, image_name as imageName, created_at as createdAt FROM users WHERE is_active = true", nativeQuery = true)
     List<ICandidate> getAllCandidatesByPaginated(Pageable pageable);
 
-    @Query(value = "SELECT id, full_name as fullName, gender, profession, district, summary, comment_amount as commentAmount, liked_amount as likedAmount, image_name as imageName, created_at as createdAt FROM users WHERE "
-            + "is_active = true and "
-            + "(:gender is null or gender = :gender and " //like %:inputString%)
-            + "(:maritalStatus is null or marital_status = :maritalStatus and "
-            + "(:religion is null or religion = :religion and "
-            + "(:profession is null or profession = :profession and "
-            + "(:fromYear is null or YEAR(birth_place) BETWEEN :fromYear AND :toYear and "
-            + "(:district is null or district = :district", nativeQuery = true)
-    List<ICandidate> getUsersByFilter(String gender, String maritalStatus, String religion, String profession, Integer fromYear, Integer toYear, String district, Pageable pageable);
+    @Query(value = "SELECT u.id, u.full_name as fullName, u.gender, u.profession, u.district, u.summary, u.comment_amount as commentAmount, u.liked_amount as likedAmount, u.image_name as imageName, u.created_at as createdAt FROM users as u WHERE "
+            + "u.is_active = true and "
+            + "u.gender =:gender and " //like %:inputString%)
+            + "u.marital_status =:maritalStatus and "
+            + "u.religion =:religion and "
+            + "u.profession =:profession and "
+            + "YEAR(u.birth_date) BETWEEN :fromYear AND :toYear and "
+            + "u.district =:district", nativeQuery = true)
+    List<ICandidate> getUsersByFilter(@Param("gender") String gender, @Param("maritalStatus") String maritalStatus, @Param("religion") String religion, @Param("profession") String profession, @Param("fromYear") Integer fromYear, @Param("toYear") Integer toYear, @Param("district") String district, Pageable pageable);
 
 }
