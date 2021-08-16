@@ -28,7 +28,7 @@ public class UserController {
     }
 
     @PostMapping(value="/users-filter")
-    public ResponseEntity<List<User>> getUsersByFilter(@RequestBody UserFilter item, @RequestParam("no") int pageNo, @RequestParam("row") int rowSize) {
+    public ResponseEntity<List<ICandidate>> getUsersByFilter(@RequestBody UserFilter item, @RequestParam("no") int pageNo, @RequestParam("row") int rowSize) {
         return new ResponseEntity<>(mService.getUsersByFilter(item, pageNo, rowSize), HttpStatus.OK);
     }
 
