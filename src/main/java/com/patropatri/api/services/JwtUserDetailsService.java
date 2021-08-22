@@ -3,7 +3,7 @@ package com.patropatri.api.services;
 import java.util.ArrayList;
 import java.util.Optional;
 
-import com.patropatri.api.config.JwtTokenUtil;
+import com.patropatri.api.config.jwt.JwtTokenUtil;
 import com.patropatri.api.models.*;
 import com.patropatri.api.repositories.AuthenticationRepository;
 import com.patropatri.api.repositories.UserRepository;

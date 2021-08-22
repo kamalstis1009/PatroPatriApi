@@ -1,4 +1,4 @@
-package com.patropatri.api.config;
+package com.patropatri.api.config.jwt;
 
 import java.io.IOException;
 import java.io.Serializable;

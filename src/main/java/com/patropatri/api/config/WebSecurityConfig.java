@@ -1,5 +1,7 @@
 package com.patropatri.api.config;
 
+import com.patropatri.api.config.jwt.JwtAuthenticationEntryPoint;
+import com.patropatri.api.config.jwt.JwtRequestFilter;
 import com.patropatri.api.utils.ConstantKey;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -55,6 +57,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(ConstantKey.SIGN_UP_URL).permitAll() // don't authenticate this particular request
                 .antMatchers(ConstantKey.SIGN_IN_URL).permitAll() // OR .antMatchers("/authenticate", "/register").permitAll().
                 .antMatchers(ConstantKey.RESOURCE_URL).permitAll()
+                .antMatchers(ConstantKey.SOCKET_URL).permitAll()
+                .antMatchers(ConstantKey.CHAT_URL).permitAll()
+                .antMatchers(ConstantKey.BROADCAST_URL).permitAll()
                 .anyRequest().authenticated() // all other requests need to be authenticated
                 .and()
                 .exceptionHandling().authenticationEntryPoint(mEntryPoint).and()

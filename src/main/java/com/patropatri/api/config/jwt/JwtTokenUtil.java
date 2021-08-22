@@ -1,4 +1,4 @@
-package com.patropatri.api.config;
+package com.patropatri.api.config.jwt;
 
 import java.io.Serializable;
 import java.util.Date;

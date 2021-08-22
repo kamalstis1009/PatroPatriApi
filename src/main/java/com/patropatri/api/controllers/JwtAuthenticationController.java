@@ -1,8 +1,6 @@
 package com.patropatri.api.controllers;
 
-import com.patropatri.api.config.JwtTokenUtil;
 import com.patropatri.api.models.AuthenticationDto;
-import com.patropatri.api.models.JwtResponse;
 import com.patropatri.api.services.JwtUserDetailsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,7 +10,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import com.patropatri.api.models.JwtRequest;
