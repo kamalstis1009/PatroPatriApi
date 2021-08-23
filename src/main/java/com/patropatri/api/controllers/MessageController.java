@@ -67,7 +67,10 @@ public class MessageController {
     @MessageMapping("/chat")
     public void chat(MessageDto item) {
         logger.info("Receive point-to-point chat message: [" + item.getReceiverId() + " -> " + item.getSenderId() + ", " + item.getMessage() + "]");
-        mTemplate.convertAndSendToUser(String.valueOf(item.getSenderId()), "/msg", item);
+        MessageDto model = mService.addInbox(item);
+        if (model != null) {
+            mTemplate.convertAndSendToUser(String.valueOf(item.getSenderId()), "/msg", item);
+        }
     }
 
     //======================================================| Comment
