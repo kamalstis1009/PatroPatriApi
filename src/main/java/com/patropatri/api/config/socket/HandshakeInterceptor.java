@@ -10,12 +10,7 @@ import java.util.Map;
 
 @Slf4j
 public class HandshakeInterceptor extends HttpSessionHandshakeInterceptor {
-    /**
-     * Before websocket handshake
-     * You can put some data into {@code attributes} here, and get it in WebSocketHandler's session
-     * <p>
-     * Before WebSocket handshake-you can set data to attributes and get it in the session of WebSocketHandler
-     */
+
     @Override
     public boolean beforeHandshake(ServerHttpRequest request, ServerHttpResponse response, WebSocketHandler wsHandler, Map<String, Object> attributes) throws Exception {
         log.info("HandshakeInterceptor: beforeHandshake");
@@ -23,9 +18,6 @@ public class HandshakeInterceptor extends HttpSessionHandshakeInterceptor {
         return super.beforeHandshake(request, response, wsHandler, attributes);
     }
 
-    /**
-     * After websocket handshake
-     */
     @Override
     public void afterHandshake(ServerHttpRequest request, ServerHttpResponse response, WebSocketHandler wsHandler, Exception ex) {
         log.info("HandshakeInterceptor: afterHandshake");
