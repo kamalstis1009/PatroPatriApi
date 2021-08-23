@@ -2,10 +2,14 @@ package com.patropatri.api.controllers;
 
 import com.patropatri.api.models.*;
 import com.patropatri.api.services.MessageService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,8 +18,13 @@ import java.util.List;
 @RequestMapping("/api/v1/message")
 public class MessageController {
 
+    Logger logger = LoggerFactory.getLogger(MessageController.class);
+
     @Autowired
     private MessageService mService;
+
+    @Autowired
+    private SimpMessagingTemplate mTemplate;
 
     //======================================================| Notification
     @GetMapping("/notifications/{no}")
@@ -47,6 +56,18 @@ public class MessageController {
     @DeleteMapping("/inbox/{id}")
     public ResponseEntity<Integer> deleteInboxById(@PathVariable("id") long id) {
         return new ResponseEntity<>(mService.deleteInboxById(id), HttpStatus.OK);
+    }
+
+    //======================================================| Chat/Message
+    @GetMapping("/chats/{no}")
+    public ResponseEntity<List<Message>> getAllMessages(@PathVariable("no") int pageNo, @RequestParam("row") int rowSize, @RequestParam("userId") long userId) {
+        return new ResponseEntity<>(mService.getAllMessages(pageNo, rowSize, userId), HttpStatus.OK);
+    }
+
+    @MessageMapping("/chat")
+    public void chat(MessageDto item) {
+        logger.info("Receive point-to-point chat message: [" + item.getReceiverId() + " -> " + item.getSenderId() + ", " + item.getMessage() + "]");
+        mTemplate.convertAndSendToUser(String.valueOf(item.getSenderId()), "/msg", item);
     }
 
     //======================================================| Comment

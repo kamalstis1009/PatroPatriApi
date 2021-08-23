@@ -63,6 +63,7 @@ public class MessageServiceImpl implements MessageService {
         return mInboxRepository.getAllInboxesByUserId(userId, pageable);
     }
 
+    @Override
     public List<Message> getAllMessages(int pageNo, int rowSize, long userId) {
         Pageable pageable = PageRequest.of(pageNo - 1, rowSize);
         return mMessageRepository.getAllMessages(userId, pageable);
