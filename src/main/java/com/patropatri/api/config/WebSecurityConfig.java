@@ -60,7 +60,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(ConstantKey.RESOURCE_URL).permitAll()
                 .antMatchers(ConstantKey.SOCKET_URL).permitAll()
                 .antMatchers(ConstantKey.CHAT_URL).permitAll()
-                //.antMatchers(ConstantKey.CHAT2_URL).permitAll()
                 .antMatchers(ConstantKey.BROADCAST_URL).permitAll()
                 .anyRequest().authenticated() // all other requests need to be authenticated
                 .and()

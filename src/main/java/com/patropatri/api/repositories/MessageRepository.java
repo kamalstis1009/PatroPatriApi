@@ -1,9 +1,22 @@
 package com.patropatri.api.repositories;
 
 import com.patropatri.api.models.Message;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public interface MessageRepository extends JpaRepository<Message, Long> {
+
+    @Query(value = "SELECT * FROM messages A "+
+            "LEFT JOIN inboxes B "+
+            "ON A.inbox_id = B.id "+
+            "WHERE B.receiver_id = :userId "+
+            "ORDER BY A.created_at", nativeQuery = true)
+    List<Message> getAllMessages(@Param("userId") long userId, Pageable pageable);
+
 }
