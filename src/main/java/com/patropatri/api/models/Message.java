@@ -21,6 +21,15 @@ public class Message {
     @Column(name = "image_files")
     private String [] imageFiles;
 
+    @Column(name = "sender_id")
+    private Long senderId;
+
+    @Column(name = "receiver_id")
+    private Long receiverId;
+
+    @Column(name = "is_enabled", columnDefinition = "boolean default false")
+    private Boolean isEnabled;
+
     @Column(name = "inbox_id")
     private Long inboxId;
 

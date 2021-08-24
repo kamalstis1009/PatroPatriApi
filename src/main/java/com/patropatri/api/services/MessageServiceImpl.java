@@ -110,6 +110,8 @@ public class MessageServiceImpl implements MessageService {
         Message model = new Message();
         model.setMessage(item.getMessage());
         model.setImageFiles(item.getImageFiles());
+        model.setMessage(item.getMessage());
+        model.setSenderId(item.getSenderId());
         model.setInboxId(inbox.getId());
         return mMessageRepository.save(model);
     }
