@@ -1,8 +1,9 @@
 package com.patropatri.api.controllers;
 
-import com.patropatri.api.models.socket.ChatMessage;
+import com.patropatri.api.models.MessageDto;
 import com.patropatri.api.models.socket.SocketRequest;
 import com.patropatri.api.models.socket.SocketResponse;
+import com.patropatri.api.services.MessageService;
 import com.patropatri.api.utils.ConstantKey;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
@@ -12,11 +13,14 @@ import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 @Slf4j
 public class WebSocketController {
+
+    @Autowired
+    private MessageService mService;
 
     @Autowired
     private SimpMessagingTemplate mTemplate;
@@ -42,9 +46,11 @@ public class WebSocketController {
     }
 
     @MessageMapping("/chat")
-    public void chat(ChatMessage chatMessage) {
-        log.info("Receive point-to-point chat message: [" + chatMessage.getFromUserID() + " -> " + chatMessage.getUserID() + ", " + chatMessage.getMessage() + "]");
-        SocketResponse response = new SocketResponse("Receive message from user " + chatMessage.getFromUserID() + ": " + chatMessage.getMessage());
-        mTemplate.convertAndSendToUser(String.valueOf(chatMessage.getUserID()), "/msg", response);
+    public void chat(MessageDto item) {
+        log.info("Receive point-to-point chat message: [" + item.getReceiverId() + " -> " + item.getSenderId() + ", " + item.getMessage() + "]");
+        MessageDto model = mService.addInbox(item);
+        if (model != null) {
+            mTemplate.convertAndSendToUser(String.valueOf(item.getReceiverId()), "/msg", item);
+        }
     }
 }

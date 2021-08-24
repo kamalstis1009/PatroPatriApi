@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,9 +20,6 @@ public class MessageController {
 
     @Autowired
     private MessageService mService;
-
-    @Autowired
-    private SimpMessagingTemplate mTemplate;
 
     //======================================================| Notification
     @GetMapping("/notifications/{no}")
@@ -62,15 +57,6 @@ public class MessageController {
     @GetMapping("/chats/{no}")
     public ResponseEntity<List<Message>> getAllMessages(@PathVariable("no") int pageNo, @RequestParam("row") int rowSize, @RequestParam("senderId") long senderId, @RequestParam("receiverId") long receiverId) {
         return new ResponseEntity<>(mService.getAllMessages(pageNo, rowSize, senderId, receiverId), HttpStatus.OK);
-    }
-
-    @MessageMapping("/chat")
-    public void chat(MessageDto item) {
-        logger.info("Receive point-to-point chat message: [" + item.getReceiverId() + " -> " + item.getSenderId() + ", " + item.getMessage() + "]");
-        MessageDto model = mService.addInbox(item);
-        if (model != null) {
-            mTemplate.convertAndSendToUser(String.valueOf(item.getSenderId()), "/msg", item);
-        }
     }
 
     //======================================================| Comment
