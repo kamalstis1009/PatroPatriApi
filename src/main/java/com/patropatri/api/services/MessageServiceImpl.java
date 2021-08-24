@@ -64,9 +64,9 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
-    public List<Message> getAllMessages(int pageNo, int rowSize, long userId) {
+    public List<Message> getAllMessages(int pageNo, int rowSize, long senderId, long receiverId) {
         Pageable pageable = PageRequest.of(pageNo - 1, rowSize);
-        return mMessageRepository.getAllMessages(userId, pageable);
+        return mMessageRepository.getAllMessages(senderId, receiverId, pageable);
     }
 
     @Override

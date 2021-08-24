@@ -17,7 +17,7 @@ public interface MessageService {
     MessageDto addInbox(MessageDto item);
     int deleteInboxById(long id);
 
-    List<Message> getAllMessages(int pageNo, int rowSize, long userId);
+    List<Message> getAllMessages(int pageNo, int rowSize, long senderId, long receiverId);
 
     //======================================================| Comment
     List<CommentDto> getAllCommentsByUserId(long userId);

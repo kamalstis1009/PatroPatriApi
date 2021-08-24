@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public interface MessageRepository extends JpaRepository<Message, Long> {
 
-    @Query(value = "SELECT * FROM messages A WHERE B.receiver_id = :userId ORDER BY A.created_at", nativeQuery = true)
-    List<Message> getAllMessages(@Param("userId") long userId, Pageable pageable);
+    @Query(value = "SELECT * FROM messages WHERE sender_id = :senderId AND receiver_id = :receiverId ORDER BY created_at", nativeQuery = true)
+    List<Message> getAllMessages(@Param("senderId") long senderId, @Param("receiverId") long receiverId, Pageable pageable);
 
 }

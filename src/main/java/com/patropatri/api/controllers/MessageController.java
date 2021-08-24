@@ -60,8 +60,8 @@ public class MessageController {
 
     //======================================================| Chat/Message
     @GetMapping("/chats/{no}")
-    public ResponseEntity<List<Message>> getAllMessages(@PathVariable("no") int pageNo, @RequestParam("row") int rowSize, @RequestParam("userId") long userId) {
-        return new ResponseEntity<>(mService.getAllMessages(pageNo, rowSize, userId), HttpStatus.OK);
+    public ResponseEntity<List<Message>> getAllMessages(@PathVariable("no") int pageNo, @RequestParam("row") int rowSize, @RequestParam("senderId") long senderId, @RequestParam("receiverId") long receiverId) {
+        return new ResponseEntity<>(mService.getAllMessages(pageNo, rowSize, senderId, receiverId), HttpStatus.OK);
     }
 
     @MessageMapping("/chat")
