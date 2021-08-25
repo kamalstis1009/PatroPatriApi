@@ -83,7 +83,7 @@ public class MessageServiceImpl implements MessageService {
             return null;
         }
         Inbox item = mInboxRepository.save(extracted(dto, new Inbox(), false));
-        mInboxRepository.save(extracted(dto, response2, true));
+        mInboxRepository.save(extracted(dto, new Inbox(), true));
         Message model = addMessage(dto, item.getId());
         if (model != null) {
             return extracted2(dto, model);
