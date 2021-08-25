@@ -20,7 +20,7 @@ public interface InboxRepository extends JpaRepository<Inbox, Long> {
             "FROM inboxes A "+
             "LEFT JOIN users B "+
             "ON A.receiver_id = B.id "+
-            "WHERE A.sender_id = :userId OR receiver_id = :userId "+
+            "WHERE A.receiver_id = :userId "+ //OR  A.receiver_id = :userId
             "ORDER BY A.created_at", nativeQuery = true)
     List<IInbox> getAllInboxesByUserId(@Param("userId") long userId, Pageable pageable);
 
