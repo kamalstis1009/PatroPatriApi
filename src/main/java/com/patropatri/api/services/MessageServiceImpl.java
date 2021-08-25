@@ -75,14 +75,14 @@ public class MessageServiceImpl implements MessageService {
         if(response != null) {
             Inbox inbox = extracted(dto, response);
             Inbox item = mInboxRepository.save(inbox);
-            Message model = addMessage(dto, item);
+            Message model = addMessage(dto, item.getId());
             if (model != null) {
                 return extracted2(dto, model);
             }
             return null;
         }
         Inbox item = mInboxRepository.save(extracted(dto, new Inbox()));
-        Message model = addMessage(dto, item);
+        Message model = addMessage(dto, item.getId());
         if (model != null) {
             return extracted2(dto, model);
         }
@@ -90,7 +90,6 @@ public class MessageServiceImpl implements MessageService {
     }
 
     private Inbox extracted(MessageDto dto, Inbox model) {
-        model.setIsEnabled(false);
         if (dto.getMessage() != null) {
             model.setMessage(dto.getMessage());
         }
@@ -100,27 +99,52 @@ public class MessageServiceImpl implements MessageService {
         if (dto.getSenderId() != null) {
             model.setSenderId(dto.getSenderId());
         }
+        if (dto.getIsEnabled() != null) {
+            model.setIsEnabled(dto.getIsEnabled());
+        }
         return model;
     }
 
     private MessageDto extracted2(MessageDto dto, Message item2) {
         MessageDto model = new MessageDto();
-        model.setMessage(item2.getMessage());
-        model.setSenderId(dto.getSenderId());
-        model.setReceiverId(dto.getReceiverId());
+        if (item2.getMessage() != null) {
+            model.setMessage(item2.getMessage());
+        }
         if (item2.getImageFiles() != null) {
             model.setImageFiles(item2.getImageFiles());
+        }
+        if (dto.getSenderId() != null) {
+            model.setSenderId(dto.getSenderId());
+        }
+        if (dto.getReceiverId() != null) {
+            model.setReceiverId(dto.getReceiverId());
+        }
+        if (dto.getIsEnabled() != null) {
+            model.setIsEnabled(dto.getIsEnabled());
         }
         return model;
     }
 
-    public Message addMessage(MessageDto dto, Inbox inbox) {
+    public Message addMessage(MessageDto dto, Long inboxId) {
         Message model = new Message();
-        model.setMessage(dto.getMessage());
-        model.setImageFiles(dto.getImageFiles());
-        model.setSenderId(dto.getSenderId());
-        model.setReceiverId(dto.getReceiverId());
-        model.setInboxId(inbox.getId());
+        if (dto.getMessage() != null) {
+            model.setMessage(dto.getMessage());
+        }
+        if (dto.getImageFiles() != null) {
+            model.setImageFiles(dto.getImageFiles());
+        }
+        if (dto.getSenderId() != null) {
+            model.setSenderId(dto.getSenderId());
+        }
+        if (dto.getReceiverId() != null) {
+            model.setReceiverId(dto.getReceiverId());
+        }
+        if (dto.getIsEnabled() != null) {
+            model.setIsEnabled(dto.getIsEnabled());
+        }
+        if (inboxId != null) {
+            model.setInboxId(inboxId);
+        }
         return mMessageRepository.save(model);
     }
 

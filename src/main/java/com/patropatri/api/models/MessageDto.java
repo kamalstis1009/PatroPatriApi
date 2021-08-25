@@ -9,5 +9,6 @@ public class MessageDto {
     private String [] imageFiles;
     private Long senderId;
     private Long receiverId;
+    private Boolean isEnabled;
 
 }
