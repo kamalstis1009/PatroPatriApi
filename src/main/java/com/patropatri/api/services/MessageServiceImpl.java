@@ -72,16 +72,18 @@ public class MessageServiceImpl implements MessageService {
     @Override
     public MessageDto addInbox(MessageDto dto) {
         Inbox response = mInboxRepository.getInboxBySenderId(dto.getSenderId());
+        Inbox response2 = mInboxRepository.getInboxByReceiverId(dto.getSenderId());
         if(response != null) {
-            Inbox inbox = extracted(dto, response);
-            Inbox item = mInboxRepository.save(inbox);
+            Inbox item = mInboxRepository.save(extracted(dto, response, false));
+            mInboxRepository.save(extracted(dto, response2, true));
             Message model = addMessage(dto, item.getId());
             if (model != null) {
                 return extracted2(dto, model);
             }
             return null;
         }
-        Inbox item = mInboxRepository.save(extracted(dto, new Inbox()));
+        Inbox item = mInboxRepository.save(extracted(dto, new Inbox(), false));
+        mInboxRepository.save(extracted(dto, response2, true));
         Message model = addMessage(dto, item.getId());
         if (model != null) {
             return extracted2(dto, model);
@@ -89,15 +91,19 @@ public class MessageServiceImpl implements MessageService {
         return null;
     }
 
-    private Inbox extracted(MessageDto dto, Inbox model) {
+    private Inbox extracted(MessageDto dto, Inbox model, boolean isReceiver) {
         if (dto.getMessage() != null) {
             model.setMessage(dto.getMessage());
         }
         if (dto.getReceiverId() != null) {
             model.setReceiverId(dto.getReceiverId());
+            if (isReceiver)
+                model.setReceiverId(dto.getSenderId());
         }
         if (dto.getSenderId() != null) {
             model.setSenderId(dto.getSenderId());
+            if (isReceiver)
+                model.setSenderId(dto.getReceiverId());
         }
         if (dto.getIsEnabled() != null) {
             model.setIsEnabled(dto.getIsEnabled());

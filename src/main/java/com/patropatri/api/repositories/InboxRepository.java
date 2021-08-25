@@ -27,4 +27,7 @@ public interface InboxRepository extends JpaRepository<Inbox, Long> {
     @Query(value = "SELECT * FROM inboxes A WHERE A.sender_id = :senderId", nativeQuery = true)
     Inbox getInboxBySenderId(@Param("senderId") long senderId);
 
+    @Query(value = "SELECT * FROM inboxes A WHERE A.receiver_id = :senderId", nativeQuery = true)
+    Inbox getInboxByReceiverId(@Param("senderId") long senderId);
+
 }
