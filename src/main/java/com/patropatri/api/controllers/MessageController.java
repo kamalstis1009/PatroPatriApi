@@ -93,7 +93,7 @@ public class MessageController {
 
     //======================================================| Visitor
     @PostMapping("/viewer")
-    public ResponseEntity<Viewer> addViewed(@RequestBody Viewer item) {
+    public ResponseEntity<Viewer> addViewer(@RequestBody Viewer item) {
         return new ResponseEntity<>(mService.addViewed(item), HttpStatus.CREATED);
     }
 

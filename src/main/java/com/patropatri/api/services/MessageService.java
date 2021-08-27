@@ -29,6 +29,8 @@ public interface MessageService {
     List<LikedDto> getAllLikesByUserId(long userId);
     Liked addLiked(Liked item);
 
+    //======================================================| Visitor
+    Viewer addViewed(Viewer item);
 
     Page<Notification> findByUserId(int pageNo, int pageSize, String sortField, String sortDirection);
 

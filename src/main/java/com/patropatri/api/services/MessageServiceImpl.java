@@ -32,6 +32,9 @@ public class MessageServiceImpl implements MessageService {
     private LikedRepository mLikedRepository;
 
     @Autowired
+    private ViewerRepository mViewerRepository;
+
+    @Autowired
     private UserRepository mUserRepository;
 
     //======================================================| Notification
@@ -173,30 +176,39 @@ public class MessageServiceImpl implements MessageService {
 
     @Override
     public Comment addComment(Comment item) {
-        Notification model = updateUserLikeComment(item.getUserId(), item.getCreatedBy(), true);
+        Notification model = updateUserLikeComment(item.getUserId(), item.getCreatedBy(), 1);
         if (model != null) {
             return mCommentRepository.save(item);
         }
         return null;
     }
 
-    private Notification updateUserLikeComment(long userId, long createdBy, boolean isComment) {
+    private Notification updateUserLikeComment(long userId, long createdBy, int type) {
         Optional<User> response = mUserRepository.findById(userId);
         if (response.isPresent()) {
             User model = response.get();
-            if (isComment) {
+            if (type == 1) {
                 model.setCommentAmount(model.getCommentAmount() + 1);
-            } else {
+            }
+            if (type == 2) {
                 model.setLikedAmount(model.getLikedAmount() + 1);
+            }
+            if (type == 3) {
+                model.setViewerAmount(model.getViewerAmount() + 1);
             }
             mUserRepository.save(model);
             Notification m = new Notification();
-            if (isComment) {
+            if (type == 1) {
                 m.setTitle(model.getFullName() + ConstantKey.COMMENT_TITLE);
                 m.setType(ConstantKey.COMMENT);
-            } else {
+            }
+            if (type == 2) {
                 m.setTitle(model.getFullName() + ConstantKey.LIKED_TITLE);
                 m.setType(ConstantKey.LIKED);
+            }
+            if (type == 3) {
+                m.setTitle(model.getFullName() + ConstantKey.VIEWER_TITLE);
+                m.setType(ConstantKey.VIEWER);
             }
             m.setIsEnabled(false);
             m.setSenderId(createdBy);
@@ -232,9 +244,22 @@ public class MessageServiceImpl implements MessageService {
     public Liked addLiked(Liked item) {
         Liked model = getLikedByUserId(item.getCreatedBy());
         if (model == null) {
-            Notification mNot = updateUserLikeComment(item.getUserId(), item.getCreatedBy(), false);
+            Notification mNot = updateUserLikeComment(item.getUserId(), item.getCreatedBy(), 2);
             if (mNot != null) {
                 return mLikedRepository.save(item);
+            }
+            return null;
+        }
+        return null;
+    }
+
+    @Override
+    public Viewer addViewed(Viewer item) {
+        Viewer model = mViewerRepository.getViewerByUserId(item.getCreatedBy());
+        if (model == null) {
+            Notification mNot = updateUserLikeComment(item.getUserId(), item.getCreatedBy(), 3);
+            if (mNot != null) {
+                return mViewerRepository.save(item);
             }
             return null;
         }

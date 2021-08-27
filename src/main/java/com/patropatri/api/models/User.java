@@ -125,6 +125,9 @@ public class User {
     @Column(name = "liked_amount", columnDefinition = "integer default 0")
     private Integer likedAmount;
 
+    @Column(name = "viewer_amount", columnDefinition = "integer default 0")
+    private Integer viewerAmount;
+
     //---------------------| Audit
     @CreatedDate
     @Column(name = "created_at")
