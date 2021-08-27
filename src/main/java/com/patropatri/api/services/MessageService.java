@@ -31,6 +31,7 @@ public interface MessageService {
 
     //======================================================| Visitor
     Viewer addViewed(Viewer item);
+    List<LikedDto> getAllViewersByUserId(long userId);
 
     Page<Notification> findByUserId(int pageNo, int pageSize, String sortField, String sortDirection);
 

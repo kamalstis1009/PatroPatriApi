@@ -253,6 +253,7 @@ public class MessageServiceImpl implements MessageService {
         return null;
     }
 
+    //======================================================| Visitor
     @Override
     public Viewer addViewed(Viewer item) {
         Viewer model = mViewerRepository.getViewerByUserId(item.getCreatedBy());
@@ -264,6 +265,12 @@ public class MessageServiceImpl implements MessageService {
             return null;
         }
         return null;
+    }
+
+    @Override
+    public List<LikedDto> getAllViewersByUserId(long userId) {
+        //return mCommentRepository.findAll();
+        return mViewerRepository.getAllViewersByUserId(userId);
     }
 
 
