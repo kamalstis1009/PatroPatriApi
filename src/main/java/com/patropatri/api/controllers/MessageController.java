@@ -91,6 +91,12 @@ public class MessageController {
         return new ResponseEntity<>(mService.addLiked(item), HttpStatus.CREATED);
     }
 
+    //======================================================| Visitor
+    @PostMapping("/viewer")
+    public ResponseEntity<Viewer> addViewed(@RequestBody Viewer item) {
+        return new ResponseEntity<>(mService.addViewed(item), HttpStatus.CREATED);
+    }
+
     //======================================================| DEMO
     @GetMapping("/paginate/{pageNo}")
     public ResponseEntity<List<Notification>> findByUserId(@PathVariable("pageNo") int pageNo, @RequestParam("sortField") String sortField, @RequestParam("sortDir") String sortDir) {
