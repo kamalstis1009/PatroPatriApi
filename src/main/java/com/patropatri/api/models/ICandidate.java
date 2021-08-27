@@ -12,6 +12,7 @@ public interface ICandidate {
     String getSummary();
     Integer getCommentAmount();
     Integer getLikedAmount();
+    Integer getViewerAmount();
     String getImageName();
     String getImageCoverName();
     Date getCreatedAt();
