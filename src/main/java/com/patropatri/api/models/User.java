@@ -60,6 +60,12 @@ public class User {
     @Column(name = "district")
     private String district;
 
+    @Column(name = "citizenship")
+    private String citizenship;
+
+    @Column(name = "mother_tongue")
+    private String motherTongue;
+
     //---------------------| Profession
     @Column(name = "profession")
     private String profession;
@@ -111,6 +117,9 @@ public class User {
 
     @Column(name = "token")
     private String token;
+
+    @Column(name = "subscription")
+    private String subscription;
 
     @Column(name = "is_active", columnDefinition = "boolean default false")
     private Boolean isActive;
