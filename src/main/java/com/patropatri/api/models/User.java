@@ -89,11 +89,41 @@ public class User {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "present_address")
-    private String presentAddress;
+    @Column(name = "address_line1")
+    private String addressLine1;
 
-    @Column(name = "permanent_address")
-    private String permanentAddress;
+    @Column(name = "country1")
+    private String country1;
+
+    @Column(name = "division1")
+    private String division1;
+
+    @Column(name = "district1")
+    private String district1;
+
+    @Column(name = "police_station1")
+    private String policeStation1;
+
+    @Column(name = "postal_code1")
+    private String postalCode1;
+
+    @Column(name = "address_line2")
+    private String addressLine2;
+
+    @Column(name = "country2")
+    private String country2;
+
+    @Column(name = "division2")
+    private String division2;
+
+    @Column(name = "district2")
+    private String district2;
+
+    @Column(name = "police_station2")
+    private String policeStation2;
+
+    @Column(name = "postal_code2")
+    private String postalCode2;
 
     //---------------------| Other
     @Column(name = "summary", length = 1550)
@@ -107,6 +137,9 @@ public class User {
 
     @Column(name = "expectation", length = 1550)
     private String expectation;
+
+    @Column(name = "reference", length = 1550)
+    private String reference;
 
     //---------------------| Image
     @Column(name = "image_name")
