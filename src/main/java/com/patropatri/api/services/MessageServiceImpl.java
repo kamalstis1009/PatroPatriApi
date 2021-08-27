@@ -176,14 +176,14 @@ public class MessageServiceImpl implements MessageService {
 
     @Override
     public Comment addComment(Comment item) {
-        Notification model = updateUserLikeComment(item.getUserId(), item.getCreatedBy(), 1);
+        Notification model = updateNotification(item.getUserId(), item.getCreatedBy(), 1);
         if (model != null) {
             return mCommentRepository.save(item);
         }
         return null;
     }
 
-    private Notification updateUserLikeComment(long userId, long createdBy, int type) {
+    private Notification updateNotification(long userId, long createdBy, int type) {
         Optional<User> response = mUserRepository.findById(userId);
         if (response.isPresent()) {
             User model = response.get();
@@ -244,7 +244,7 @@ public class MessageServiceImpl implements MessageService {
     public Liked addLiked(Liked item) {
         Liked model = getLikedByUserId(item.getCreatedBy());
         if (model == null) {
-            Notification mNot = updateUserLikeComment(item.getUserId(), item.getCreatedBy(), 2);
+            Notification mNot = updateNotification(item.getUserId(), item.getCreatedBy(), 2);
             if (mNot != null) {
                 return mLikedRepository.save(item);
             }
@@ -258,7 +258,7 @@ public class MessageServiceImpl implements MessageService {
     public Viewer addViewed(Viewer item) {
         Viewer model = mViewerRepository.getViewerByUserId(item.getCreatedBy());
         if (model == null) {
-            Notification mNot = updateUserLikeComment(item.getUserId(), item.getCreatedBy(), 3);
+            Notification mNot = updateNotification(item.getUserId(), item.getCreatedBy(), 3);
             if (mNot != null) {
                 return mViewerRepository.save(item);
             }
