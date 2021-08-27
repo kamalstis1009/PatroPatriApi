@@ -48,9 +48,10 @@ public class WebSocketController {
     @MessageMapping("/chat")
     public void chat(MessageDto item) {
         log.info("Receive point-to-point chat message: [" + item.getReceiverId() + " -> " + item.getSenderId() + ", " + item.getMessage() + "]");
-        MessageDto model = mService.addInbox(item);
+        mTemplate.convertAndSendToUser(String.valueOf(item.getReceiverId()), "/msg", item);
+        /*MessageDto model = mService.addInbox(item);
         if (model != null) {
             mTemplate.convertAndSendToUser(String.valueOf(item.getReceiverId()), "/msg", item);
-        }
+        }*/
     }
 }
