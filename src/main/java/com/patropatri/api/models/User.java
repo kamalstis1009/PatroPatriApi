@@ -138,7 +138,7 @@ public class User {
     @Column(name = "expectation", length = 1550)
     private String expectation;
 
-    @Column(name = "reference", length = 1550)
+    @Column(name = "reference")
     private String reference;
 
     //---------------------| Image
