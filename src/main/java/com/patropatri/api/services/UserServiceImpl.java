@@ -4,6 +4,7 @@ import com.patropatri.api.filter.UserSpecification;
 import com.patropatri.api.models.*;
 import com.patropatri.api.repositories.EducationRepository;
 import com.patropatri.api.repositories.FamilyRepository;
+import com.patropatri.api.repositories.SubscriptionRepository;
 import com.patropatri.api.repositories.UserRepository;
 import com.patropatri.api.utils.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserSpecification mSpecification;
+
+    @Autowired
+    private SubscriptionRepository mSubscriptionRepository;
 
     //======================================================| Home
     @Override
@@ -247,6 +251,12 @@ public class UserServiceImpl implements UserService {
     public List<Education> getAllEducationsByUserId(long userId) {
         return mEducationRep.getAllEducationsByUserId(userId);
         //return mEducationRep.findAll();
+    }
+
+    //======================================================| Subscription
+    @Override
+    public List<Subscription> getAllSubscriptions() {
+        return mSubscriptionRepository.findAll();
     }
 
 }

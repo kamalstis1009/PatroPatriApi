@@ -26,4 +26,7 @@ public interface UserService {
     int deleteEducationById(long id);
     List<Education> getAllEducationsByUserId(long userId);
 
+    //------------------------------------------------------| Subscription
+    List<Subscription> getAllSubscriptions();
+
 }
