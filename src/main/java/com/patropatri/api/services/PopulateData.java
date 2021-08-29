@@ -32,13 +32,13 @@ public class PopulateData implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
         //======================================================| Subscription
-        //storeSubscriptions();
+        storeSubscriptions();
 
         //======================================================| Authentication
         storeAuths();
 
         //======================================================| User
-        //storeUsers();
+        storeUsers();
 
     }
 
