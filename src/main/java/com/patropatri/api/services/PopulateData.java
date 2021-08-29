@@ -43,6 +43,31 @@ public class PopulateData implements CommandLineRunner {
         //======================================================| User
         User user = new User();
         user.setId(1L);
+        user.setFullName("Mustofa Kamal");
+        user.setGender("Male");
+        user.setBirthPlace("1990-08-11");
+        user.setBirthPlace("Jessore");
+        user.setHeight("5'.4\"");
+        user.setWeight("60 KG");
+        user.setMaritalStatus("Never Married");
+        user.setReligion("Islam");
+        user.setComplex("Fair");
+        user.setDistrict("Madaripur");
+        user.setCitizenship("Bangladesh");
+        user.setMotherTongue("Bangla");
+        user.setProfession("Job Holder");
+        user.setDesignation("Software Engineer");
+        user.setCompany("Subra Systems Ltd.");
+        user.setCompanyAddress("Karwan Bazar, Dhaka, Bangladesh");
+        user.setCompanyWebsite("www.subrasystems.com.bd");
+        user.setPhoneNumber("+8801914141707");
+        user.setEmail("mk@gmail.com");
+        user.setAddressLine1("Kachukhe, Dhaka Cantonment");
+        user.setCountry1("Bangladesh");
+        user.setDivision1("Dhaka");
+        user.setDistrict1("Dhaka");
+        user.setPoliceStation1("Kafrul");
+        user.setPostalCode1("1206");
         mUserRepositoryRep.save(user);
 
         //======================================================| Subscription
@@ -63,7 +88,6 @@ public class PopulateData implements CommandLineRunner {
         sub4.setPrice(2000.00);
         mSubscriptionRep.save(sub4);
 
-        //'1', '2021-08-11', 'Jessore', '0', 'Subra Systems Ltd.', 'Karwan Bazar, Dhaka, Bangladesh', 'www.subrasystems.com.bd', 'Fair', '2021-08-10 20:15:01.485000', '1', 'Software Engineer', 'Madaripur', 'mk@gmail.com', 'bibahabd-vue', 'Mustofa Kamal', 'Male', '5.4', NULL, 'IMG_20210810_202307_691.jpg', 'bibahabd-vue', '0', '0', '0', 'Never Married', 'bibahabd-vue', 'Kachukhet, Dhaka, Bangladesh', '01914141707', 'Kachukhet, Dhaka Bangladesh', 'Job Holder', 'Muslim', 'bibahabd-vue', NULL, NULL, NULL, '60 KG'
     }
 
 }

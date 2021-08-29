@@ -57,7 +57,7 @@ public class User {
     @Column(name = "complex")
     private String complex;
 
-    @Column(name = "district")
+    @Column(name = "home_district")
     private String district;
 
     @Column(name = "citizenship")
