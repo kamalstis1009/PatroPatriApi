@@ -152,7 +152,10 @@ public class User {
     private String token;
 
     @Column(name = "subscription")
-    private String subscription;
+    private Long subscription;
+
+    @Column(name = "subscription_expired")
+    private Date subscriptionExpired;
 
     @Column(name = "is_active", columnDefinition = "boolean default false")
     private Boolean isActive;
