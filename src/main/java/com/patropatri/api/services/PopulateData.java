@@ -69,7 +69,7 @@ public class PopulateData implements CommandLineRunner {
         user.setId(1L);
         user.setFullName("Mustofa Kamal");
         user.setGender("Male");
-        user.setBirthPlace("1990-08-11");
+        user.setBirthDate(new Date());
         user.setBirthPlace("Jessore");
         user.setHeight("5'.4\"");
         user.setWeight("60 KG");
@@ -111,6 +111,53 @@ public class PopulateData implements CommandLineRunner {
         user.setLikedAmount(1);
         user.setViewerAmount(1);
         mUserRepositoryRep.save(user);
+
+        User user2 = new User();
+        user2.setId(2L);
+        user2.setFullName("Zaman Khan");
+        user2.setGender("Male");
+        user2.setBirthDate(new Date());
+        user2.setBirthPlace("Sylhet");
+        user2.setHeight("5'.4\"");
+        user2.setWeight("60 KG");
+        user2.setMaritalStatus("Never Married");
+        user2.setReligion("Islam");
+        user2.setComplex("Fair");
+        user2.setDistrict("Sylhet");
+        user2.setCitizenship("Bangladesh");
+        user2.setMotherTongue("Bangla");
+        user2.setProfession("Job Holder");
+        user2.setDesignation("Engineer");
+        user2.setCompany("Subra Systems Ltd.");
+        user2.setCompanyAddress("Karwan Bazar, Dhaka, Bangladesh");
+        user2.setCompanyWebsite("www.subrasystems.com.bd");
+        user2.setPhoneNumber("+8801914141707");
+        user2.setEmail("mk@gmail.com");
+        user2.setAddressLine1("Kachukhe, Dhaka Cantonment");
+        user2.setCountry1("Bangladesh");
+        user2.setDivision1("Dhaka");
+        user2.setDistrict1("Dhaka");
+        user2.setPoliceStation1("Kafrul");
+        user2.setPostalCode1("1206");
+        user2.setAddressLine2("Kachukhe, Dhaka Cantonment");
+        user2.setCountry2("Bangladesh");
+        user2.setDivision2("Dhaka");
+        user2.setDistrict2("Dhaka");
+        user2.setPoliceStation2("Kafrul");
+        user2.setPostalCode2("1206");
+        user2.setSummary("I am a person who is positive about every aspect of life. There are many things I like to do, to see, and to experience. I like to read, I like to write; I like to think, I like to dream; I like to talk, I like to listen. I like to see the sunrise in the morning, I like to see the moonlight at night; I like to feel the music flowing on my face, I like to smell the wind coming from the ocean. I like to look at the clouds in the sky with a blank mind, I like to do thought experiment when I cannot sleep in the middle of the night. I like flowers in spring, rain in summer, leaves in autumn, and snow in winter. I like to sleep early, I like to get up late; I like to be alone, I like to be surrounded by people. I like country’s peace, I like metropolis’ noise; I like the beautiful west lake in Hangzhou, I like the flat cornfield in Champaign. I like delicious food and comfortable shoes; I like good books and romantic movies. I like the land and the nature, I like people. And, I like to laugh.");
+        user2.setInterest("I am a person who is positive about every aspect of life. There are many things I like to do, to see, and to experience. I like to read, I like to write; I like to think, I like to dream; I like to talk, I like to listen. I like to see the sunrise in the morning, I like to see the moonlight at night; I like to feel the music flowing on my face, I like to smell the wind coming from the ocean. I like to look at the clouds in the sky with a blank mind, I like to do thought experiment when I cannot sleep in the middle of the night. I like flowers in spring, rain in summer, leaves in autumn, and snow in winter. I like to sleep early, I like to get up late; I like to be alone, I like to be surrounded by people. I like country’s peace, I like metropolis’ noise; I like the beautiful west lake in Hangzhou, I like the flat cornfield in Champaign. I like delicious food and comfortable shoes; I like good books and romantic movies. I like the land and the nature, I like people. And, I like to laugh.");
+        user2.setOtherActivity("I am a person who is positive about every aspect of life. There are many things I like to do, to see, and to experience. I like to read, I like to write; I like to think, I like to dream; I like to talk, I like to listen. I like to see the sunrise in the morning, I like to see the moonlight at night; I like to feel the music flowing on my face, I like to smell the wind coming from the ocean. I like to look at the clouds in the sky with a blank mind, I like to do thought experiment when I cannot sleep in the middle of the night. I like flowers in spring, rain in summer, leaves in autumn, and snow in winter. I like to sleep early, I like to get up late; I like to be alone, I like to be surrounded by people. I like country’s peace, I like metropolis’ noise; I like the beautiful west lake in Hangzhou, I like the flat cornfield in Champaign. I like delicious food and comfortable shoes; I like good books and romantic movies. I like the land and the nature, I like people. And, I like to laugh.");
+        user2.setExpectation("I am a person who is positive about every aspect of life. There are many things I like to do, to see, and to experience. I like to read, I like to write; I like to think, I like to dream; I like to talk, I like to listen. I like to see the sunrise in the morning, I like to see the moonlight at night; I like to feel the music flowing on my face, I like to smell the wind coming from the ocean. I like to look at the clouds in the sky with a blank mind, I like to do thought experiment when I cannot sleep in the middle of the night. I like flowers in spring, rain in summer, leaves in autumn, and snow in winter. I like to sleep early, I like to get up late; I like to be alone, I like to be surrounded by people. I like country’s peace, I like metropolis’ noise; I like the beautiful west lake in Hangzhou, I like the flat cornfield in Champaign. I like delicious food and comfortable shoes; I like good books and romantic movies. I like the land and the nature, I like people. And, I like to laugh.");
+        user2.setReference("Nothing...");
+        user2.setSubscription(1L);
+        user2.setSubscriptionExpired(new Date());
+        user2.setIsActive(true);
+        user2.setIsApproved(true);
+        user2.setCommentAmount(1);
+        user2.setLikedAmount(1);
+        user2.setViewerAmount(1);
+        mUserRepositoryRep.save(user2);
 
     }
 
