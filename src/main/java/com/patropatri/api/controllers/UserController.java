@@ -86,7 +86,7 @@ public class UserController {
     }
 
     //======================================================| Subscription
-    @PostMapping("/subscriptions")
+    @GetMapping("/subscriptions")
     public ResponseEntity<List<Subscription>> getAllSubscriptions() {
         return new ResponseEntity<>(mService.getAllSubscriptions(), HttpStatus.CREATED);
     }
