@@ -124,6 +124,11 @@ public class UserServiceImpl implements UserService {
             model.setComplex(item.getComplex());
         if (item.getDistrict() != null)
             model.setDistrict(item.getDistrict());
+        if (item.getCitizenship() != null)
+            model.setCitizenship(item.getCitizenship());
+        if (item.getMotherTongue() != null)
+            model.setMotherTongue(item.getMotherTongue());
+
         if (item.getProfession() != null)
             model.setProfession(item.getProfession());
         if (item.getDesignation() != null)
@@ -134,14 +139,38 @@ public class UserServiceImpl implements UserService {
             model.setCompanyAddress(item.getCompanyAddress());
         if (item.getCompanyWebsite() != null)
             model.setCompanyWebsite(item.getCompanyWebsite());
+
         if (item.getPhoneNumber() != null)
             model.setPhoneNumber(item.getPhoneNumber());
         if (item.getEmail() != null)
             model.setEmail(item.getEmail());
-        if (item.getPresentAddress() != null)
-            model.setPresentAddress(item.getPresentAddress());
-        if (item.getPermanentAddress() != null)
-            model.setPermanentAddress(item.getPermanentAddress());
+
+        if (item.getAddressLine1() != null)
+            model.setAddressLine1(item.getAddressLine1());
+        if (item.getCountry1() != null)
+            model.setCountry1(item.getCountry1());
+        if (item.getDivision1() != null)
+            model.setDivision1(item.getDivision1());
+        if (item.getDistrict1() != null)
+            model.setDistrict1(item.getDistrict1());
+        if (item.getPoliceStation1() != null)
+            model.setPoliceStation1(item.getPoliceStation1());
+        if (item.getPostalCode1() != null)
+            model.setPostalCode1(item.getPostalCode1());
+
+        if (item.getAddressLine2() != null)
+            model.setAddressLine2(item.getAddressLine2());
+        if (item.getCountry2() != null)
+            model.setCountry2(item.getCountry2());
+        if (item.getDivision2() != null)
+            model.setDivision2(item.getDivision2());
+        if (item.getDistrict2() != null)
+            model.setDistrict2(item.getDistrict2());
+        if (item.getPoliceStation2() != null)
+            model.setPoliceStation2(item.getPoliceStation2());
+        if (item.getPostalCode2() != null)
+            model.setPostalCode2(item.getPostalCode2());
+
         if (item.getSummary() != null)
             model.setSummary(item.getSummary());
         if (item.getInterest() != null)
@@ -150,12 +179,19 @@ public class UserServiceImpl implements UserService {
             model.setOtherActivity(item.getOtherActivity());
         if (item.getExpectation() != null)
             model.setExpectation(item.getExpectation());
+        if (item.getReference() != null)
+            model.setReference(item.getReference());
+
         if (item.getImageName() != null)
             model.setImageName(item.getImageName());
         if (item.getImageCoverName() != null)
             model.setImageCoverName(item.getImageCoverName());
         if (item.getToken() != null)
             model.setToken(item.getToken());
+        if (item.getSubscription() != null)
+            model.setSubscription(item.getSubscription());
+        if (item.getSubscriptionExpired() != null)
+            model.setSubscriptionExpired(item.getSubscriptionExpired());
 
         model.setIsActive(item.getIsActive() != null);
         model.setCommentAmount(item.getCommentAmount() != null ? item.getCommentAmount() : 0);
