@@ -85,5 +85,11 @@ public class UserController {
         return new ResponseEntity<>(mService.getAllEducationsByUserId(userId), HttpStatus.OK);
     }
 
+    //======================================================| Subscription
+    @PostMapping("/subscriptions")
+    public ResponseEntity<List<Subscription>> getAllSubscriptions() {
+        return new ResponseEntity<>(mService.getAllSubscriptions(), HttpStatus.CREATED);
+    }
+
 
 }
