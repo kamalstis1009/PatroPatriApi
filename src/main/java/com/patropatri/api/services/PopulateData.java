@@ -8,12 +8,16 @@ import com.patropatri.api.repositories.SubscriptionRepository;
 import com.patropatri.api.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
 @Component
 public class PopulateData implements CommandLineRunner {
+
+    @Autowired
+    private PasswordEncoder mEncoder;
 
     @Autowired
     private AuthenticationRepository mAuthenticationRep;
@@ -28,6 +32,17 @@ public class PopulateData implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
         //======================================================| Subscription
+        //storeSubscriptions();
+
+        //======================================================| Authentication
+        storeAuths();
+
+        //======================================================| User
+        //storeUsers();
+
+    }
+
+    private void storeSubscriptions() {
         Subscription sub1 = new Subscription();
         sub1.setId(1L);
         sub1.setName("Monthly");
@@ -48,23 +63,25 @@ public class PopulateData implements CommandLineRunner {
         sub4.setName("Annually");
         sub4.setPrice(2000.00);
         mSubscriptionRep.save(sub4);
+    }
 
-        //======================================================| Authentication
+    private void storeAuths() {
         Authentication auth1 = new Authentication();
         auth1.setId(1L);
         auth1.setUsername("01914141707");
-        auth1.setPassword("123");
+        auth1.setPassword(mEncoder.encode("123"));
         auth1.setRole("USER");
         mAuthenticationRep.save(auth1);
 
         Authentication auth2 = new Authentication();
         auth2.setId(2L);
         auth2.setUsername("01914141708");
-        auth2.setPassword("123");
+        auth2.setPassword(mEncoder.encode("123"));
         auth2.setRole("USER");
         mAuthenticationRep.save(auth2);
+    }
 
-        //======================================================| User
+    private void storeUsers() {
         User user = new User();
         user.setId(1L);
         user.setFullName("Mustofa Kamal");
@@ -158,7 +175,6 @@ public class PopulateData implements CommandLineRunner {
         user2.setLikedAmount(1);
         user2.setViewerAmount(1);
         mUserRepositoryRep.save(user2);
-
     }
 
 }
