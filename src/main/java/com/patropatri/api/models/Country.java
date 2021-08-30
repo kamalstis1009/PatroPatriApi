@@ -19,7 +19,7 @@ public class Country {
     private String name;
 
     @Column(name = "code")
-    private Long code;
+    private String code;
 
     @CreatedDate
     @Column(name = "created_at")
