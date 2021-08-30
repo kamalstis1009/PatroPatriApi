@@ -151,8 +151,8 @@ public class User {
     @Column(name = "token")
     private String token;
 
-    @Column(name = "subscription")
-    private Long subscription;
+    @Column(name = "subscription_id")
+    private Long subscriptionId;
 
     @Column(name = "subscription_expired")
     private Date subscriptionExpired;

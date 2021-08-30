@@ -8,8 +8,6 @@ import com.patropatri.api.repositories.SubscriptionRepository;
 import com.patropatri.api.repositories.UserRepository;
 import com.patropatri.api.utils.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -192,8 +190,8 @@ public class UserServiceImpl implements UserService {
             model.setImageCoverName(item.getImageCoverName());
         if (item.getToken() != null)
             model.setToken(item.getToken());
-        if (item.getSubscription() != null)
-            model.setSubscription(item.getSubscription());
+        if (item.getSubscriptionId() != null)
+            model.setSubscriptionId(item.getSubscriptionId());
         if (item.getSubscriptionExpired() != null)
             model.setSubscriptionExpired(item.getSubscriptionExpired());
 
