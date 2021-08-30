@@ -102,7 +102,7 @@ public class PopulateData implements CommandLineRunner {
     private void storeUsers() {
         User user = new User();
         user.setId(1L);
-        user.setFullName("Mustofa Kamal");
+        user.setFullName("Monirul Islam");
         user.setGender("Male");
         user.setBirthDate(new Date());
         user.setBirthPlace("Jessore");
@@ -149,7 +149,7 @@ public class PopulateData implements CommandLineRunner {
 
         User user2 = new User();
         user2.setId(2L);
-        user2.setFullName("Zaman Khan");
+        user2.setFullName("Zaman Uddin Khan");
         user2.setGender("Male");
         user2.setBirthDate(new Date());
         user2.setBirthPlace("Sylhet");
