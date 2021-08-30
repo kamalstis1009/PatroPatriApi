@@ -1,13 +1,7 @@
 package com.patropatri.api.services;
 
-import com.patropatri.api.models.Authentication;
-import com.patropatri.api.models.Country;
-import com.patropatri.api.models.Subscription;
-import com.patropatri.api.models.User;
-import com.patropatri.api.repositories.AuthenticationRepository;
-import com.patropatri.api.repositories.CountryRepository;
-import com.patropatri.api.repositories.SubscriptionRepository;
-import com.patropatri.api.repositories.UserRepository;
+import com.patropatri.api.models.*;
+import com.patropatri.api.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -33,6 +27,18 @@ public class PopulateData implements CommandLineRunner {
     @Autowired
     private CountryRepository mCountryRepository;
 
+    @Autowired
+    private DivisionRepository mDivisionRepository;
+
+    @Autowired
+    private DistrictRepository mDistrictRepository;
+
+    @Autowired
+    private PoliceStationRepository mPoliceStationRepository;
+
+    @Autowired
+    private PostalCodeRepository mPostalCodeRepository;
+
     @Override
     public void run(String... args) throws Exception {
 
@@ -47,6 +53,10 @@ public class PopulateData implements CommandLineRunner {
 
         //======================================================| Country
         storeCountries();
+        storeDivisions();
+        storeDistricts();
+        storePoliceStations();
+        storePostalCodes();
 
     }
 
@@ -193,6 +203,50 @@ public class PopulateData implements CommandLineRunner {
             model.setName(arr[i]);
             model.setCode(model.getId() + "");
             mCountryRepository.save(model);
+        }
+    }
+
+    private void storeDivisions() {
+        String [] arr = { "Barisal", "Chittagong", "Dhaka", "Khulna", "Mymensingh", "Rangpur", "Rajshahi", "Sylhet" };
+        for (int i=0; i<arr.length; i++) {
+            Division model = new Division();
+            model.setId(i+1L);
+            model.setName(arr[i]);
+            model.setCountryId(model.getId());
+            mDivisionRepository.save(model);
+        }
+    }
+
+    private void storeDistricts() {
+        String [] arr = { "Barguna", "Barishal", "Bhola", "Jhalokati", "Patuakhali", "Pirojpur", "Bandarban", "Brahmanbaria", "Chandpur", "Chattogram", "Cumilla", "Cox\'s Bazar", "Feni", "Khagrachhari", "Lakshmipur", "Noakhali", "Rangamati", "Dhaka", "Faridpur", "Gazipur", "Gopalganj", "Kishoreganj", "Madaripur", "Manikganj", "Munshiganj", "Narayanganj", "Narsingdi", "Rajbari", "Shariatpur", "Tangail", "Bagerhat", "Chuadanga", "Jashore", "Jhenaidah", "Khulna", "Kushtia", "Magura", "Meherpur", "Narail", "Satkhira", "Jamalpur", "Mymensingh", "Netrokona", "Sherpur", "Bogura", "Joypurhat", "Naogaon", "Natore", "Chapainawabganj", "Pabna", "Rajshahi", "Sirajganj", "Dinajpur", "Gaibandha", "Kurigram", "Lalmonirhat", "Nilphamari", "Panchagarh", "Rangpur", "Thakurgaon", "Habiganj", "Moulvibazar", "Sunamganj", "Sylhet" };
+        for (int i=0; i<arr.length; i++) {
+            District model = new District();
+            model.setId(i+1L);
+            model.setName(arr[i]);
+            model.setDivisionId(model.getId());
+            mDistrictRepository.save(model);
+        }
+    }
+
+    private void storePoliceStations() {
+        String [] arr = { "Adabor", "Airport", "Badda", "Banani", "Bangshal", "Bhashantek", "Cantonment", "Chackbazar", "Dakshin Khan", "Darus-Salam", "Demra", "Dhanmondi", "Gandaria", "Gulshan", "Hatirjheel", "Hazaribag", "Jattrabari", "Kadamtoli", "Kafrul", "Kalabagan", "Kamrangirchar", "Khilgaon", "Khilkhet", "Kotwali", "Lalbagh", "Mirpur Model", "Mohammadpur", "Motijheel", "Mugda", "New Market", "Pallabi", "Paltan Model", "Ramna Model", "Rampura", "Rupnagar", "Sabujbag", "Shah Ali", "Shahbag", "Shahjahanpur", "Sher e Bangla Nagar", "Shyampur", "Sutrapur", "Tejgaon", "Tejgaon Industrial", "Turag", "Uttar Khan", "Uttara East", "Uttara West", "Vatara", "Wari" };
+        for (int i=0; i<arr.length; i++) {
+            PoliceStation model = new PoliceStation();
+            model.setId(i+1L);
+            model.setName(arr[i]);
+            model.setDistrictId(model.getId());
+            mPoliceStationRepository.save(model);
+        }
+    }
+
+    private void storePostalCodes() {
+        String [] arr = { "1000", "1100", "1203", "1204", "1205", "1206", "1207", "1208", "1209", "1211", "1212", "1213", "1214", "1215", "1216", "1217", "1219", "1222", "1223", "1225", "1229", "1230", "1232", "1310", "1311", "1312", "1313", "1320", "1321", "1322", "1323", "1324", "1325", "1330", "1331", "1332", "1340", "1341", "1342", "1343", "1344", "1345", "1346", "1347", "1348", "1349", "1350", "1351", "1360", "1361", "1362", "1000", "1100", "1203", "1204", "1205", "1206", "1207", "1208", "1209", "1211", "1212", "1213", "1214", "1215", "1216", "1217", "1219", "1222", "1223", "1225", "1229", "1230", "1232", "1310", "1311", "1312", "1313", "1320", "1321", "1322", "1323", "1324", "1325", "1330", "1331", "1332", "1340", "1341", "1342", "1343", "1344", "1345", "1346", "1347", "1348", "1349", "1350", "1351", "1360", "1361", "1362" };
+        for (int i=0; i<arr.length; i++) {
+            PostalCode model = new PostalCode();
+            model.setId(i+1L);
+            model.setName(arr[i]);
+            model.setDistrictId(model.getId());
+            mPostalCodeRepository.save(model);
         }
     }
 

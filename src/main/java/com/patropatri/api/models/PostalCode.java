@@ -18,8 +18,8 @@ public class PostalCode {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "police_station_id")
-    private Long policeStationId;
+    @Column(name = "district_id")
+    private Long districtId;
 
     @CreatedDate
     @Column(name = "created_at")
