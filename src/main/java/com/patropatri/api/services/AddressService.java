@@ -8,5 +8,8 @@ public interface AddressService {
 
     List<Country> getAllCountries();
     List<Division> getAllDivisionsByCountryId(Long countryId);
+    List<District> getAllDistrictsByDivisionId(Long countryId);
+    List<PoliceStation> getAllPoliceStationsByDistrictId(Long countryId);
+    List<PostalCode> getAllPostalCodesByDistrictId(Long districtId);
 
 }
