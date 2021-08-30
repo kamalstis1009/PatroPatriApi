@@ -33,19 +33,19 @@ public class AddressController {
     }
 
     //======================================================| District
-    @GetMapping(value="/divisions/{divisionId}", produces = {"application/json"})
+    @GetMapping(value="/districts/{divisionId}", produces = {"application/json"})
     public ResponseEntity<List<District>> getAllDistrictsByDivisionId(@PathVariable("divisionId") long divisionId) {
         return new ResponseEntity<>(mService.getAllDistrictsByDivisionId(divisionId), HttpStatus.OK);
     }
 
     //======================================================| PoliceStation
-    @GetMapping(value="/divisions/{districtId}", produces = {"application/json"})
+    @GetMapping(value="/stations/{districtId}", produces = {"application/json"})
     public ResponseEntity<List<PoliceStation>> getAllPoliceStationsByDistrictId(@PathVariable("districtId") long districtId) {
         return new ResponseEntity<>(mService.getAllPoliceStationsByDistrictId(districtId), HttpStatus.OK);
     }
 
     //======================================================| PostalCode
-    @GetMapping(value="/divisions/{districtId}", produces = {"application/json"})
+    @GetMapping(value="/zips/{districtId}", produces = {"application/json"})
     public ResponseEntity<List<PostalCode>> getAllPostalCodesByDistrictId(@PathVariable("districtId") long districtId) {
         return new ResponseEntity<>(mService.getAllPostalCodesByDistrictId(districtId), HttpStatus.OK);
     }
