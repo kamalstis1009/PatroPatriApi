@@ -212,18 +212,18 @@ public class PopulateData implements CommandLineRunner {
             Division model = new Division();
             model.setId(i+1L);
             model.setName(arr[i]);
-            model.setCountryId(model.getId());
+            model.setCountryId(14L);
             mDivisionRepository.save(model);
         }
     }
 
     private void storeDistricts() {
-        String [] arr = { "Barguna", "Barishal", "Bhola", "Jhalokati", "Patuakhali", "Pirojpur", "Bandarban", "Brahmanbaria", "Chandpur", "Chattogram", "Cumilla", "Cox\'s Bazar", "Feni", "Khagrachhari", "Lakshmipur", "Noakhali", "Rangamati", "Dhaka", "Faridpur", "Gazipur", "Gopalganj", "Kishoreganj", "Madaripur", "Manikganj", "Munshiganj", "Narayanganj", "Narsingdi", "Rajbari", "Shariatpur", "Tangail", "Bagerhat", "Chuadanga", "Jashore", "Jhenaidah", "Khulna", "Kushtia", "Magura", "Meherpur", "Narail", "Satkhira", "Jamalpur", "Mymensingh", "Netrokona", "Sherpur", "Bogura", "Joypurhat", "Naogaon", "Natore", "Chapainawabganj", "Pabna", "Rajshahi", "Sirajganj", "Dinajpur", "Gaibandha", "Kurigram", "Lalmonirhat", "Nilphamari", "Panchagarh", "Rangpur", "Thakurgaon", "Habiganj", "Moulvibazar", "Sunamganj", "Sylhet" };
+        String [] arr = { "Bagerhat", "Bandarban", "Barguna", "Barishal", "Bhola", "Bogura", "Brahmanbaria", "Chandpur", "Chapainawabganj", "Chattogram", "Chuadanga", "Cox\'s Bazar", "Cumilla", "Dhaka", "Dinajpur", "Faridpur", "Feni", "Gaibandha", "Gazipur", "Gopalganj", "Habiganj", "Jamalpur", "Jashore", "Jhalokati", "Jhenaidah", "Joypurhat", "Khagrachhari", "Khulna", "Kishoreganj", "Kurigram", "Kushtia", "Lakshmipur", "Lalmonirhat", "Madaripur", "Magura", "Manikganj", "Meherpur", "Moulvibazar", "Munshiganj", "Mymensingh", "Naogaon", "Narail", "Narayanganj", "Narsingdi", "Natore", "Netrokona", "Nilphamari", "Noakhali", "Pabna", "Panchagarh", "Patuakhali", "Pirojpur", "Rajbari", "Rajshahi", "Rangamati", "Rangpur", "Satkhira", "Shariatpur", "Sherpur", "Sirajganj", "Sunamganj", "Sylhet", "Tangail", "Thakurgaon" };
         for (int i=0; i<arr.length; i++) {
             District model = new District();
             model.setId(i+1L);
             model.setName(arr[i]);
-            model.setDivisionId(model.getId());
+            model.setDivisionId(198L);
             mDistrictRepository.save(model);
         }
     }
@@ -234,7 +234,7 @@ public class PopulateData implements CommandLineRunner {
             PoliceStation model = new PoliceStation();
             model.setId(i+1L);
             model.setName(arr[i]);
-            model.setDistrictId(model.getId());
+            model.setDistrictId(217L);
             mPoliceStationRepository.save(model);
         }
     }
@@ -245,7 +245,7 @@ public class PopulateData implements CommandLineRunner {
             PostalCode model = new PostalCode();
             model.setId(i+1L);
             model.setName(arr[i]);
-            model.setDistrictId(model.getId());
+            model.setDistrictId(217L);
             mPostalCodeRepository.save(model);
         }
     }
