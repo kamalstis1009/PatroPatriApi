@@ -5,7 +5,6 @@ import com.patropatri.api.models.socket.SocketRequest;
 import com.patropatri.api.models.socket.SocketResponse;
 import com.patropatri.api.services.MessageService;
 import com.patropatri.api.utils.ConstantKey;
-import com.patropatri.api.utils.TokenGenerator;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,10 +48,7 @@ public class WebSocketController {
     @MessageMapping("/chat")
     public void chat(MessageDto item) {
         log.info("Receive point-to-point chat message: [" + item.getReceiverId() + " -> " + item.getSenderId() + ", " + item.getMessage() + "]");
-        mTemplate.convertAndSendToUser(String.valueOf(item.getReceiverId()), "/msg", item);
-        /*MessageDto model = mService.addInbox(item);
-        if (model != null) {
-            mTemplate.convertAndSendToUser(String.valueOf(item.getReceiverId()), "/msg", item);
-        }*/
+        //mTemplate.convertAndSendToUser(String.valueOf(item.getReceiverId()), "/msg", item);
+        mTemplate.convertAndSendToUser(String.valueOf(item.getReceiverId()), "/msg", mService.addInbox(item));
     }
 }
