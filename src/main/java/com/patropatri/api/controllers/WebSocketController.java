@@ -5,6 +5,7 @@ import com.patropatri.api.models.socket.SocketRequest;
 import com.patropatri.api.models.socket.SocketResponse;
 import com.patropatri.api.services.MessageService;
 import com.patropatri.api.utils.ConstantKey;
+import com.patropatri.api.utils.TokenGenerator;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;

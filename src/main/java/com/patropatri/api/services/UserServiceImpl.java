@@ -7,6 +7,7 @@ import com.patropatri.api.repositories.FamilyRepository;
 import com.patropatri.api.repositories.SubscriptionRepository;
 import com.patropatri.api.repositories.UserRepository;
 import com.patropatri.api.utils.ResourceNotFoundException;
+import com.patropatri.api.utils.TokenGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -62,6 +63,7 @@ public class UserServiceImpl implements UserService {
     //======================================================| User
     @Override
     public User addUser(User item) {
+        item.setToken(TokenGenerator.getInstance().generateNewToken());
         return mRepository.save(item);
     }
 
