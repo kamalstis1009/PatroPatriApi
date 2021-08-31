@@ -116,6 +116,9 @@ public class MessageServiceImpl implements MessageService {
 
     private MessageDto extracted2(MessageDto dto, Message item2) {
         MessageDto model = new MessageDto();
+        if (item2.getId() != null) {
+            model.setId(item2.getId());
+        }
         if (item2.getMessage() != null) {
             model.setMessage(item2.getMessage());
         }
