@@ -42,7 +42,7 @@ public class PopulateData implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        //======================================================| Subscription
+        /*//======================================================| Subscription
         storeSubscriptions();
 
         //======================================================| Authentication
@@ -51,12 +51,12 @@ public class PopulateData implements CommandLineRunner {
         //======================================================| User
         storeUsers();
 
-        //======================================================| Country
+        //======================================================| Address
         storeCountries();
         storeDivisions();
         storeDistricts();
         storePoliceStations();
-        storePostalCodes();
+        storePostalCodes();*/
 
     }
 

@@ -28,7 +28,7 @@ public interface NotificationRepository extends JpaRepository<Notification, Long
     @Query(value = "SELECT A.id, A.title, A.type, A.sender_id as senderId, B.full_name as senderName, B.image_name as senderImage, A.is_enabled as isEnabled, A.created_at as createdAt "+
             "FROM notifications A "+
             "LEFT JOIN users B "+
-            "ON A.receiver_id = B.id "+
+            "ON A.sender_id = B.id "+
             "WHERE A.receiver_id = :userId "+
             "ORDER BY A.created_at", nativeQuery = true)
     List<INotification> getAllNotificationsByUserId(@Param("userId") long userId, Pageable pageable);

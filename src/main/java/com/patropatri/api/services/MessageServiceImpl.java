@@ -197,23 +197,28 @@ public class MessageServiceImpl implements MessageService {
                 model.setViewerAmount(model.getViewerAmount() + 1);
             }
             mUserRepository.save(model);
-            Notification m = new Notification();
-            if (type == 1) {
-                m.setTitle(model.getFullName() + ConstantKey.COMMENT_TITLE);
-                m.setType(ConstantKey.COMMENT);
+
+            Optional<User> user = mUserRepository.findById(createdBy);
+            if (user.isPresent()) {
+                User item = user.get();
+                Notification m = new Notification();
+                if (type == 1) {
+                    m.setTitle(item.getFullName() + ConstantKey.COMMENT_TITLE);
+                    m.setType(ConstantKey.COMMENT);
+                }
+                if (type == 2) {
+                    m.setTitle(item.getFullName() + ConstantKey.LIKED_TITLE);
+                    m.setType(ConstantKey.LIKED);
+                }
+                if (type == 3) {
+                    m.setTitle(item.getFullName() + ConstantKey.VIEWER_TITLE);
+                    m.setType(ConstantKey.VIEWER);
+                }
+                m.setIsEnabled(false);
+                m.setSenderId(createdBy);
+                m.setReceiverId(userId);
+                return addNotification(m);
             }
-            if (type == 2) {
-                m.setTitle(model.getFullName() + ConstantKey.LIKED_TITLE);
-                m.setType(ConstantKey.LIKED);
-            }
-            if (type == 3) {
-                m.setTitle(model.getFullName() + ConstantKey.VIEWER_TITLE);
-                m.setType(ConstantKey.VIEWER);
-            }
-            m.setIsEnabled(false);
-            m.setSenderId(createdBy);
-            m.setReceiverId(userId);
-            return addNotification(m);
         }
         return null;
     }
