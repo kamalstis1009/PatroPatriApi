@@ -30,7 +30,7 @@ public interface NotificationRepository extends JpaRepository<Notification, Long
             "LEFT JOIN users B "+
             "ON A.sender_id = B.id "+
             "WHERE A.receiver_id = :userId "+
-            "ORDER BY A.created_at", nativeQuery = true)
+            "ORDER BY A.created_at DESC", nativeQuery = true)
     List<INotification> getAllNotificationsByUserId(@Param("userId") long userId, Pageable pageable);
 
 }

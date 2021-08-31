@@ -20,7 +20,7 @@ public interface LikedRepository extends JpaRepository<Liked, Long> {
             "LEFT JOIN users B "+
             "ON A.created_by = B.id "+
             "WHERE A.user_id = :userId "+
-            "ORDER BY A.created_at", nativeQuery = true)
+            "ORDER BY A.created_at DESC", nativeQuery = true)
     List<LikedDto> getAllLikesByUserId(@Param("userId") long userId);
 
 }
