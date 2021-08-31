@@ -12,8 +12,8 @@ import java.util.List;
 @Repository
 public interface ViewerRepository extends JpaRepository<Viewer, Long> {
 
-    @Query("SELECT u FROM Viewer u WHERE u.createdBy = :userId")
-    Viewer getViewerByUserId(@Param("userId") long userId);
+    @Query("SELECT u FROM Viewer u WHERE u.createdBy = :createdBy")
+    Viewer getViewerByUserId(@Param("createdBy") long createdBy);
 
     @Query(value = "SELECT A.id, B.full_name as fullName, B.image_name as imageName, B.id as userId, A.created_at as createdAt "+
             "FROM viewers A "+

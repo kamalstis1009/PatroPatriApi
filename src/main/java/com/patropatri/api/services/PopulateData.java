@@ -142,9 +142,9 @@ public class PopulateData implements CommandLineRunner {
         user.setSubscriptionExpired(new Date());
         user.setIsActive(true);
         user.setIsApproved(true);
-        user.setCommentAmount(1);
-        user.setLikedAmount(1);
-        user.setViewerAmount(1);
+        user.setCommentAmount(0);
+        user.setLikedAmount(0);
+        user.setViewerAmount(0);
         mUserRepositoryRep.save(user);
 
         User user2 = new User();
@@ -189,9 +189,9 @@ public class PopulateData implements CommandLineRunner {
         user2.setSubscriptionExpired(new Date());
         user2.setIsActive(true);
         user2.setIsApproved(true);
-        user2.setCommentAmount(1);
-        user2.setLikedAmount(1);
-        user2.setViewerAmount(1);
+        user2.setCommentAmount(0);
+        user2.setLikedAmount(0);
+        user2.setViewerAmount(0);
         mUserRepositoryRep.save(user2);
     }
 
