@@ -40,17 +40,15 @@ public class WebSocketController {
         return response;
     }
 
-    @MessageMapping("/group/{groupID}")
-    public void group(@DestinationVariable int groupID, SocketRequest message) {
-        logger.info("Receive group message: [" + groupID + " -> " + message.getName() + "]");
-        SocketResponse response = new SocketResponse("Welcome to group " + groupID + ", " + message.getName() + "!");
-        mTemplate.convertAndSend("/g/" + groupID, response);
+    @MessageMapping("/specific-user")
+    @SendTo("/queue")
+    public void specificUser(MessageDto item) {
+        mTemplate.convertAndSendToUser(String.valueOf(item.getReceiverId()), "/msg", item);
     }
 
     @MessageMapping("/chat")
     public void chat(MessageDto item) {
         logger.info("Receive point-to-point chat message: [" + item.getReceiverId() + " -> " + item.getSenderId() + ", " + item.getMessage() + "]");
-        //mTemplate.convertAndSendToUser(String.valueOf(item.getReceiverId()), "/msg", item);
         mTemplate.convertAndSendToUser(String.valueOf(item.getReceiverId()), "/msg", mService.addInbox(item)); //Response Path: /user/placeholder/msg
     }
 }
