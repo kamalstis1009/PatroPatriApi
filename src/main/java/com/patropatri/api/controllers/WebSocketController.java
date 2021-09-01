@@ -43,6 +43,7 @@ public class WebSocketController {
 
     @MessageMapping("/specific-user")
     public void specificUser(Notification item) {
+        logger.info("Receive point-to-point chat message: [" + item.getReceiverId() + " -> " + item.getSenderId() + ", " + item.getTitle() + "]");
         mTemplate.convertAndSendToUser(String.valueOf(item.getReceiverId()), "/queue/specific-user", item); //convertAndSendToUser(username, destination, message)
     }
 
