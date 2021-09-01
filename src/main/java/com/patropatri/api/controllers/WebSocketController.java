@@ -10,10 +10,7 @@ import lombok.val;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.messaging.handler.annotation.DestinationVariable;
-import org.springframework.messaging.handler.annotation.Header;
-import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.messaging.handler.annotation.*;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -42,9 +39,9 @@ public class WebSocketController {
     }
 
     @MessageMapping("/specific-user")
-    public void specificUser(Notification item) {
+    public void specificUser(@Payload Notification item) {
         logger.info("Receive point-to-point chat message: [" + item.getReceiverId() + " -> " + item.getSenderId() + ", " + item.getTitle() + "]");
-        mTemplate.convertAndSendToUser(String.valueOf(item.getReceiverId()), "/queue/specific-user", item); //convertAndSendToUser(username, destination, message)
+        mTemplate.convertAndSendToUser(String.valueOf(item.getReceiverId()), "/queue/reply", item); //convertAndSendToUser(username, destination, message)
     }
 
     @MessageMapping("/chat")
