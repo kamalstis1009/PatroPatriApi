@@ -1,6 +1,7 @@
 package com.patropatri.api.controllers;
 
 import com.patropatri.api.models.MessageDto;
+import com.patropatri.api.models.Notification;
 import com.patropatri.api.models.socket.SocketRequest;
 import com.patropatri.api.models.socket.SocketResponse;
 import com.patropatri.api.services.MessageService;
@@ -41,9 +42,8 @@ public class WebSocketController {
     }
 
     @MessageMapping("/specific-user")
-    @SendTo("/queue")
-    public void specificUser(MessageDto item) {
-        mTemplate.convertAndSendToUser(String.valueOf(item.getReceiverId()), "/msg", item);
+    public void specificUser(Notification item) {
+        mTemplate.convertAndSendToUser(String.valueOf(item.getReceiverId()), "/queue/specific-user", item); //convertAndSendToUser(username, destination, message)
     }
 
     @MessageMapping("/chat")
