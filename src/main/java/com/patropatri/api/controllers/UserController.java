@@ -32,6 +32,11 @@ public class UserController {
         return new ResponseEntity<>(mService.getUsersByFilter(item, pageNo, rowSize), HttpStatus.OK);
     }
 
+    @PostMapping(value="/guest-users-filter")
+    public ResponseEntity<List<ICandidate>> getGuestUsersByFilter(@RequestBody UserFilter item, @RequestParam("no") int pageNo, @RequestParam("row") int rowSize) {
+        return new ResponseEntity<>(mService.getUsersByFilter(item, pageNo, rowSize), HttpStatus.OK);
+    }
+
     //======================================================| User
     @PostMapping("/user")
     public ResponseEntity<User> addUser(@RequestBody User item) {
