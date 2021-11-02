@@ -19,6 +19,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 
+import java.util.Arrays;
+import java.util.List;
+
 
 @Configuration
 @EnableWebSecurity
@@ -53,9 +56,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.cors().configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues()) //CORS Missing Allow Origin
+        http.cors().configurationSource(request -> {
+            CorsConfiguration cors = new CorsConfiguration();
+            cors.setAllowedOrigins(Arrays.asList("*"));
+            cors.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+            cors.setAllowedHeaders(Arrays.asList("*"));
+            return cors;}) //CORS Missing Allow Origin
                 .and().csrf().disable().authorizeRequests() // disabled CSRF
-                .antMatchers("/").permitAll()
+                .antMatchers("/**").permitAll()
                 //.antMatchers("/ws/**").permitAll()
                 .antMatchers(ConstantKey.SIGN_UP_URL).permitAll() // don't authenticate this particular request
                 .antMatchers(ConstantKey.SIGN_IN_URL).permitAll() // OR .antMatchers("/authenticate", "/register").permitAll().

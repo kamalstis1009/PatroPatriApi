@@ -197,7 +197,7 @@ public class UserServiceImpl implements UserService {
         if (item.getSubscriptionExpired() != null)
             model.setSubscriptionExpired(item.getSubscriptionExpired());
 
-        model.setIsActive(item.getIsActive() != null);
+        model.setIsActive(model.getIsActive() != null && model.getIsActive());
         model.setCommentAmount(item.getCommentAmount() != null ? item.getCommentAmount() : 0);
         model.setLikedAmount(item.getLikedAmount() != null ? item.getLikedAmount() : 0);
         model.setViewerAmount(item.getViewerAmount() != null ? item.getViewerAmount() : 0);
