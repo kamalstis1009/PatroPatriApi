@@ -64,6 +64,11 @@ public class UserController {
         return new ResponseEntity<>(mService.addFamily(item), HttpStatus.CREATED);
     }
 
+    @PostMapping("/families")
+    public ResponseEntity<List<Family>> addAllFamilies(@RequestBody List<Family> items) {
+        return new ResponseEntity<>(mService.addAllFamilies(items), HttpStatus.CREATED);
+    }
+
     @DeleteMapping(value="/family/{id}", produces = {"application/json"})
     public ResponseEntity<Integer> deleteFamilyById(@PathVariable("id") long id) {
         return new ResponseEntity<>(mService.deleteFamilyById(id), HttpStatus.OK);
@@ -78,6 +83,11 @@ public class UserController {
     @PostMapping("/education")
     public ResponseEntity<Education> addEducation(@RequestBody Education item) {
         return new ResponseEntity<>(mService.addEducation(item), HttpStatus.CREATED);
+    }
+
+    @PostMapping("/educations")
+    public ResponseEntity<List<Education>> addAllEducations(@RequestBody List<Education> items) {
+        return new ResponseEntity<>(mService.addAllEducations(items), HttpStatus.CREATED);
     }
 
     @DeleteMapping(value="/education/{id}", produces = {"application/json"})

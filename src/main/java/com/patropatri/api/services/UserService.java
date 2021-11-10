@@ -18,11 +18,13 @@ public interface UserService {
 
     //------------------------------------------------------| Family
     Family addFamily(Family item);
+    List<Family> addAllFamilies(List<Family> items);
     int deleteFamilyById(long id);
     List<Family> getAllFamiliesByUserId(long userId);
 
     //------------------------------------------------------| Education
     Education addEducation(Education item);
+    List<Education> addAllEducations(List<Education> items);
     int deleteEducationById(long id);
     List<Education> getAllEducationsByUserId(long userId);
 

@@ -216,6 +216,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<Family> addAllFamilies(List<Family> items) {
+        return mFamilyRep.saveAll(items);
+    }
+
+    @Override
     public int deleteFamilyById(long id) {
         boolean isFound = mFamilyRep.existsById(id);
         if(isFound) {
@@ -235,6 +240,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public Education addEducation(Education item) {
         return mEducationRep.save(item);
+    }
+
+    @Override
+    public List<Education> addAllEducations(List<Education> items) {
+        return mEducationRep.saveAll(items);
     }
 
     @Override
