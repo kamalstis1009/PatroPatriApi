@@ -59,7 +59,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors().configurationSource(request -> {
             CorsConfiguration cors = new CorsConfiguration();
             cors.setAllowedOrigins(Arrays.asList("*"));
-            cors.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+            cors.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
             cors.setAllowedHeaders(Arrays.asList("*"));
             return cors;}) //CORS Missing Allow Origin
                 .and().csrf().disable().authorizeRequests() // disabled CSRF
