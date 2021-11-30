@@ -66,6 +66,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/**").permitAll()
                 //.antMatchers("/ws/**").permitAll()
                 .antMatchers(ConstantKey.SIGN_UP_URL).permitAll() // don't authenticate this particular request
+                .antMatchers(ConstantKey.SIGN_UP2_URL).permitAll() // don't authenticate this particular request
                 .antMatchers(ConstantKey.SIGN_IN_URL).permitAll() // OR .antMatchers("/authenticate", "/register").permitAll().
                 .antMatchers(ConstantKey.RESOURCE_URL).permitAll()
                 .antMatchers(ConstantKey.GUEST_USER_URL).permitAll()

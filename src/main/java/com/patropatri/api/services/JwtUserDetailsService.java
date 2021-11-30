@@ -75,4 +75,38 @@ public class JwtUserDetailsService implements UserDetailsService {
 		}
 	}
 
+	public Authentication register2(AuthenticationWithUserDto item) throws UsernameNotFoundException {
+		Authentication auth = mRepository.getAuthenticateByUsername(item.getUsername());
+		if (auth == null) {
+			Authentication model = new Authentication();
+			model.setUsername(item.getUsername());
+			model.setPassword(mEncoder.encode(item.getPassword()));
+			model.setRole("USER");
+			Authentication response = mRepository.save(model);
+			Optional<User> user = mUserRepository.findById(response.getId());
+			if (!user.isPresent()) {
+				User model2 = new User();
+				model2.setFullName(item.getFullName());
+				model2.setGender(item.getGender());
+				model2.setBirthDate(item.getBirthDate());
+				model2.setReligion(item.getReligion());
+				model2.setPhoneNumber(item.getUsername());
+				model2.setIsActive(false);
+				model2.setIsApproved(false);
+				model2.setCommentAmount(0);
+				model2.setLikedAmount(0);
+				model2.setViewerAmount(0);
+				model2.setId(response.getId());
+				model2.setCreatedBy(response.getId());
+				mUserRepository.save(model2);
+				return response;
+			}
+			return response;
+		} else {
+			throw new UsernameNotFoundException("This user is already registered: " + item.getUsername());
+		}
+	}
+
+
+
 }

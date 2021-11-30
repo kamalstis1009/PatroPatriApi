@@ -1,6 +1,7 @@
 package com.patropatri.api.controllers;
 
 import com.patropatri.api.models.AuthenticationDto;
+import com.patropatri.api.models.AuthenticationWithUserDto;
 import com.patropatri.api.services.JwtUserDetailsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,6 +38,11 @@ public class JwtAuthenticationController {
 	@PostMapping("/register")
 	public ResponseEntity<?> register(@RequestBody AuthenticationDto request) throws Exception {
 		return ResponseEntity.ok(mService.register(request));
+	}
+
+	@PostMapping("/register2")
+	public ResponseEntity<?> register(@RequestBody AuthenticationWithUserDto request) throws Exception {
+		return ResponseEntity.ok(mService.register2(request));
 	}
 
 	private void authenticate(String username, String password) throws Exception {
