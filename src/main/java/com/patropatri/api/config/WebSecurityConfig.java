@@ -70,6 +70,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(ConstantKey.SIGN_IN_URL).permitAll() // OR .antMatchers("/authenticate", "/register").permitAll().
                 .antMatchers(ConstantKey.RESOURCE_URL).permitAll()
                 .antMatchers(ConstantKey.GUEST_USER_URL).permitAll()
+                .antMatchers(ConstantKey.GUEST_USER_URL2).permitAll()
                 .antMatchers(ConstantKey.SOCKET_URL).permitAll()
                 .anyRequest().authenticated() // all other requests need to be authenticated
                 .and()

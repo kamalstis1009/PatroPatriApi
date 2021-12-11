@@ -9,6 +9,8 @@ import com.patropatri.api.repositories.UserRepository;
 import com.patropatri.api.utils.ResourceNotFoundException;
 import com.patropatri.api.utils.TokenGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -58,6 +60,18 @@ public class UserServiceImpl implements UserService {
         }*/
         Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
         return mRepository.getUsersByFilter(request.getGender(), request.getMaritalStatus(), request.getReligion(), request.getProfession(), request.getFromYear(), request.getToYear(), request.getDistrict(), pageable);
+    }
+
+    @Override
+    public List<User> getUsersByFilterSpecification(UserFilter request, int pageNo, int pageSize) {
+        if (pageNo == 0) {
+            Page<User> pages = new PageImpl<>(mRepository.findAll(mSpecification.getUsersByFilter(request)));
+            return pages.getContent();
+        } else {
+            Pageable paging = PageRequest.of(pageNo - 1, pageSize);
+            Page<User> pages = mRepository.findAll(mSpecification.getUsersByFilter(request), paging);
+            return pages.getContent();
+        }
     }
 
     //======================================================| User
