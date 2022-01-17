@@ -6,7 +6,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.Date;
 
 @Data
@@ -192,4 +192,22 @@ public class User {
     void createdAt() {
         this.createdAt = new Date();
     }
+
+    @PostLoad
+    void generateAge() {
+        this.age = calculateAge(getBirthDate());
+    };
+
+    int calculateAge(Date date) {
+        Calendar cal1 = Calendar.getInstance();
+        cal1.setTime(date);
+        Calendar cal2 = Calendar.getInstance();
+        int i = 0;
+        while (cal1.before(cal2)) {
+            cal1.add(Calendar.YEAR, 1);
+            i += 1;
+        }
+        return i;
+    }
+
 }
