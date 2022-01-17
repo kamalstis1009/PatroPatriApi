@@ -54,8 +54,8 @@ public class UserSpecification {
                 if (request.getFromYear() != null && request.getFromYear() > 0 && request.getToYear() != null && request.getToYear() > 0) {
                     list.add(builder.between(builder.function("YEAR", Integer.class, root.get("birthDate")), request.getToYear(), request.getFromYear())); //salary range: 2000, 4000
                 }
-                list.add(builder.isTrue(root.get("is_active").as(Boolean.class)));
-                list.add(builder.isTrue(root.get("is_approved").as(Boolean.class)));
+                list.add(builder.isTrue(root.get("isActive").as(Boolean.class)));
+                list.add(builder.isTrue(root.get("isApproved").as(Boolean.class)));
                 //list.add(builder.like(builder.lower(root.get("maritalStatus")), "%" + request.getMaritalStatus().toLowerCase() + "%"));
                 //query.orderBy(builder.desc(root.get("district")));
                 return builder.and(list.toArray(new Predicate[0]));
