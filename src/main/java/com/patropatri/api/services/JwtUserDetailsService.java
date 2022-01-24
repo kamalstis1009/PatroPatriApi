@@ -90,6 +90,7 @@ public class JwtUserDetailsService implements UserDetailsService {
 				model2.setGender(item.getGender());
 				model2.setBirthDate(item.getBirthDate());
 				model2.setReligion(item.getReligion());
+				model2.setCountry2(item.getCountry());
 				model2.setPhoneNumber(item.getUsername());
 				model2.setIsActive(false);
 				model2.setIsApproved(false);

@@ -14,5 +14,6 @@ public class AuthenticationWithUserDto {
     private Date birthDate;
     private String gender;
     private String religion;
+    private String country;
 
 }
