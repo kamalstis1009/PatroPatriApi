@@ -33,8 +33,8 @@ public class UserSpecification {
             @Override
             public Predicate toPredicate(Root<User> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
                 List<Predicate> list = new ArrayList<>();
-                if (request.getCitizenship() != null && !request.getCitizenship().isEmpty()) {
-                    list.add(builder.equal(root.get("citizenship"), request.getCitizenship()));
+                if (request.getCountry() != null && !request.getCountry().isEmpty()) {
+                    list.add(builder.equal(root.get("country2"), request.getCountry()));
                 }
                 if (request.getDistrict() != null && !request.getDistrict().isEmpty()) {
                     list.add(builder.equal(root.get("district"), request.getDistrict()));

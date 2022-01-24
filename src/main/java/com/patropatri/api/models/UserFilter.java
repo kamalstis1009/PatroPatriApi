@@ -12,5 +12,5 @@ public class UserFilter {
     private Integer fromYear;
     private Integer toYear;
     private String district;
-    private String citizenship;
+    private String country;
 }
